@@ -1,6 +1,7 @@
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
+#include <string>
 #include "Menu.h"
 using namespace std;
 
@@ -20,7 +21,47 @@ void art()
 	gotoxy(2, 14); cout << char(186); gotoxy(15, 14);  cout << " | ___ \\ | | | | | | | | |    \\                 "; cout << char(186) << endl;
 	gotoxy(2, 15); cout << char(186); gotoxy(15, 15);  cout << " | |_/ / \\ \\_/ / \\ \\_/ / | |\\  \\                "; cout << char(186) << endl;
 	gotoxy(2, 16); cout << char(186); gotoxy(15, 16);  cout << " \\____/   \\___/   \\___/  \\_| \\_/                "; cout << char(186) << endl;
-} 
+}
+struct Title
+{
+	string event;
+	Title* next;
+};
+
+void newElement(Title* Head, string value)
+{
+	Title* newElement = new Title;
+	newElement->event = value;
+	newElement->next = Head->next;
+	Head->next = newElement;
+}
+
+void drawNotebookContent(Title* Head)
+{
+	char b;
+	int numbro = 1;
+	int eventYear;
+	string eventName;
+	Title* one = Head;
+	system("cls");
+	while (one != NULL)
+	{
+		cout << one->event << "..........................." << numbro << "\n";
+		one = one->next;
+		numbro++;
+	}
+	cout << "\nmore?";
+	cin >> b;
+	if (b == 'y') {
+
+		cout << "Enter Event's name :";
+		cin >> eventName;
+		cout << "Enter Event's year :";
+		cin >> eventYear;
+		newElement(Head, eventName);
+		drawNotebookContent(Head);
+	}
+}
 
 void noteBook()
 {
@@ -58,7 +99,7 @@ void noteBook()
 	{
 		cout << char(205);
 	}
-	gotoxy(2, 1);cout << char(201);	
+	gotoxy(2, 1); cout << char(201);
 	for (int i = 0; i < 60; i++)
 	{
 		cout << char(205);
@@ -143,7 +184,14 @@ int bookMenu()
 			if (counter == 2)
 			{
 				system("CLS");
-				//Add/Edit option
+				int eventYear;
+				string eventName;
+				cout << "Enter Event's name :";
+				cin >> eventName;
+				cout << "Enter Event's year :";
+				cin >> eventYear;
+				Title* Head = new Title{ eventName, NULL };
+				drawNotebookContent(Head);
 				break;
 			}
 			if (counter == 3)
@@ -169,6 +217,6 @@ void mainGrid()
 {
 	art();
 	noteBook();
-    bookMenu();
+	bookMenu();
 }
 

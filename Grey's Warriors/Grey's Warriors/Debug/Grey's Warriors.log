@@ -1,5 +1,6 @@
-﻿  Main.cpp
+﻿  Notebook.cpp
+  Main.cpp
   Menu.cpp
   Generating Code...
-C:\Users\User\Downloads\Greys-Warriors\Grey's Warriors\Grey's Warriors\Menu.cpp(140): warning C4715: 'Menu': not all control paths return a value
-  Grey's Warriors.vcxproj -> C:\Users\User\Downloads\Greys-Warriors\Grey's Warriors\Debug\Grey's Warriors.exe
+  LINK : C:\Users\User\OneDrive - ПГКПИ - Бургас\Documents\Greys-Warriors\Grey's Warriors\Debug\Grey's Warriors.exe not found or not built by the last incremental link; performing full link
+  Grey's Warriors.vcxproj -> C:\Users\User\OneDrive - ПГКПИ - Бургас\Documents\Greys-Warriors\Grey's Warriors\Debug\Grey's Warriors.exe
