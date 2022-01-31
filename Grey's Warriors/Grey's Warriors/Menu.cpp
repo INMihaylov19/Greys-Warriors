@@ -1,6 +1,7 @@
 #include <iostream>
 #include <conio.h>
 #include <windows.h>
+#include "Notebook.h"
 using namespace std;
 
 
@@ -45,7 +46,7 @@ int Menu()
 {
     int counter = 1;
     char key;
-	int SetColor[3] = { 8, 7, 7 };
+	int SetColor[3] = { 14, 7, 7 };
 
     SetColor[0] = 14;
     SetColor[1] = 7;
@@ -114,7 +115,7 @@ int Menu()
             if (counter == 1)
             {
                 system("CLS");
-                //The book function will be executed afterwards
+                mainGrid();
                 break;
             }
             if (counter == 2)
@@ -137,4 +138,5 @@ int Menu()
         if (counter == 2) { SetColor[1] = 14; }
         if (counter == 3) { SetColor[2] = 14; }
     }
+    return 0;
 }
