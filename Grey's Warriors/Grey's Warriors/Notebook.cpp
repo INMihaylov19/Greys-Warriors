@@ -6,37 +6,64 @@ using namespace std;
 
 void art()
 {
-	gotoxy(3, 5); cout << "  _   _   _____   _____   _____   _____   _____  __   __" << endl;
-	gotoxy(3, 6); cout << " | | | | |_   _| /  ___| |_   _| |  _  | | ___ \\ \\ \\ / /" << endl;
-	gotoxy(3, 7); cout << " | |_| |   | |   \\ `--.    | |   | | | | | |_/ /  \\ V /" << endl;
-	gotoxy(3, 8); cout << " |  _  |   | |    `--. \\   | |   | | | | |    /    \\ /" << endl;
-	gotoxy(3, 9); cout << " | | | |  _| |_  /\\__/ /   | |   \\ \\_/ / | |\\ \\    | |" << endl;
-	gotoxy(3, 10); cout << " \\_| |_/  \\___/  \\____/    \\_/    \\___/  \\_| \\_|   \\_/" << endl;
+	gotoxy(2, 5); cout << char(186); gotoxy(5, 5);  cout << "  _   _   _____   _____   _____   _____   _____  __   __  "; cout << char(186) << endl;
+	gotoxy(2, 6); cout << char(186); gotoxy(5, 6);  cout << " | | | | |_   _| /  ___| |_   _| |  _  | | ___ \\ \\ \\ / /  "; cout << char(186) << endl;
+	gotoxy(2, 7); cout << char(186); gotoxy(5, 7);  cout << " | |_| |   | |   \\ `--.    | |   | | | | | |_/ /  \\ V /   "; cout << char(186) << endl;
+	gotoxy(2, 8); cout << char(186); gotoxy(5, 8);  cout << " |  _  |   | |    `--. \\   | |   | | | | |    /    \\ /    "; cout << char(186) << endl;
+	gotoxy(2, 9); cout << char(186); gotoxy(5, 9);  cout << " | | | |  _| |_  /\\__/ /   | |   \\ \\_/ / | |\\ \\    | |    "; cout << char(186) << endl;
+	gotoxy(2, 10); cout << char(186); gotoxy(5, 10);  cout << " \\_| |_/  \\___/  \\____/    \\_/    \\___/  \\_| \\_|   \\_/    "; cout << char(186) << endl;
 
 
-	gotoxy(13, 11); cout << "  _____   _____   _____   _   __" << endl;
-	gotoxy(13, 12); cout << " | ___ \\ |  _  | |  _  | | | / /" << endl;
-	gotoxy(13, 13); cout << " | |_/ / | | | | | | | | | |/ /" << endl;
-	gotoxy(13, 14); cout << " | ___ \\ | | | | | | | | |    \\" << endl;
-	gotoxy(13, 15); cout << " | |_/ / \\ \\_/ / \\ \\_/ / | |\\  \\" << endl;
-	gotoxy(13, 16); cout << " \\____/   \\___/   \\___/  \\_| \\_/ " << endl;
-}
+	gotoxy(2, 11); cout << char(186); gotoxy(15, 11); cout << "  _____   _____   _____   _   __                "; cout << char(186) << endl;
+	gotoxy(2, 12); cout << char(186); gotoxy(15, 12);  cout << " | ___ \\ |  _  | |  _  | | | / /                "; cout << char(186) << endl;
+	gotoxy(2, 13); cout << char(186); gotoxy(15, 13);  cout << " | |_/ / | | | | | | | | | |/ /                 "; cout << char(186) << endl;
+	gotoxy(2, 14); cout << char(186); gotoxy(15, 14);  cout << " | ___ \\ | | | | | | | | |    \\                 "; cout << char(186) << endl;
+	gotoxy(2, 15); cout << char(186); gotoxy(15, 15);  cout << " | |_/ / \\ \\_/ / \\ \\_/ / | |\\  \\                "; cout << char(186) << endl;
+	gotoxy(2, 16); cout << char(186); gotoxy(15, 16);  cout << " \\____/   \\___/   \\___/  \\_| \\_/                "; cout << char(186) << endl;
+} 
 
 void noteBook()
 {
+	gotoxy(63, 2); cout << char(186);
+	gotoxy(63, 3); cout << char(186);
+	gotoxy(63, 4); cout << char(186);
+	gotoxy(63, 17); cout << char(186);
+	gotoxy(63, 18); cout << char(186);
+	gotoxy(63, 19); cout << char(186);
+	gotoxy(63, 20); cout << char(186);
+	gotoxy(63, 21); cout << char(186);
+	gotoxy(63, 22); cout << char(186);
+	gotoxy(63, 23); cout << char(186);
+	gotoxy(63, 24); cout << char(186);
+	gotoxy(63, 25); cout << char(186);
+	gotoxy(63, 26); cout << char(186);
+	gotoxy(63, 27); cout << char(186);
+	gotoxy(63, 28); cout << char(188);
+	gotoxy(2, 2); cout << char(186);
+	gotoxy(2, 3); cout << char(186);
+	gotoxy(2, 4); cout << char(186);
+	gotoxy(2, 17); cout << char(186);
+	gotoxy(2, 18); cout << char(186);
+	gotoxy(2, 19); cout << char(186);
+	gotoxy(2, 20); cout << char(186);
+	gotoxy(2, 21); cout << char(186);
+	gotoxy(2, 22); cout << char(186);
+	gotoxy(2, 23); cout << char(186);
+	gotoxy(2, 24); cout << char(186);
+	gotoxy(2, 25); cout << char(186);
+	gotoxy(2, 26); cout << char(186);
+	gotoxy(2, 27); cout << char(186);
+	gotoxy(2, 28); cout << char(200);
+	for (int i = 0; i < 60; i++)
+	{
+		cout << char(205);
+	}
 	gotoxy(2, 1);cout << char(201);	
 	for (int i = 0; i < 60; i++)
 	{
 		cout << char(205);
 	}
-	for (int i = 0; i < 20; i++)
-	{
-		cout << "  " << char(186) << endl;
-	}
-
-
-	
-
+	cout << char(187);
 }
 
 int bookMenu()
@@ -51,14 +78,14 @@ int bookMenu()
 
 	while (true)
 	{
-		gotoxy(60, 8); color(SetColor[0]); cout << char(201);
+		gotoxy(70, 8); color(SetColor[0]); cout << char(201);
 		for (int i = 0; i < 20; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(60, 9); cout << char(186) << "      1. Open       " << char(186) << endl;
-		gotoxy(60, 10); cout << char(200);
+		gotoxy(70, 9); cout << char(186) << "      1. Open       " << char(186) << endl;
+		gotoxy(70, 10); cout << char(200);
 		for (int i = 0; i < 20; i++)
 		{
 			cout << char(205);
@@ -66,14 +93,14 @@ int bookMenu()
 		cout << char(188); color(SetColor[2]);
 
 
-		gotoxy(60, 11); color(SetColor[1]); cout << char(201);
+		gotoxy(70, 11); color(SetColor[1]); cout << char(201);
 		for (int i = 0; i < 20; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(60, 12); cout << char(186) << "    2. Add/Edit     " << char(186);
-		gotoxy(60, 13); cout << char(200);
+		gotoxy(70, 12); cout << char(186) << "    2. Add/Edit     " << char(186);
+		gotoxy(70, 13); cout << char(200);
 		for (int i = 0; i < 20; i++)
 		{
 			cout << char(205);
@@ -81,14 +108,14 @@ int bookMenu()
 		cout << char(188); color(SetColor[2]);
 
 
-		gotoxy(60, 14); color(SetColor[2]); cout << char(201);
+		gotoxy(70, 14); color(SetColor[2]); cout << char(201);
 		for (int i = 0; i < 20; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(60, 15); cout << char(186) << "     3. Delete      " << char(186) << endl; color(SetColor[2]);
-		gotoxy(60, 16); cout << char(200);
+		gotoxy(70, 15); cout << char(186) << "     3. Delete      " << char(186) << endl; color(SetColor[2]);
+		gotoxy(70, 16); cout << char(200);
 		for (int i = 0; i < 20; i++)
 		{
 			cout << char(205);
@@ -142,6 +169,6 @@ void mainGrid()
 {
 	art();
 	noteBook();
-	gotoxy(4, 2); bookMenu();
+    bookMenu();
 }
 
