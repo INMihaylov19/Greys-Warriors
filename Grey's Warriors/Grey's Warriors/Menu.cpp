@@ -1,10 +1,9 @@
 #include <iostream>
 #include <conio.h>
 #include <windows.h>
-
 using namespace std;
 
-int SetColor[3] = { 8, 7, 7 };
+
 
 void color(int color)
 {
@@ -14,42 +13,91 @@ void color(int color)
 void gotoxy(int x, int y)
 { //get the coordinates inside the console
     COORD coord;
-    coord.X = x; //character's X cordinates
-    coord.Y = y; //character's Y cordinates
+    coord.X = x; 
+    coord.Y = y; 
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-void menuArt()
+void menuArt(int SetColor[])
 {
-    gotoxy(4, 3); color(SetColor[0]); cout << " ==============================================================================================================";
-    gotoxy(4, 4); color(SetColor[0]); cout << "  _____   _____   _____  __   __  _   _____     _    _    ___    _____   _____   _____   _____   _____   _____ " << endl;
+	gotoxy(4, 3); color(SetColor[0]); cout << " ";
+	for (int i = 0; i < 110; i++) 
+	{
+		cout << char(205);
+	}
+	gotoxy(4, 4); color(SetColor[0]); cout << "  _____   _____   _____  __   __  _   _____     _    _    ___    _____   _____   _____   _____   _____   _____ " << endl;
     gotoxy(4, 5); color(SetColor[0]); cout << " |  __ \\ | ___ \\ |  ___| \\ \\ / / ( ) /  ___|   | |  | |  / _ \\  | ___ \\ | ___ \\ |_   _| |  _  | | ___ \\ /  ___| " << endl;
     gotoxy(4, 6); color(SetColor[0]); cout << " | |  \\/ | |_/ / | |__    \\ V /  |/  \\ `--.    | |  | | / /_\\ \\ | |_/ / | |_/ /   | |   | | | | | |_/ / \\ `--. " << endl;
     gotoxy(4, 7); color(SetColor[0]); cout << " | | __  |    /  |  __|    \\ /        `--. \\   | |/\\| | |  _  | |    /  |    /    | |   | | | | |    /   `--. \\ " << endl;
     gotoxy(4, 8); color(SetColor[0]); cout << " | |_\\ \\ | |\\ \\  | |___    | |       /\\__/ /   \\  /\\  / | | | | | |\\ \\  | |\\ \\   _| |_  \\ \\_/ / | |\\ \\  /\\__/ / " << endl;
-    gotoxy(4, 9); color(SetColor[0]); cout << "  \\____/ \\_| \\_| \\____/    \\_/       \\____/     \\/  \\/  \\_| |_/ \\_| \\_| \\_| \\_|  \\___/   \\___/  \\_| \\_| \\____/ " << endl;
-    gotoxy(4, 11); color(SetColor[0]); cout << " ==============================================================================================================";
+    gotoxy(4, 9); color(SetColor[0]); cout << "  \\____/ \\_| \\_| \\____/    \\_/       \\____/     \\/  \\/  \\_| |_/ \\_| \\_| \\_| \\_|  \\___/   \\___/  \\_| \\_| \\____/ ";
+    gotoxy(4, 11); color(SetColor[0]);
+	cout << " ";
+	for (int i = 0; i < 110; i++) 
+	{
+		cout << char(205);
+	}
 }
+
+
 
 int Menu()
 {
     int counter = 1;
     char key;
+	int SetColor[3] = { 8, 7, 7 };
 
     SetColor[0] = 14;
     SetColor[1] = 7;
     SetColor[2] = 7;
 
-    menuArt();
-
+    menuArt(SetColor);
 
     while (true)
     {
-        gotoxy(46, 13); color(SetColor[0]); cout << "1. Book with dates "; color(SetColor[2]);
+        gotoxy(42, 13); color(SetColor[0]); cout << char(201);
+		for (int i = 0; i < 32; i++) 
+		{
+			cout << char(205);
+		}
+		cout << char(187);
+		gotoxy(42, 14); cout << char(186) << "       1. History Notebook      " << char(186) << endl; 
+		gotoxy(42, 15); cout << char(200);
+		for (int i = 0; i < 32; i++) 
+		{
+			cout << char(205);
+		}
+		cout << char(188); color(SetColor[2]);
 
-        gotoxy(46, 14); color(SetColor[1]); cout << "2. Timeline "; color(SetColor[2]);
 
-        gotoxy(46, 15); color(SetColor[2]); cout << "3. Exit " << endl; color(SetColor[2]);
+        gotoxy(42, 16); color(SetColor[1]); cout << char(201);
+		for (int i = 0; i < 32; i++) 
+		{
+			cout << char(205);
+		}
+		cout << char(187);
+		gotoxy(42, 17); cout << char(186) << "          2. Timeline           " << char(186); 
+		gotoxy(42, 18); cout << char(200);
+		for (int i = 0; i < 32; i++) 
+		{
+			cout << char(205);
+		}
+		cout << char(188); color(SetColor[2]);
+
+
+		gotoxy(42, 19); color(SetColor[2]); cout << char(201);
+		for (int i = 0; i < 32; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(187);
+        gotoxy(42, 20); cout << char(186) << "            3. Exit             " << char(186) << endl; color(SetColor[2]);
+		gotoxy(42, 21); cout << char(200);
+		for (int i = 0; i < 32; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(188); color(SetColor[2]);
 
         key = _getch();
 
