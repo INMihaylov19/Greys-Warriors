@@ -38,6 +38,7 @@ void newElement(Title* Head, string value)
 
 void drawNotebookContent(Title* Head)
 {
+	
 	char b;
 	int numbro = 1;
 	int eventYear;
@@ -198,6 +199,9 @@ int bookMenu()
 			{
 				//Delete option
 			}
+		}
+		if (key == char(27)) {
+			Menu();
 		}
 
 		SetColor[0] = 7;

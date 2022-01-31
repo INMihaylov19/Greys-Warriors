@@ -21,6 +21,7 @@ void gotoxy(int x, int y)
 
 void menuArt(int SetColor[])
 {
+	system("cls");
 	gotoxy(4, 3); color(SetColor[0]); cout << " ";
 	for (int i = 0; i < 110; i++) 
 	{
