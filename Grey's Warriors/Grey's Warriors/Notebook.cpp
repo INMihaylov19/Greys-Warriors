@@ -35,17 +35,23 @@ void addEventToNotebook(Title* Head);
 
 void drawNotebookContent(Title* Head) {
 	Title* one = Head;
+	char xys;
+	int pageNumber = 1;
 	system("cls");
 	while (one != NULL)
 	{
-		cout << one->event[0] << " Year: " << one->event[1];
-		cout << " Participants: " << one->event[2] << " Details: " << one->event[3] << "\n";
+		cout << one->event[0];
+		for (int i = 0; i < 50 - one->event[0].size(); i++) 
+		{
+			cout << ".";
+		}
+		cout << pageNumber << endl;
+		pageNumber += 2;
 		one = one->next;
 	}
-	char xys;
-	cout << "Mchst du new elemnt";
+	cout << "Mchst du neu elemnt";
 	xys = _getch();
-	if (xys == char(27) )
+	if (xys == char(27))
 	{
 		addEventToNotebook(Head);
 	}
