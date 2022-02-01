@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <conio.h>
 #include <string>
+#include <vector>
 #include "Menu.h"
 using namespace std;
 
@@ -22,13 +23,13 @@ void art()
 	gotoxy(2, 15); cout << char(186); gotoxy(15, 15);  cout << " | |_/ / \\ \\_/ / \\ \\_/ / | |\\  \\                "; cout << char(186) << endl;
 	gotoxy(2, 16); cout << char(186); gotoxy(15, 16);  cout << " \\____/   \\___/   \\___/  \\_| \\_/                "; cout << char(186) << endl;
 }
-struct Title
-{
-	string event;
+
+struct Title {
+	vector<string> event;
 	Title* next;
 };
 
-void newElement(Title* Head, string value)
+void newElement(Title* Head, vector<string> value)
 {
 	Title* newElement = new Title;
 	newElement->event = value;
@@ -41,13 +42,14 @@ void drawNotebookContent(Title* Head)
 	
 	char b;
 	int numbro = 1;
-	int eventYear;
+	string eventYear;
 	string eventName;
+	vector <string> evN;
 	Title* one = Head;
 	system("cls");
 	while (one != NULL)
 	{
-		cout << one->event << "..........................." << numbro << "\n";
+		cout << one->event[0] << "..........................." << one->event[1] << "\n";
 		one = one->next;
 		numbro++;
 	}
@@ -59,7 +61,9 @@ void drawNotebookContent(Title* Head)
 		cin >> eventName;
 		cout << "Enter Event's year :";
 		cin >> eventYear;
-		newElement(Head, eventName);
+		evN.push_back(eventName);
+		evN.push_back(eventYear);
+		newElement(Head, evN);
 		drawNotebookContent(Head);
 	}
 }
@@ -185,13 +189,16 @@ int bookMenu()
 			if (counter == 2)
 			{
 				system("CLS");
-				int eventYear;
-				string eventName;
+				string eventYear;
+				string b;
+				vector <string> event;
 				cout << "Enter Event's name :";
-				cin >> eventName;
+				cin >> b;
+				event.push_back(b);
 				cout << "Enter Event's year :";
 				cin >> eventYear;
-				Title* Head = new Title{ eventName, NULL };
+				event.push_back(eventYear);
+				Title* Head = new Title{ event, NULL };
 				drawNotebookContent(Head);
 				break;
 			}
