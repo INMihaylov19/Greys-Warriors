@@ -38,7 +38,7 @@ int createdBook = true;
 
 void addEventToNotebook();
 
-void drawNotebookContent() 
+void drawNotebookContent(bool isAdd) 
 {
 	system("cls");
 	Title* outputHead = Head;
@@ -56,17 +56,30 @@ void drawNotebookContent()
 		pageNumber += 2;
 		outputHead = outputHead->next;
 	}
-	cout << "Add new Event";
-	key = _getch();
-	if (key == '\r')
-	{
-		addEventToNotebook();
+	
+	
+	if(isAdd) {
+		cout << "Add new Event";
+		key = _getch();
+		if (key == '\r')
+		{
+			addEventToNotebook();
+		}
+		if (key == char(27))
+		{
+			createdBook = false;
+			mainGrid();
+		}
 	}
-	if (key == char(27)) 
-	{
-		createdBook = false;
-		mainGrid();
+	else {
+		key = _getch();
+		if (key == char(27))
+		{
+			createdBook = false;
+			mainGrid();
+		}
 	}
+	
 
 }
 
@@ -92,7 +105,7 @@ void addEventToNotebook()
 	}
 
 	newElement(Head, event);
-	drawNotebookContent();
+	drawNotebookContent(true);
 }
 
 void startNewNotebook() 
@@ -110,7 +123,7 @@ void startNewNotebook()
 	}
 
 	Head = new Title{ event, NULL };
-	drawNotebookContent();
+	drawNotebookContent(true);
 }
 
 void notebookCover()
@@ -229,7 +242,7 @@ int bookMenu()
 		{
 			if (counter == 1 && createdBook == false)
 			{
-				drawNotebookContent();
+				drawNotebookContent(false);
 				system("CLS");
 				//Open option
 				break;
@@ -242,7 +255,7 @@ int bookMenu()
 				}
 				else 
 				{
-					drawNotebookContent();
+					drawNotebookContent(true);
 				}
 				break;
 			}
