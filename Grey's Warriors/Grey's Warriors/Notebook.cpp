@@ -126,6 +126,8 @@ void startNewNotebook()
 	drawNotebookContent(true);
 }
 
+
+
 void notebookCover()
 {
 	gotoxy(63, 2); cout << char(186);
