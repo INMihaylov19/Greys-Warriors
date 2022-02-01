@@ -44,8 +44,8 @@ void drawNotebookContent(Title* Head) {
 	}
 	char xys;
 	cout << "Mchst du new elemnt";
-	cin >> xys;
-	if (xys == 'y') 
+	xys = _getch();
+	if (xys == char(27) )
 	{
 		addEventToNotebook(Head);
 	}
@@ -62,22 +62,37 @@ void newElement(Title* Head, vector<string> value)
 
 void addEventToNotebook(Title* Head)
 {
-	char b;
-	int numbro = 1;
-	string eventYear;
-	string eventName;
-	vector <string> evN;
-	cout << "Enter Event's name :";
-	cin >> eventName;
-	cout << "Enter Event's year :";
-	cin >> eventYear;
-	evN.push_back(eventName);
-	evN.push_back(eventYear);
-	newElement(Head, evN);
+	string eventInformation, outputInfo[4] = { "Enter Event's name: ", "Enter Event's year: ",
+	"Enter Event's participants: ", "Enter Event's participants: " };
+	vector <string> event;
+
+	for (int i = 0; i < 4; i++) {
+		cout << outputInfo[i];
+		getline(cin, eventInformation);
+		event.push_back(eventInformation);
+	}
+	newElement(Head, event);
 	drawNotebookContent(Head);
 }
 
-void noteBook()
+void startNewNotebook() 
+{
+	system("CLS");
+	string eventInformation, outputInfo[4] = { "Enter Event's name: ", "Enter Event's year: ",
+	"Enter Event's participants: ", "Enter Event's participants: " };
+	vector <string> event;
+
+	for (int i = 0; i < 4; i++) {
+		cout << outputInfo[i];
+		getline(cin, eventInformation);
+		event.push_back(eventInformation);
+	}
+
+	Title* Head = new Title{ event, NULL };
+	drawNotebookContent(Head);
+}
+
+void notebookCover()
 {
 	gotoxy(63, 2); cout << char(186);
 	gotoxy(63, 3); cout << char(186);
@@ -197,19 +212,7 @@ int bookMenu()
 			}
 			if (counter == 2)
 			{
-				system("CLS");
-				string eventInformation, outputInfo[4] = { "Enter Event's name: ", "Enter Event's year: ",
-				"Enter Event's participants: ", "Enter Event's participants: " };
-				vector <string> event;
-
-				for (int i = 0; i < 4; i++) {
-					cout << outputInfo[i];
-					getline(cin, eventInformation);
-					event.push_back(eventInformation);
-				}
-		
-				Title* Head = new Title{ event, NULL };
-				drawNotebookContent(Head);
+				startNewNotebook();
 				break;
 			}
 			if (counter == 3)
@@ -237,7 +240,7 @@ int bookMenu()
 void mainGrid()
 {
 	art();
-	noteBook();
+	notebookCover();
 	bookMenu();
 }
 
