@@ -4,11 +4,9 @@
 #include <windows.h>
 #include <conio.h>
 
-
-
 void art();
 
-void noteBook();
+void notebookCover();
 
 void mainGrid();
 

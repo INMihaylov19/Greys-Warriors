@@ -41,6 +41,14 @@ void addEventToNotebook();
 void drawNotebookContent(bool isAdd) 
 {
 	system("cls");
+
+	cout << char(201);
+	for (int i = 0; i < 25; i++)
+	{
+		cout << char(205);
+	}
+	cout << endl;
+
 	Title* outputHead = Head;
 	char key;
 	int pageNumber = 1;
@@ -57,9 +65,11 @@ void drawNotebookContent(bool isAdd)
 		outputHead = outputHead->next;
 	}
 	
-	
+	cout << endl;
 	if(isAdd) {
-		cout << "Add new Event";
+		cout << "Press Enter to add new event " << endl;
+		cout << "Press Esc to get back to the Main Menu " << endl;
+		cout << endl;
 		key = _getch();
 		if (key == '\r')
 		{
@@ -79,8 +89,7 @@ void drawNotebookContent(bool isAdd)
 			mainGrid();
 		}
 	}
-	
-
+	cout << endl;
 }
 
 void newElement(Title* Head, vector<string> value)
@@ -91,17 +100,29 @@ void newElement(Title* Head, vector<string> value)
 	Head->next = newElement;
 }
 
+void textField()
+{
+	cout << char(201);
+	for (int i = 0; i < 25; i++)
+	{
+		cout << char(205);
+	}
+}
+
 void addEventToNotebook()
 {
 	string eventInformation, outputInfo[4] = { "Enter Event's name: ", "Enter Event's year: ",
 	"Enter Event's participants: ", "Enter Event Details: " };
 	vector <string> event;
-
-	for (int i = 0; i < 4; i++) 
+	for (int i = 0; i < 4; i++)
 	{
-		cout << outputInfo[i];
-		getline(cin, eventInformation);
+		cout << " " << outputInfo[i];
+		cout << endl;
+		cout << " "; textField();
+		cout << endl;
+		cout << " " << char(186); getline(cin, eventInformation);
 		event.push_back(eventInformation);
+		cout << endl;
 	}
 
 	newElement(Head, event);
@@ -111,15 +132,36 @@ void addEventToNotebook()
 void startNewNotebook() 
 {
 	system("CLS");
-	string eventInformation, outputInfo[4] = { "Enter Event's name: ", "Enter Event's year: ",
-	"Enter Event's participants: ", "Enter Event Details: " };
+	string eventInformation, outputInfo[4] = { " Enter Event's name: ", " Enter Event's year: ",
+	" Enter Event's participants: ", "Enter Event Details: " };
 	vector <string> event;
+
+	gotoxy(1, 1); cout << char(201); //Fill message start
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187);
+	gotoxy(1, 2); cout << char(186) << "Adding new event. Fill all gaps!" << char(186) << endl;
+	gotoxy(1, 3); cout << char(200);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188); //Fill message end
+
+	cout << endl;
+	cout << endl;
 
 	for (int i = 0; i < 4; i++) 
 	{
-		cout << outputInfo[i];
-		getline(cin, eventInformation);
+		cout << " " << outputInfo[i];
+		cout << endl;
+		cout << " "; textField();
+		cout << endl;
+		cout << " " << char(186); getline(cin, eventInformation);
 		event.push_back(eventInformation);
+		cout << endl;
 	}
 
 	Head = new Title{ event, NULL };
