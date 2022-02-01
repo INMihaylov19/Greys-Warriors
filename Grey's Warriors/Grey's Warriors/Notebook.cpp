@@ -24,10 +24,32 @@ void art()
 	gotoxy(2, 16); cout << char(186); gotoxy(15, 16);  cout << " \\____/   \\___/   \\___/  \\_| \\_/                "; cout << char(186) << endl;
 }
 
-struct Title {
+struct Title 
+{
+	//[0] is for title, [1] is for year, [2] is for participants and [3] is for details
 	vector<string> event;
 	Title* next;
 };
+
+void addEventToNotebook(Title* Head);
+
+void drawNotebookContent(Title* Head) {
+	Title* one = Head;
+	system("cls");
+	while (one != NULL)
+	{
+		cout << one->event[0] << " Year: " << one->event[1];
+		cout << " Participants: " << one->event[2] << " Details: " << one->event[3] << "\n";
+		one = one->next;
+	}
+	char xys;
+	cout << "Mchst du new elemnt";
+	cin >> xys;
+	if (xys == 'y') 
+	{
+		addEventToNotebook(Head);
+	}
+}
 
 void newElement(Title* Head, vector<string> value)
 {
@@ -37,35 +59,22 @@ void newElement(Title* Head, vector<string> value)
 	Head->next = newElement;
 }
 
-void drawNotebookContent(Title* Head)
+
+void addEventToNotebook(Title* Head)
 {
-	
 	char b;
 	int numbro = 1;
 	string eventYear;
 	string eventName;
 	vector <string> evN;
-	Title* one = Head;
-	system("cls");
-	while (one != NULL)
-	{
-		cout << one->event[0] << "..........................." << one->event[1] << "\n";
-		one = one->next;
-		numbro++;
-	}
-	cout << "\nmore?";
-	cin >> b;
-	if (b == 'y') {
-
-		cout << "Enter Event's name :";
-		cin >> eventName;
-		cout << "Enter Event's year :";
-		cin >> eventYear;
-		evN.push_back(eventName);
-		evN.push_back(eventYear);
-		newElement(Head, evN);
-		drawNotebookContent(Head);
-	}
+	cout << "Enter Event's name :";
+	cin >> eventName;
+	cout << "Enter Event's year :";
+	cin >> eventYear;
+	evN.push_back(eventName);
+	evN.push_back(eventYear);
+	newElement(Head, evN);
+	drawNotebookContent(Head);
 }
 
 void noteBook()
@@ -189,15 +198,16 @@ int bookMenu()
 			if (counter == 2)
 			{
 				system("CLS");
-				string eventYear;
-				string b;
+				string eventInformation, outputInfo[4] = { "Enter Event's name: ", "Enter Event's year: ",
+				"Enter Event's participants: ", "Enter Event's participants: " };
 				vector <string> event;
-				cout << "Enter Event's name :";
-				cin >> b;
-				event.push_back(b);
-				cout << "Enter Event's year :";
-				cin >> eventYear;
-				event.push_back(eventYear);
+
+				for (int i = 0; i < 4; i++) {
+					cout << outputInfo[i];
+					getline(cin, eventInformation);
+					event.push_back(eventInformation);
+				}
+		
 				Title* Head = new Title{ event, NULL };
 				drawNotebookContent(Head);
 				break;
