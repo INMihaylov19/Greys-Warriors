@@ -6,6 +6,8 @@
 #include "Menu.h"
 using namespace std;
 
+void mainGrid();
+
 void art()
 {
 	gotoxy(2, 5); cout << char(186); gotoxy(5, 5);  cout << "  _   _   _____   _____   _____   _____   _____  __   __  "; cout << char(186) << endl;
@@ -28,8 +30,11 @@ struct Title
 {
 	//[0] is for title, [1] is for year, [2] is for participants and [3] is for details
 	vector<string> event;
-	Title* next;
+	Title* next = NULL;
 };
+
+Title* Head = new Title;
+int vesko = true;
 
 void addEventToNotebook(Title* Head);
 
@@ -41,7 +46,7 @@ void drawNotebookContent(Title* Head) {
 	while (one != NULL)
 	{
 		cout << one->event[0];
-		for (int i = 0; i < 50 - one->event[0].size(); i++) 
+		for (size_t i = 0; i <= (50 - one->event[0].size()); i++) 
 		{
 			cout << ".";
 		}
@@ -49,12 +54,17 @@ void drawNotebookContent(Title* Head) {
 		pageNumber += 2;
 		one = one->next;
 	}
-	cout << "Mchst du neu elemnt";
+	cout << "Add new Event";
 	xys = _getch();
-	if (xys == char(27))
+	if (xys == '\r')
 	{
 		addEventToNotebook(Head);
 	}
+	if (xys == char(27)) {
+		vesko = false;
+		mainGrid();
+	}
+
 }
 
 void newElement(Title* Head, vector<string> value)
@@ -94,7 +104,7 @@ void startNewNotebook()
 		event.push_back(eventInformation);
 	}
 
-	Title* Head = new Title{ event, NULL };
+	Head = new Title{ event, NULL };
 	drawNotebookContent(Head);
 }
 
@@ -210,15 +220,21 @@ int bookMenu()
 		}
 		if (key == '\r') // enter key
 		{
-			if (counter == 1)
+			if (counter == 1 && vesko == false)
 			{
+				drawNotebookContent(Head);
 				system("CLS");
 				//Open option
 				break;
 			}
 			if (counter == 2)
 			{
-				startNewNotebook();
+				if (vesko) {
+					startNewNotebook();
+				}
+				else {
+					drawNotebookContent(Head);
+				}
 				break;
 			}
 			if (counter == 3)
@@ -245,6 +261,7 @@ int bookMenu()
 
 void mainGrid()
 {
+	system("cls");
 	art();
 	notebookCover();
 	bookMenu();

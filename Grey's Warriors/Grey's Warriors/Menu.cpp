@@ -116,7 +116,7 @@ int Menu()
             if (counter == 1)
             {
                 system("CLS");
-                mainGrid();
+				mainGrid();
                 break;
             }
             if (counter == 2)
