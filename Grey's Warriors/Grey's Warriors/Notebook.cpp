@@ -41,14 +41,6 @@ void addEventToNotebook();
 void drawNotebookContent(bool isAdd) 
 {
 	system("cls");
-
-	cout << char(201);
-	for (int i = 0; i < 25; i++)
-	{
-		cout << char(205);
-	}
-	cout << endl;
-
 	Title* outputHead = Head;
 	char key;
 	int pageNumber = 1;
@@ -67,9 +59,38 @@ void drawNotebookContent(bool isAdd)
 	
 	cout << endl;
 	if(isAdd) {
-		cout << "Press Enter to add new event " << endl;
-		cout << "Press Esc to get back to the Main Menu " << endl;
+		//Enter new event button
+		gotoxy(60, 1); cout << char(201);
+		for (int i = 0; i < 32; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(187);
+		gotoxy(60, 2); cout << char(186) << "  Press Enter to add new event  " << char(186) << endl;
+		gotoxy(60, 3); cout << char(200);
+		for (int i = 0; i < 32; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(188);
+
+		//Get back button
+		gotoxy(60, 5); cout << char(201);
+		for (int i = 0; i < 32; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(187);
+		gotoxy(60, 6); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
+		gotoxy(60, 7); cout << char(200);
+		for (int i = 0; i < 32; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(188);
 		cout << endl;
+
+
 		key = _getch();
 		if (key == '\r')
 		{
@@ -295,10 +316,12 @@ int bookMenu()
 			{
 				if (createdBook) 
 				{
+					system("CLS");
 					startNewNotebook();
 				}
 				else 
 				{
+					system("CLS");
 					drawNotebookContent(true);
 				}
 				break;
@@ -311,6 +334,7 @@ int bookMenu()
 
 		if (key == char(27)) 
 		{
+			system("CLS");
 			Menu();
 		}
 
