@@ -149,14 +149,14 @@ void startNewNote(int repeat)
 void numberOfEvents()
 {
 	//Button 4
-	gotoxy(32, 12); cout << char(201);
+	gotoxy(48, 12); cout << char(201);
 	for (int i = 0; i < 3; i++)
 	{
 		cout << char(205);
 	}
 	cout << char(187);
-	gotoxy(32, 13); cout << char(186) << " 4 " << char(186) << endl;
-	gotoxy(32, 14); cout << char(200);
+	gotoxy(48, 13); cout << char(186) << " 4 " << char(186) << endl;
+	gotoxy(48, 14); cout << char(200);
 	for (int i = 0; i < 3; i++)
 	{
 		cout << char(205);
@@ -164,14 +164,14 @@ void numberOfEvents()
 	cout << char(188);
 
 	//Button 5
-	gotoxy(38, 12); cout << char(201);
+	gotoxy(54, 12); cout << char(201);
 	for (int i = 0; i < 3; i++)
 	{
 		cout << char(205);
 	}
 	cout << char(187);
-	gotoxy(38, 13); cout << char(186) << " 5 " << char(186) << endl;
-	gotoxy(38, 14); cout << char(200);
+	gotoxy(54, 13); cout << char(186) << " 5 " << char(186) << endl;
+	gotoxy(54, 14); cout << char(200);
 	for (int i = 0; i < 3; i++)
 	{
 		cout << char(205);
@@ -179,14 +179,14 @@ void numberOfEvents()
 	cout << char(188);
 
 	//Button 6
-	gotoxy(44, 12); cout << char(201);
+	gotoxy(60, 12); cout << char(201);
 	for (int i = 0; i < 3; i++)
 	{
 		cout << char(205);
 	}
 	cout << char(187);
-	gotoxy(44, 13); cout << char(186) << " 6 " << char(186) << endl;
-	gotoxy(44, 14); cout << char(200);
+	gotoxy(60, 13); cout << char(186) << " 6 " << char(186) << endl;
+	gotoxy(60, 14); cout << char(200);
 	for (int i = 0; i < 3; i++)
 	{
 		cout << char(205);
@@ -194,14 +194,14 @@ void numberOfEvents()
 	cout << char(188);
 
 	//Button 7
-	gotoxy(50, 12); cout << char(201);
+	gotoxy(66, 12); cout << char(201);
 	for (int i = 0; i < 3; i++)
 	{
 		cout << char(205);
 	}
 	cout << char(187);
-	gotoxy(50, 13); cout << char(186) << " 7 " << char(186) << endl;
-	gotoxy(50, 14); cout << char(200);
+	gotoxy(66, 13); cout << char(186) << " 7 " << char(186) << endl;
+	gotoxy(66, 14); cout << char(200);
 	for (int i = 0; i < 3; i++)
 	{
 		cout << char(205);
