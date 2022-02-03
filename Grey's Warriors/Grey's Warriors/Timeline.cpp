@@ -127,3 +127,15 @@ void startNewNote(int repeat)
 	addEventToNote(repeat, usedN, usedY);
 	drawTimelines();
 }
+
+void timelineSection()
+{
+	system("cls");
+	int time = 0;
+	char choice;
+	cout << "\t\tCollection\t\t\t\tAdd/Edit\n";
+
+	
+
+
+}
