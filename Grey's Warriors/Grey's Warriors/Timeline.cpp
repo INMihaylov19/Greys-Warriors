@@ -71,3 +71,13 @@ void newElementName(EventName* Head, string value)
 	newElement->next = Head->next;
 	Head->next = newElement;
 }
+
+
+void newElementYear(EventYear* Head, int value)
+{
+	EventYear* newElement = new EventYear;
+	newElement->date = value;
+	newElement->next = Head->next;
+	Head->next = newElement;
+}
+
