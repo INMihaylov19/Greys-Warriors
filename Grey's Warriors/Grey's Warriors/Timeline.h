@@ -18,6 +18,8 @@ struct EventYear
 	EventYear* next = NULL;
 };
 
+void searchBoxTimeline();
+
 void drawTimelines();
 
 void newElementName(EventName* Head, string value);

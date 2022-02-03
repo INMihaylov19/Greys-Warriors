@@ -42,11 +42,9 @@ void menuArt(int SetColor[])
 	}
 }
 
-
 int counter = 1;
 int Menu()
 {
-
 	char key;
 	int SetColor[3] = { 14, 7, 7 };
 
@@ -101,7 +99,7 @@ int Menu()
 			cout << char(205);
 		}
 		cout << char(188); color(SetColor[2]);
-
+		gotoxy(34, 23); cout << "If you want to use the search box press Shift + S" << endl;;
 		key = _getch();
 
 		if (key == 72 && (counter >= 2 && counter <= 3)) // 72 is the ASCII code for the up arrow
@@ -132,6 +130,10 @@ int Menu()
 				return 0;
 			}
 
+		}
+
+		if (key == 'S') {
+			searchBoxTimeline();
 		}
 
 		SetColor[0] = 7;
