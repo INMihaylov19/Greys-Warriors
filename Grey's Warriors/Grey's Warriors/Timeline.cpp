@@ -63,3 +63,11 @@ void drawTimelines()
 		timelineSection();
 	}
 }
+
+void newElementName(EventName* Head, string value)
+{
+	EventName* newElement = new EventName;
+	newElement->title = value;
+	newElement->next = Head->next;
+	Head->next = newElement;
+}
