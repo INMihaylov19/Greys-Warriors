@@ -105,3 +105,25 @@ void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY)
 
 	drawTimelines();
 }
+
+
+void startNewNote(int repeat)
+{
+	system("cls");
+	string currentN, timelineT, outputInfo[3] = { " Enter Event's name: ", " Enter Event's year: " };
+	cin.ignore(256, '\n');
+	cout << "ADD TIMELINE'S NAME: ";
+	std::getline(std::cin, timelineT);
+	TimeLineTitle[coler] = timelineT;
+	cout << endl;
+	int currentY;
+	cout << " " << char(179) << outputInfo[0];
+	getline(cin, currentN);
+	cout << " " << char(179) << outputInfo[1];
+	cin >> currentY;
+	cout << endl;
+	EventName* usedN = new EventName{ currentN, NULL };
+	EventYear* usedY = new EventYear{ currentY, NULL };
+	addEventToNote(repeat, usedN, usedY);
+	drawTimelines();
+}
