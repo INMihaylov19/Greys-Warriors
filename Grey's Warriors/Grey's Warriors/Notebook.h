@@ -6,6 +6,8 @@
 
 void art();
 
+void searchBoxNotebook(int whichYear);
+
 void notebookCover();
 
 void mainGrid();

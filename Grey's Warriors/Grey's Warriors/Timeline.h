@@ -18,7 +18,7 @@ struct EventYear
 	EventYear* next = NULL;
 };
 
-void searchBoxTimeline();
+void searchBoxTimeline(int whichYear);
 
 void drawTimelines();
 

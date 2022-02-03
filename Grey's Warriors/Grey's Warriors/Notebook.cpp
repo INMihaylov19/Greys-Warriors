@@ -38,6 +38,21 @@ int createdBook = true;
 
 void addEventToNotebook();
 
+void searchBoxNotebook(int whichYear) 
+{
+	Title* outputHead = Head;
+	char key;
+	int pageNumber = 1;
+
+	while (outputHead != NULL)
+	{
+		if (outputHead->event[1] == to_string(whichYear)) {
+			cout << "Notebook:	" <<  outputHead->event[0];
+		}
+		outputHead = outputHead->next;
+	}
+}
+
 void drawNotebookContent(bool isAdd) 
 {
 	system("cls");

@@ -11,12 +11,12 @@ void timelineSection();
 struct EventName
 {
 	string title;
-	EventName* next;
+	EventName* next = NULL;
 };
 
 struct EventYear
 {
-	int date;
+	int date = 0;
 	EventYear* next = NULL;
 };
 
@@ -25,11 +25,7 @@ EventYear** HeadY = new EventYear * [10];
 string TimeLineTitle[10];
 int coler = -1;
 
-void searchBoxTimeline() {
-	system("cls");
-	cout << "Enter the year";
-	int whichYear;
-	cin >> whichYear;
+void searchBoxTimeline(int whichYear) {
 	bool isFound = true;
 	for (int i = 0; i <= coler; ++i)
 	{

@@ -133,7 +133,12 @@ int Menu()
 		}
 
 		if (key == 'S') {
-			searchBoxTimeline();
+			system("cls");
+			cout << "Enter the year: ";
+			int whichYear;
+			cin >> whichYear;
+			searchBoxTimeline(whichYear);
+			searchBoxNotebook(whichYear);
 		}
 
 		SetColor[0] = 7;
