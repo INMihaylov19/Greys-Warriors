@@ -135,7 +135,28 @@ void timelineSection()
 	char choice;
 	cout << "\t\tCollection\t\t\t\tAdd/Edit\n";
 
-	
+	choice = _getch();
+	if (choice == char(27))
+	{
+		Menu();
+	}
+	if (choice == '2') {
+		cout << "\n\t 4\t5\t6\t7 - ";
+		coler += 1;
+		do {
+			cin >> time;
+			if (time < 3 || time > 7) {
+				cout << "must be less than 7 and more than 4";
+			}
+		} while (time < 3 || time > 7);
+		startNewNote(time);
+	}
+	if (choice == '1' && coler >= 0) {
+		drawTimelines();
+	}
+	else {
+		timelineSection();
+	}
 
 
 }
