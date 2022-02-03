@@ -28,6 +28,8 @@ void newElementYear(EventYear* Head, int value);
 
 void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY);
 
+void numberOfEvents();
+
 void startNewNote(int repeat);
 
 void timelineSection();

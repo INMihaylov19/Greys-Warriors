@@ -146,6 +146,69 @@ void startNewNote(int repeat)
 	drawTimelines();
 }
 
+void numberOfEvents()
+{
+	//Button 4
+	gotoxy(10, 1); cout << char(201);
+	for (int i = 0; i < 3; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187);
+	gotoxy(10, 2); cout << char(186) << " 4 " << char(186) << endl;
+	gotoxy(10, 3); cout << char(200);
+	for (int i = 0; i < 3; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188);
+
+	//Button 5
+	gotoxy(16, 1); cout << char(201);
+	for (int i = 0; i < 3; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187);
+	gotoxy(16, 2); cout << char(186) << " 5 " << char(186) << endl;
+	gotoxy(16, 3); cout << char(200);
+	for (int i = 0; i < 3; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188);
+
+	//Button 6
+	gotoxy(22, 1); cout << char(201);
+	for (int i = 0; i < 3; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187);
+	gotoxy(22, 2); cout << char(186) << " 6 " << char(186) << endl;
+	gotoxy(22, 3); cout << char(200);
+	for (int i = 0; i < 3; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188);
+
+	//Button 7
+	gotoxy(28, 1); cout << char(201);
+	for (int i = 0; i < 3; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187);
+	gotoxy(28, 2); cout << char(186) << " 7 " << char(186) << endl;
+	gotoxy(28, 3); cout << char(200);
+	for (int i = 0; i < 3; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188);
+}
+
 void timelineSection()
 {
 	system("cls");
@@ -159,7 +222,7 @@ void timelineSection()
 		Menu();
 	}
 	if (choice == '2') {
-		cout << "\n\t 4\t5\t6\t7 - ";
+		numberOfEvents();
 		coler += 1;
 		do {
 			cin >> time;
