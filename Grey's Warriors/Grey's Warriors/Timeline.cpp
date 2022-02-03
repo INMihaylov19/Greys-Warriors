@@ -81,3 +81,27 @@ void newElementYear(EventYear* Head, int value)
 	Head->next = newElement;
 }
 
+void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY)
+{
+	string currentN, outputInfo[3] = { " Enter Event's name: ", " Enter Event's year: " };
+	vector <string> info;
+	int ind = 0, currentY;
+
+	for (int i = 0; i < repeatment - 1; i++)
+	{
+		cin.ignore(256, '\n');
+		cout << " " << char(179) << outputInfo[0];
+		getline(cin, currentN);
+		cout << " " << char(179) << outputInfo[1];
+		cin >> currentY;
+		cout << endl;
+
+		newElementYear(usedY, currentY);
+		newElementName(usedN, currentN);
+
+	}
+	*(HeadY + coler) = usedY;
+	*(HeadN + coler) = usedN;
+
+	drawTimelines();
+}
