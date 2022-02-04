@@ -92,7 +92,7 @@ int Menu()
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(42, 20); cout << char(186) << "            3. Exit             " << char(186) << endl; color(SetColor[2]);
+		gotoxy(42, 20); cout << char(186) << "            3. Exit             " << char(186) << endl;
 		gotoxy(42, 21); cout << char(200);
 		for (int i = 0; i < 32; i++)
 		{

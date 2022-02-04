@@ -224,56 +224,108 @@ void timelineSection()
 	char choice;
 
 	//Collection button
-	gotoxy(35, 8); cout << char(201);
-	for (int i = 0; i < 15; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoxy(35, 9); cout << char(186) << "  Collection   " << char(186) << endl;
-	gotoxy(35, 10); cout << char(200);
-	for (int i = 0; i < 15; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
+	int SetColor[3] = { 14, 7, 7 };
 
-	//Add/Edit button
-	gotoxy(66, 8); cout << char(201);
-	for (int i = 0; i < 15; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoxy(66, 9); cout << char(186) << "    Add/Edit   " << char(186) << endl;
-	gotoxy(66, 10); cout << char(200);
-	for (int i = 0; i < 15; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
+	SetColor[0] = 14;
+	SetColor[1] = 7;
+	SetColor[2] = 7;
 
-	choice = _getch();
-	if (choice == char(27))
+	int counter = 1;
+	int key;
+	while (true)
 	{
-		Menu();
-	}
-	if (choice == '2') {
-		numberOfEvents();
-		coler += 1;
-		do {
-			cin >> time;
-			if (time < 3 || time > 7) {
-				cout << "must be less than 7 and more than 4";
+		gotoxy(30, 8); color(SetColor[0]);  cout << char(201);
+		for (int i = 0; i < 14; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(187);
+		gotoxy(30, 9); cout << char(186) << "  Collection  " << char(186) << endl;
+		gotoxy(30, 10); cout << char(200);
+		for (int i = 0; i < 14; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(188); color(SetColor[2]);
+
+		//Add/Edit button
+		gotoxy(51, 8); color(SetColor[1]); cout << char(201);
+		for (int i = 0; i < 14; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(187);
+		gotoxy(51, 9); cout << char(186) << "   Add/Edit   " << char(186) << endl;
+		gotoxy(51, 10); cout << char(200);
+		for (int i = 0; i < 14; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(188); color(SetColor[2]);
+
+		//Back to Menu button
+		gotoxy(72, 8); color(SetColor[2]); cout << char(201);
+		for (int i = 0; i < 14; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(187);
+		gotoxy(72, 9); cout << char(186) << " Back to Menu " << char(186) << endl;
+		gotoxy(72, 10); cout << char(200);
+		for (int i = 0; i < 14; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(188); color(SetColor[2]);
+
+		key = _getch();
+
+		if (key == 75 && (counter >= 2 && counter <= 3)) // 75 is the ASCII code for the leftwards arrow
+		{
+			counter--;
+		}
+		if (key == 77 && (counter >= 1 && counter <= 2)) // 77 is the ASCII code for rightwards arrow
+		{
+			counter++;
+		}
+		if (key == '\r') // enter key
+		{
+			if (counter == 1)
+			{
+				if (coler >= 0)
+				{
+					drawTimelines();
+				} else {
+					timelineSection();
+				}
 			}
-		} while (time < 3 || time > 7);
-		startNewNote(time);
-	}
-	if (choice == '1' && coler >= 0) {
-		drawTimelines();
-	}
-	else {
-		timelineSection();
+			if (counter == 2)
+			{
+				numberOfEvents();
+				coler += 1;
+				do {
+					cin >> time;
+					if (time < 3 || time > 7) {
+						cout << "must be less than 7 and more than 4";
+					}
+				} while (time < 3 || time > 7);
+				startNewNote(time);
+				break;
+			}
+			if (counter == 3)
+			{
+				system("CLS");
+				Menu();
+				break;
+			}
+		}
+		SetColor[0] = 7;
+		SetColor[1] = 7;
+		SetColor[2] = 7;
+
+		if (counter == 1) { SetColor[0] = 14; }
+		if (counter == 2) { SetColor[1] = 14; }
+		if (counter == 3) { SetColor[2] = 14; }
 	}
 
 
