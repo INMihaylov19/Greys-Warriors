@@ -26,54 +26,92 @@ void art()
 	gotoxy(2, 16); cout << char(186); gotoxy(15, 16);  cout << " \\____/   \\___/   \\___/  \\_| \\_/                "; cout << char(186) << endl;
 }
 
-struct Title 
+struct Title
 {
 	//[0] is for title, [1] is for year, [2] is for participants and [3] is for details
 	vector<string> event;
 	Title* next = NULL;
 };
-
 Title* Head = new Title;
 int createdBook = true;
 
 void addEventToNotebook();
 
-void searchBoxNotebook(int whichYear) 
+void searchBoxNotebook(int whichYear)
 {
 	Title* outputHead = Head;
-	char key;
 	int pageNumber = 1;
 
 	while (outputHead != NULL)
 	{
 		if (outputHead->event[1] == to_string(whichYear)) {
-			cout << "Notebook:	" <<  outputHead->event[0];
+			cout << "Notebook:	" << outputHead->event[0];
 		}
 		outputHead = outputHead->next;
 	}
 }
 
-void drawNotebookContent(bool isAdd) 
+
+void drawNotebookContent(bool isAdd, bool isDel)
 {
 	system("cls");
 	Title* outputHead = Head;
 	char key;
-	int pageNumber = 1;
-	
-	while (outputHead != NULL)
-	{
-		cout << outputHead->event[0];
-		for (size_t i = 0; i <= (50 - outputHead->event[0].size()); i++) 
+	int pageNumber = 1, delnum = 0;
+	std::cout << endl;
+	if (isDel) {
+		for (;;)
 		{
-			cout << ".";
+			system("cls");
+			outputHead = Head;
+			pageNumber = 1;
+			while (outputHead != NULL)
+			{
+				if (pageNumber == delnum) {
+					outputHead = outputHead->next;
+					del_pos(&Head, delnum);
+				}
+
+				cout << "  " << outputHead->event[0];
+				for (size_t i = 0; i <= (50 - outputHead->event[0].size()); i++)
+				{
+					cout << ".";
+				}
+				cout << pageNumber << endl;
+				pageNumber++;
+				outputHead = outputHead->next;
+			}
+			cout << "For Delete Press Enter\nPress ESC for goin back";
+			key = _getch();
+			if (key == '\r') {
+				cout << "Enter which event: ";
+				cin >> delnum;
+			}
+			if (key == char(27)) {
+				mainGrid();
+				break;
+			}
 		}
-		cout << pageNumber << endl;
-		pageNumber += 2;
-		outputHead = outputHead->next;
+
 	}
-	
+
+	else {
+		while (outputHead != NULL)
+		{
+			cout << "  " << outputHead->event[0];
+			for (size_t i = 0; i <= (50 - outputHead->event[0].size()); i++)
+			{
+				cout << ".";
+			}
+			cout << pageNumber << endl;
+			pageNumber += 2;
+			outputHead = outputHead->next;
+		}
+	}
+
+
 	cout << endl;
-	if(isAdd) {
+	if (isAdd) {
 		//Enter new event button
 		gotoxy(60, 1); cout << char(201);
 		for (int i = 0; i < 32; i++)
@@ -139,7 +177,7 @@ void newElement(Title* Head, vector<string> value)
 void textField()
 {
 	cout << char(201);
-	for (int i = 0; i < 25; i++)
+	for (int i = 0; i < 37; i++)
 	{
 		cout << char(205);
 	}
@@ -152,20 +190,20 @@ void addEventToNotebook()
 	vector <string> event;
 	for (int i = 0; i < 4; i++)
 	{
-		cout << " " << outputInfo[i];
+		gotoxy(61, 9); cout<< outputInfo[i];
 		cout << endl;
-		cout << " "; textField();
+		gotoxy(60, 10); textField();
 		cout << endl;
-		cout << " " << char(186); getline(cin, eventInformation);
+		gotoxy(60, 11); cout  << char(186) << " "; getline(cin, eventInformation);
 		event.push_back(eventInformation);
 		cout << endl;
 	}
 
 	newElement(Head, event);
-	drawNotebookContent(true);
+	drawNotebookContent(true, false);
 }
 
-void startNewNotebook() 
+void startNewNotebook()
 {
 	system("CLS");
 	string eventInformation, outputInfo[4] = { " Enter Event's name: ", " Enter Event's year: ",
@@ -173,14 +211,14 @@ void startNewNotebook()
 	vector <string> event;
 
 	gotoxy(1, 1); cout << char(201); //Fill message start
-	for (int i = 0; i < 32; i++)
+	for (int i = 0; i < 36; i++)
 	{
 		cout << char(205);
 	}
 	cout << char(187);
-	gotoxy(1, 2); cout << char(186) << "Adding new event. Fill all gaps!" << char(186) << endl;
+	gotoxy(1, 2); cout << char(186) << "  Adding new event. Fill all gaps!  " << char(186) << endl;
 	gotoxy(1, 3); cout << char(200);
-	for (int i = 0; i < 32; i++)
+	for (int i = 0; i < 36; i++)
 	{
 		cout << char(205);
 	}
@@ -189,19 +227,19 @@ void startNewNotebook()
 	cout << endl;
 	cout << endl;
 
-	for (int i = 0; i < 4; i++) 
+	for (int i = 0; i < 1; i++)
 	{
 		cout << " " << outputInfo[i];
 		cout << endl;
 		cout << " "; textField();
 		cout << endl;
-		cout << " " << char(186); getline(cin, eventInformation);
+		cout << " " << char(186) << " "; getline(cin, eventInformation);
 		event.push_back(eventInformation);
 		cout << endl;
 	}
 
 	Head = new Title{ event, NULL };
-	drawNotebookContent(true);
+	drawNotebookContent(true, false);
 }
 
 
@@ -322,32 +360,36 @@ int bookMenu()
 		{
 			if (counter == 1 && createdBook == false)
 			{
-				drawNotebookContent(false);
+				drawNotebookContent(false, false);
 				system("CLS");
 				//Open option
 				break;
 			}
 			if (counter == 2)
 			{
-				if (createdBook) 
+				if (createdBook)
 				{
 					system("CLS");
 					startNewNotebook();
 				}
-				else 
+				else
 				{
 					system("CLS");
-					drawNotebookContent(true);
+					drawNotebookContent(true, false);
 				}
 				break;
 			}
-			if (counter == 3)
+			if (counter == 3 && createdBook == false)
 			{
-				//Delete option
+				color(7);
+				drawNotebookContent(false, true);
+				system("CLS");
+				//Open option
+				break;
 			}
 		}
 
-		if (key == char(27)) 
+		if (key == char(27))
 		{
 			system("CLS");
 			Menu();
@@ -364,8 +406,6 @@ int bookMenu()
 
 	return 0;
 }
-
-
 
 void mainGrid()
 {

@@ -129,7 +129,6 @@ void startNewNote(int repeat)
 {
 	system("cls");
 	string currentN, timelineT, outputInfo[3] = { " Enter Event's name: ", " Enter Event's year: " };
-	cin.ignore(256, '\n');
 	cout << "ADD TIMELINE'S NAME: ";
 	std::getline(std::cin, timelineT);
 	TimeLineTitle[coler] = timelineT;
