@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream>y
 #include <windows.h>
 #include <conio.h>
 #include <string>
@@ -294,45 +294,45 @@ void timelineSection()
 	int key;
 	while (true)
 	{
-		gotoxy(30, 8); color(SetColor[0]);  cout << char(201);
-		for (int i = 0; i < 14; i++)
+		gotoxy(15, 10); color(SetColor[0]);  cout << char(201);
+		for (int i = 0; i < 20; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(30, 9); cout << char(186) << "  Collection  " << char(186) << endl;
-		gotoxy(30, 10); cout << char(200);
-		for (int i = 0; i < 14; i++)
+		gotoxy(15, 11); cout << char(186) << "     Collection     " << char(186) << endl;
+		gotoxy(15, 12); cout << char(200);
+		for (int i = 0; i < 20; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(188); color(SetColor[2]);
 
 		//Add/Edit button
-		gotoxy(51, 8); color(SetColor[1]); cout << char(201);
-		for (int i = 0; i < 14; i++)
+		gotoxy(48, 10); color(SetColor[1]); cout << char(201);
+		for (int i = 0; i < 20; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(51, 9); cout << char(186) << "   Add/Edit   " << char(186) << endl;
-		gotoxy(51, 10); cout << char(200);
-		for (int i = 0; i < 14; i++)
+		gotoxy(48, 11); cout << char(186) << "      Add/Edit      " << char(186) << endl;
+		gotoxy(48, 12); cout << char(200);
+		for (int i = 0; i < 20; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(188); color(SetColor[2]);
 
 		//Back to Menu button
-		gotoxy(72, 8); color(SetColor[2]); cout << char(201);
-		for (int i = 0; i < 14; i++)
+		gotoxy(81, 10); color(SetColor[2]); cout << char(201);
+		for (int i = 0; i < 20; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(72, 9); cout << char(186) << " Back to Menu " << char(186) << endl;
-		gotoxy(72, 10); cout << char(200);
-		for (int i = 0; i < 14; i++)
+		gotoxy(81, 11); cout << char(186) << "    Back to Menu    " << char(186) << endl;
+		gotoxy(81, 12); cout << char(200);
+		for (int i = 0; i < 20; i++)
 		{
 			cout << char(205);
 		}
