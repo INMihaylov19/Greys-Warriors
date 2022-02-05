@@ -197,10 +197,10 @@ void newElement(Title* Head, vector<string> value)
 	Head->next = newElement;
 }
 
-void textField()
+void textField(int size = 37)
 {
 	cout << char(201);
-	for (int i = 0; i < 37; i++)
+	for (int i = 0; i < size; i++)
 	{
 		cout << char(205);
 	}
@@ -211,15 +211,17 @@ void addEventToNotebook()
 	string eventInformation, outputInfo[4] = { "Enter Event's name: ", "Enter Event's year: ",
 	"Enter Event's participants: ", "Enter Event Details: " };
 	vector <string> event;
+	int position = 9;
 	for (int i = 0; i < 4; i++)
 	{
-		gotoxy(61, 9); cout<< outputInfo[i];
+		gotoxy(61, position); cout<< outputInfo[i];
 		cout << endl;
-		gotoxy(60, 10); textField();
+		gotoxy(60, position + 1); textField(33);
 		cout << endl;
-		gotoxy(60, 11); cout  << char(186) << " "; getline(cin, eventInformation);
+		gotoxy(60, position + 2); cout  << char(186) << " "; getline(cin, eventInformation);
 		event.push_back(eventInformation);
 		cout << endl;
+		position += 4;
 	}
 
 	newElement(Head, event);
