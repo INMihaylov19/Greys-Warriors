@@ -148,65 +148,120 @@ void startNewNote(int repeat)
 
 void numberOfEvents()
 {
-	//Button 4
-	gotoxy(48, 12); cout << char(201);
-	for (int i = 0; i < 3; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoxy(48, 13); cout << char(186) << " 4 " << char(186) << endl;
-	gotoxy(48, 14); cout << char(200);
-	for (int i = 0; i < 3; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
+	int SetColor[4] = {14, 7, 7, 7};
 
-	//Button 5
-	gotoxy(54, 12); cout << char(201);
-	for (int i = 0; i < 3; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoxy(54, 13); cout << char(186) << " 5 " << char(186) << endl;
-	gotoxy(54, 14); cout << char(200);
-	for (int i = 0; i < 3; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
+	SetColor[0] = 14;
+	SetColor[1] = 7;
+	SetColor[2] = 7;
+	SetColor[3] = 7;
 
-	//Button 6
-	gotoxy(60, 12); cout << char(201);
-	for (int i = 0; i < 3; i++)
+	int counter = 1;
+	int key;
+	while (true)
 	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoxy(60, 13); cout << char(186) << " 6 " << char(186) << endl;
-	gotoxy(60, 14); cout << char(200);
-	for (int i = 0; i < 3; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
+		//Button 4
+		gotoxy(48, 12); color(SetColor[0]); cout << char(201);
+		for (int i = 0; i < 3; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(187);
+		gotoxy(48, 13); cout << char(186) << " 4 " << char(186) << endl;
+		gotoxy(48, 14); cout << char(200);
+		for (int i = 0; i < 3; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(188); color(SetColor[0]);
 
-	//Button 7
-	gotoxy(66, 12); cout << char(201);
-	for (int i = 0; i < 3; i++)
-	{
-		cout << char(205);
+		//Button 5
+		gotoxy(54, 12); color(SetColor[1]); cout << char(201);
+		for (int i = 0; i < 3; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(187);
+		gotoxy(54, 13); cout << char(186) << " 5 " << char(186) << endl;
+		gotoxy(54, 14); cout << char(200);
+		for (int i = 0; i < 3; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(188); color(SetColor[1]);
+
+		//Button 6
+		gotoxy(60, 12); color(SetColor[2]); cout << char(201);
+		for (int i = 0; i < 3; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(187);
+		gotoxy(60, 13); cout << char(186) << " 6 " << char(186) << endl;
+		gotoxy(60, 14); cout << char(200);
+		for (int i = 0; i < 3; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(188); color(SetColor[2]);
+
+		//Button 7
+		gotoxy(66, 12); color(SetColor[3]); cout << char(201);
+		for (int i = 0; i < 3; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(187);
+		gotoxy(66, 13); cout << char(186) << " 7 " << char(186) << endl;
+		gotoxy(66, 14); cout << char(200);
+		for (int i = 0; i < 3; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(188); color(SetColor[3]);
+
+		key = _getch();
+
+		if (key == 75 && (counter >= 2 && counter <= 4)) // 75 is the ASCII code for the leftwards arrow
+		{
+			counter--;
+		}
+		if (key == 77 && (counter >= 1 && counter <= 3)) // 77 is the ASCII code for rightwards arrow
+		{
+			counter++;
+		}
+		if (key == '\r') // enter key
+		{
+			if (counter == 1)
+			{
+				startNewNote(4);
+				break;
+			}
+			if (counter == 2)
+			{
+				startNewNote(5);
+				break;
+			}
+			if (counter == 3)
+			{
+				startNewNote(6);
+				break;
+			}
+			if (counter == 4)
+			{
+				color(7);
+				startNewNote(7);
+			}
+		}
+		SetColor[0] = 7;
+		SetColor[1] = 7;
+		SetColor[2] = 7;
+		SetColor[3] = 7;
+
+		if (counter == 1) { SetColor[0] = 14; }
+		if (counter == 2) { SetColor[1] = 14; }
+		if (counter == 3) { SetColor[2] = 14; }
+		if (counter == 4) { SetColor[3] = 14; }
 	}
-	cout << char(187);
-	gotoxy(66, 13); cout << char(186) << " 7 " << char(186) << endl;
-	gotoxy(66, 14); cout << char(200);
-	for (int i = 0; i < 3; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
 }
 
 void timelineSection()
@@ -302,14 +357,6 @@ void timelineSection()
 			if (counter == 2)
 			{
 				numberOfEvents();
-				coler += 1;
-				do {
-					cin >> time;
-					if (time < 3 || time > 7) {
-						cout << "must be less than 7 and more than 4";
-					}
-				} while (time < 3 || time > 7);
-				startNewNote(time);
 				break;
 			}
 			if (counter == 3)
