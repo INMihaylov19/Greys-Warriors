@@ -231,6 +231,7 @@ void numberOfEvents()
 		}
 		if (key == '\r') // enter key
 		{
+			coler += 1;
 			if (counter == 1)
 			{
 				startNewNote(4);
