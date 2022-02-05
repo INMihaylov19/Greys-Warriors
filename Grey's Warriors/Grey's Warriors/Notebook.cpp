@@ -51,6 +51,29 @@ void searchBoxNotebook(int whichYear)
 	}
 }
 
+void del_pos(struct Title** Head1, int position) {
+	struct Title* current = *Head1;
+	struct Title* previous = *Head1;
+	if (*Head1 == NULL) {
+		cout << "Listi is alrr";
+	}
+	if (position == 1) {
+		*Head1 = current->next;
+		free(current);
+		current = NULL;
+	}
+	else {
+		while (position != 1) {
+			previous = current;
+			current = current->next;
+			position--;
+		}
+		previous->next = current->next;
+		free(current);
+		current = NULL;
+	}
+
+}
 
 void drawNotebookContent(bool isAdd, bool isDel)
 {
