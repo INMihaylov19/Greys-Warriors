@@ -160,60 +160,68 @@ void numberOfEvents()
 	while (true)
 	{
 		//Button 4
-		gotoxy(48, 12); color(SetColor[0]); cout << char(201);
-		for (int i = 0; i < 3; i++)
+		gotoxy(30, 15); color(SetColor[0]);  cout << char(201);
+		for (int i = 0; i < 9; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(48, 13); cout << char(186) << " 4 " << char(186) << endl;
-		gotoxy(48, 14); cout << char(200);
-		for (int i = 0; i < 3; i++)
+		gotoxy(30, 16); cout << char(186) << "         " << char(186) << endl;
+		gotoxy(30, 17); cout << char(186) << "    4    " << char(186) << endl;
+		gotoxy(30, 18); cout << char(186) << "         " << char(186) << endl;
+		gotoxy(30, 19); cout << char(200);
+		for (int i = 0; i < 9; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(188); color(SetColor[0]);
 
 		//Button 5
-		gotoxy(54, 12); color(SetColor[1]); cout << char(201);
-		for (int i = 0; i < 3; i++)
+		gotoxy(45, 15); color(SetColor[1]);  cout << char(201);
+		for (int i = 0; i < 9; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(54, 13); cout << char(186) << " 5 " << char(186) << endl;
-		gotoxy(54, 14); cout << char(200);
-		for (int i = 0; i < 3; i++)
+		gotoxy(45, 16); cout << char(186) << "         " << char(186) << endl;
+		gotoxy(45, 17); cout << char(186) << "    5    " << char(186) << endl;
+		gotoxy(45, 18); cout << char(186) << "         " << char(186) << endl;
+		gotoxy(45, 19); cout << char(200);
+		for (int i = 0; i < 9; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(188); color(SetColor[1]);
 
 		//Button 6
-		gotoxy(60, 12); color(SetColor[2]); cout << char(201);
-		for (int i = 0; i < 3; i++)
+		gotoxy(60, 15); color(SetColor[2]);  cout << char(201);
+		for (int i = 0; i < 9; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(60, 13); cout << char(186) << " 6 " << char(186) << endl;
-		gotoxy(60, 14); cout << char(200);
-		for (int i = 0; i < 3; i++)
+		gotoxy(60, 16); cout << char(186) << "         " << char(186) << endl;
+		gotoxy(60, 17); cout << char(186) << "    6    " << char(186) << endl;
+		gotoxy(60, 18); cout << char(186) << "         " << char(186) << endl;
+		gotoxy(60, 19); cout << char(200);
+		for (int i = 0; i < 9; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(188); color(SetColor[2]);
 
 		//Button 7
-		gotoxy(66, 12); color(SetColor[3]); cout << char(201);
-		for (int i = 0; i < 3; i++)
+		gotoxy(75, 15); color(SetColor[3]);  cout << char(201);
+		for (int i = 0; i < 9; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(66, 13); cout << char(186) << " 7 " << char(186) << endl;
-		gotoxy(66, 14); cout << char(200);
-		for (int i = 0; i < 3; i++)
+		gotoxy(75, 16); cout << char(186) << "         " << char(186) << endl;
+		gotoxy(75, 17); cout << char(186) << "    7    " << char(186) << endl;
+		gotoxy(75, 18); cout << char(186) << "         " << char(186) << endl;
+		gotoxy(75, 19); cout << char(200);
+		for (int i = 0; i < 9; i++)
 		{
 			cout << char(205);
 		}
