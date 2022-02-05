@@ -40,9 +40,7 @@ void searchBoxTimeline(int whichYear) {
 			temp = temp->next;
 		}
 	}
-	if (isFound) {
-		cout << "Baby, we couldnt find this year exactly how you couldnt find girlfriend";
-	}
+	
 }
 void drawTimelines()
 {
