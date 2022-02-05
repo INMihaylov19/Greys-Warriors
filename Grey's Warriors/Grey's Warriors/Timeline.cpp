@@ -129,6 +129,7 @@ void startNewNote(int repeat)
 {
 	system("cls");
 	string currentN, timelineT, outputInfo[3] = { " Enter Event's name: ", " Enter Event's year: " };
+
 	cout << "ADD TIMELINE'S NAME: ";
 	std::getline(std::cin, timelineT);
 	TimeLineTitle[coler] = timelineT;
@@ -231,6 +232,9 @@ void numberOfEvents()
 		if (key == '\r') // enter key
 		{
 			coler += 1;
+			if (coler == 1) {
+				cin.ignore(256, '\n');
+			}
 			if (counter == 1)
 			{
 				startNewNote(4);
@@ -251,6 +255,7 @@ void numberOfEvents()
 				color(7);
 				startNewNote(7);
 			}
+			coler += 1;
 		}
 		SetColor[0] = 7;
 		SetColor[1] = 7;

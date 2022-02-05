@@ -41,14 +41,24 @@ void searchBoxNotebook(int whichYear)
 {
 	Title* outputHead = Head;
 	int pageNumber = 1;
-
+	char key = 'n';
+	cout << endl;
 	while (outputHead != NULL)
 	{
 		if (outputHead->event[1] == to_string(whichYear)) {
-			cout << "Notebook:	" << outputHead->event[0];
+			cout << "Notebook:	" << outputHead->event[0] << endl;
 		}
 		outputHead = outputHead->next;
 	}
+	cout << endl << "If you want to go back press ESC";
+	while (key != char(27)) {
+		key = _getch();
+		if (key == char(27)) {
+			Menu();
+		}
+	}
+	
+
 }
 
 void del_pos(struct Title** Head1, int position) {
@@ -252,7 +262,7 @@ void startNewNotebook()
 	cout << endl;
 	cout << endl;
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		cout << " " << outputInfo[i];
 		cout << endl;

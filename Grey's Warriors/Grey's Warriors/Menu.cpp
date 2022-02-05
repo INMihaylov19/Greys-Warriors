@@ -42,12 +42,12 @@ void menuArt(int SetColor[])
 	}
 }
 
-int counter = 1;
+
 int Menu()
 {
 	char key;
 	int SetColor[3] = { 14, 7, 7 };
-
+	int counter = 1;
 	SetColor[0] = 14;
 	SetColor[1] = 7;
 	SetColor[2] = 7;
@@ -99,7 +99,7 @@ int Menu()
 			cout << char(205);
 		}
 		cout << char(188); color(SetColor[2]);
-		gotoxy(34, 23); cout << "If you want to use the search box press Shift + S" << endl;;
+		gotoxy(34, 23); color(7);  cout << "If you want to use the search box press Shift + S" << endl;;
 		key = _getch();
 
 		if (key == 72 && (counter >= 2 && counter <= 3)) // 72 is the ASCII code for the up arrow
@@ -126,8 +126,7 @@ int Menu()
 			}
 			if (counter == 3)
 			{
-				system("CLS");
-				return 0;
+				break;
 			}
 
 		}
