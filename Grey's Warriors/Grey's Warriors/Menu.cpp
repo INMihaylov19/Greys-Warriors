@@ -40,6 +40,98 @@ void menuArt(int SetColor[])
 	}
 }
 
+void searchEngine() {
+	system("cls");
+	color(7);
+	int whichYear;
+	cout << "\nEnter a year   ";
+	cin >> whichYear;
+	system("cls");
+	cout << char(218);
+	for (int i = 0; i < 12; i++) {
+		cout << char(196);
+	}
+
+	cout << char(210);
+	for (int i = 0; i < 51; i++) {
+		cout << char(196);
+	}
+
+	cout << char(191) << endl;
+	cout << char(179) << "   SEARCH   " << char(186) << " " << whichYear << "\t\t\t\t\t\t " << char(179);
+	cout << endl;
+
+	cout << char(192);
+	for (int i = 0; i < 12; i++) {
+		cout << char(196);
+	}
+
+	cout << char(208);
+	for (int i = 0; i < 51; i++) {
+		cout << char(196);
+	}
+
+	cout << char(217) << endl;
+	//new one don ot
+	color(14);
+	cout << char(218);
+	for (int i = 0; i < 12; i++) {
+		cout << char(196);
+	}
+
+	cout << char(194);
+	color(7);
+	for (int i = 0; i < 12; i++) {
+		cout << char(196);
+	}
+
+	cout << char(194);
+	for (int i = 0; i < 12; i++) {
+		cout << char(196);
+	}
+	cout << char(194);
+	for (int i = 0; i < 12; i++) {
+		cout << char(196);
+	}
+	cout << char(194);
+	for (int i = 0; i < 12; i++) {
+		cout << char(196);
+	}
+	color(14);
+	cout << char(191) << endl;
+	cout << char(179) << "     ALL    " << char(179);
+	color(7);
+	cout << "    NEWS    ";
+	cout << char(179) << "   IMAGES   " << char(179) << "   VIDEOS   " << char(179) << "    MAPS    " << char(179);
+	color(14);
+	cout << endl << char(192);
+	for (int i = 0; i < 12; i++) {
+		cout << char(196);
+	}
+
+	cout << char(193);
+	color(7);
+	for (int i = 0; i < 12; i++) {
+		cout << char(196);
+	}
+	cout << char(193);
+
+	for (int i = 0; i < 12; i++) {
+		cout << char(196);
+	}
+	cout << char(193);
+	for (int i = 0; i < 12; i++) {
+		cout << char(196);
+	}
+	cout << char(193);
+	for (int i = 0; i < 12; i++) {
+		cout << char(196);
+	}
+	cout << char(217) << endl;
+	searchBoxTimeline(whichYear);
+	searchBoxNotebook(whichYear);
+}
+
 int Menu()
 {
 	char key;
@@ -126,13 +218,7 @@ int Menu()
 
 			if (counter == 3)
 			{
-				system("cls");
-				color(7);
-				cout << "Enter the year: ";
-				int whichYear;
-				cin >> whichYear;
-				searchBoxTimeline(whichYear);
-				searchBoxNotebook(whichYear);
+				searchEngine();
 				break;
 			}
 		}
