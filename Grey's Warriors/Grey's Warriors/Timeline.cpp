@@ -33,7 +33,7 @@ void searchBoxTimeline(int whichYear) {
 		EventYear* tempY = *(HeadY + i);
 		while (tempY != NULL) {
 			if (tempY->date == whichYear) {
-				cout << "Timeline:	" << TimeLineTitle[i] << "->" << temp->title << endl;
+				cout << "Timeline:	" << TimeLineTitle[i] << "-> " << temp->title << endl;
 				isFound = false;
 			}
 			tempY = tempY->next;
@@ -57,20 +57,20 @@ void drawTimelines()
 			cout << ".";
 		}
 		EventName* temp = *(HeadN + i);
-		EventYear* tempY = *(HeadY + i);
+		/*EventYear* tempY = *(HeadY + i);*/
 
-		cout << i << "-->\t";
+		/*cout << i << "-->\t";*/
 		while (temp != NULL) {
-			cout << temp->title << " ";
+			/*cout << temp->title << " ";*/
 			temp = temp->next;
 			sizeCount++;
 		}
 
-		cout << '\n' << i << "-->\t";
+		/*cout << '\n' << i << "-->\t";
 		while (tempY != NULL) {
 			cout << tempY->date << " ";
 			tempY = tempY->next;
-		}
+		}*/
 
 		cout << sizeCount << endl;
 	}
