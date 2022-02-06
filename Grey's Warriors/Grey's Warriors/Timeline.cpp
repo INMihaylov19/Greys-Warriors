@@ -1,4 +1,4 @@
-#include <iostream>y
+#include <iostream>
 #include <windows.h>
 #include <conio.h>
 #include <string>
@@ -39,6 +39,9 @@ void searchBoxTimeline(int whichYear) {
 			tempY = tempY->next;
 			temp = temp->next;
 		}
+	}
+	if (isFound) {
+		cout<<"There is no result in Timeline";
 	}
 	
 }
@@ -287,7 +290,6 @@ void timelineSection()
 	gotoxy(26, 6); cout << "   \\_/    \\___/  \\_|  |_/ \\____/  \\_____/  \\___/  \\_| \\_/ \\____/" << endl;
 
 	int time = 0;
-	char choice;
 
 	//Collection button
 	int SetColor[3] = { 14, 7, 7 };

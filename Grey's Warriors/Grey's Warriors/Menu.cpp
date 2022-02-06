@@ -5,15 +5,13 @@
 #include "Timeline.h"
 using namespace std;
 
-
-
 void color(int color)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
-void gotoxy(int x, int y)
-{ //get the coordinates inside the console
+void gotoxy(int x, int y)  //get the coordinates inside the console
+{
 	COORD coord;
 	coord.X = x;
 	coord.Y = y;
@@ -41,7 +39,6 @@ void menuArt(int SetColor[])
 		cout << char(205);
 	}
 }
-
 
 int Menu()
 {
@@ -92,24 +89,26 @@ int Menu()
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(42, 20); cout << char(186) << "            3. Exit             " << char(186) << endl;
+		gotoxy(42, 20); cout << char(186) << "       3. Search Engine         " << char(186) << endl;
 		gotoxy(42, 21); cout << char(200);
 		for (int i = 0; i < 32; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(188); color(SetColor[2]);
-		gotoxy(34, 23); color(7);  cout << "If you want to use the search box press Shift + S" << endl;;
+
 		key = _getch();
 
 		if (key == 72 && (counter >= 2 && counter <= 3)) // 72 is the ASCII code for the up arrow
 		{
 			counter--;
 		}
+
 		if (key == 80 && (counter >= 1 && counter <= 2)) // 80 is the ASCII code for the up arrow
 		{
 			counter++;
 		}
+
 		if (key == '\r') // enter key
 		{
 			if (counter == 1)
@@ -117,27 +116,25 @@ int Menu()
 				mainGrid();
 				break;
 			}
+
 			if (counter == 2)
 			{
 				system("CLS");
-				timelineSection();
-				//The timeline function will be displayed afterwards
+				timelineSection();  //The timeline function will be displayed afterwards
 				break;
 			}
+
 			if (counter == 3)
 			{
+				system("cls");
+				color(7);
+				cout << "Enter the year: ";
+				int whichYear;
+				cin >> whichYear;
+				searchBoxTimeline(whichYear);
+				searchBoxNotebook(whichYear);
 				break;
 			}
-
-		}
-
-		if (key == 'S') {
-			system("cls");
-			cout << "Enter the year: ";
-			int whichYear;
-			cin >> whichYear;
-			searchBoxTimeline(whichYear);
-			searchBoxNotebook(whichYear);
 		}
 
 		SetColor[0] = 7;
@@ -149,5 +146,6 @@ int Menu()
 		if (counter == 3) { SetColor[2] = 14; }
 
 	}
+
 	return 0;
 }

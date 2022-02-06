@@ -32,6 +32,7 @@ struct Title
 	vector<string> event;
 	Title* next = NULL;
 };
+
 Title* Head = new Title;
 int createdBook = true;
 
@@ -40,23 +41,28 @@ void addEventToNotebook();
 void searchBoxNotebook(int whichYear)
 {
 	Title* outputHead = Head;
-	int pageNumber = 1;
-	char key = 'n';
+	char key;
+	bool isFound = true;
 	cout << endl;
 	while (outputHead != NULL)
 	{
 		if (outputHead->event[1] == to_string(whichYear)) {
 			cout << "Notebook:	" << outputHead->event[0] << endl;
+			isFound = false;
 		}
 		outputHead = outputHead->next;
 	}
+	if (isFound) {
+		cout << "There is no result in Notebook\n\n";
+	}
+
 	cout << endl << "If you want to go back press ESC";
-	while (key != char(27)) {
+	do {
 		key = _getch();
 		if (key == char(27)) {
 			Menu();
 		}
-	}
+	} while (key != char(27));
 	
 
 }
@@ -106,6 +112,7 @@ void drawNotebookContent(bool isAdd, bool isDel)
 				}
 
 				cout << "  " << outputHead->event[0];
+
 				for (size_t i = 0; i <= (50 - outputHead->event[0].size()); i++)
 				{
 					cout << ".";
