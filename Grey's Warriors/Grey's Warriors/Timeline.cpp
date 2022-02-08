@@ -142,7 +142,19 @@ void drawTimelines()
 		cout << sizeCount << endl;
 	}
 
-	cout << "\n\n\t Iskash li da se vurnesh nazad?";
+	gotoxy(80, 2); cout << char(201);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187);
+	gotoxy(80, 3); cout << char(186) << "      Press ESC to go back      " << char(186) << endl;
+	gotoxy(80, 4); cout << char(200);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188);
 	char key;
 	key = _getch();
 	if (key == char(27)) {
