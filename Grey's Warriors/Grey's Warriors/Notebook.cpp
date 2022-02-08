@@ -121,7 +121,37 @@ void drawNotebookContent(bool isAdd, bool isDel)
 				pageNumber++;
 				outputHead = outputHead->next;
 			}
-			cout << "For Delete Press Enter\nPress ESC for goin back";
+
+			gotoxy(65, 1); cout << char(201);
+			for (int i = 0; i < 32; i++)
+			{
+				cout << char(205);
+			}
+			cout << char(187);
+			gotoxy(65, 2); cout << char(186) << " Press Enter to delete an event " << char(186) << endl;
+			gotoxy(65, 3); cout << char(200);
+			for (int i = 0; i < 32; i++)
+			{
+				cout << char(205);
+			}
+			cout << char(188);
+
+			//Get back button
+			gotoxy(65, 5); cout << char(201);
+			for (int i = 0; i < 32; i++)
+			{
+				cout << char(205);
+			}
+			cout << char(187);
+			gotoxy(65, 6); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
+			gotoxy(65, 7); cout << char(200);
+			for (int i = 0; i < 32; i++)
+			{
+				cout << char(205);
+			}
+			cout << char(188);
+			cout << endl;
+
 			key = _getch();
 			if (key == '\r') {
 				cout << "Enter which event: ";
@@ -153,14 +183,14 @@ void drawNotebookContent(bool isAdd, bool isDel)
 	cout << endl;
 	if (isAdd) {
 		//Enter new event button
-		gotoxy(60, 1); cout << char(201);
+		gotoxy(65, 1); cout << char(201);
 		for (int i = 0; i < 32; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(60, 2); cout << char(186) << "  Press Enter to add new event  " << char(186) << endl;
-		gotoxy(60, 3); cout << char(200);
+		gotoxy(65, 2); cout << char(186) << "  Press Enter to add new event  " << char(186) << endl;
+		gotoxy(65, 3); cout << char(200);
 		for (int i = 0; i < 32; i++)
 		{
 			cout << char(205);
@@ -168,14 +198,14 @@ void drawNotebookContent(bool isAdd, bool isDel)
 		cout << char(188);
 
 		//Get back button
-		gotoxy(60, 5); cout << char(201);
+		gotoxy(65, 5); cout << char(201);
 		for (int i = 0; i < 32; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(60, 6); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
-		gotoxy(60, 7); cout << char(200);
+		gotoxy(65, 6); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
+		gotoxy(65, 7); cout << char(200);
 		for (int i = 0; i < 32; i++)
 		{
 			cout << char(205);
