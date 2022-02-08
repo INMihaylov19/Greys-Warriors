@@ -68,7 +68,26 @@ void inputFromFile() {
 	int i = 2;
 	while (getline(inputFile, data)) 
 	{
-		
+		coler++;
+		TimeLineTitle[coler] = extractInfo(i, title, data);
+
+		currentN = extractInfo(i, currentN, data);
+		currentY = extractInfo(i, currentY, data);
+		/*cout << currentN << " " << currentY << endl;*/
+		EventName* usedN = new EventName{ currentN, NULL };
+		EventYear* usedY = new EventYear{ stoi(currentY), NULL };
+
+		for (int j = 0; j < stoi(data.substr(0,1)) - 1; j++) {
+			currentN = extractInfo(i, currentN, data);
+			currentY = extractInfo(i, currentY, data);
+			/*cout << currentN << " " << stoi(currentY) << endl;*/
+			newElementYear(usedY, stoi(currentY));
+			newElementName(usedN, currentN);
+		}
+		*(HeadY + coler) = usedY;
+		*(HeadN + coler) = usedN;
+		i = 2;
+	}
 	inputFile.close();
 }
 
