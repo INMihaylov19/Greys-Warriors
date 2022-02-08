@@ -8,6 +8,15 @@ using namespace std;
 
 void mainGrid();
 
+void textField(int size = 37)
+{
+	cout << char(201);
+	for (int i = 0; i < size; i++)
+	{
+		cout << char(205);
+	}
+}
+
 void art()
 {
 	gotoxy(2, 5); cout << char(186); gotoxy(5, 5);  cout << "  _   _   _____   _____   _____   _____   _____  __   __  "; cout << char(186) << endl;
@@ -154,8 +163,11 @@ void drawNotebookContent(bool isAdd, bool isDel)
 
 			key = _getch();
 			if (key == '\r') {
-				cout << "Enter which event: ";
-				cin >> delnum;
+				gotoxy(72, 9); cout << "Enter which event: ";
+				cout << endl;
+				gotoxy(71, 10); cout << " "; textField(18);
+				cout << endl;
+				gotoxy(72, 11); cout << char(186) << " ";  cin >> delnum;
 			}
 			if (key == char(27)) {
 				mainGrid();
@@ -244,15 +256,6 @@ void newElement(Title* Head, vector<string> value)
 	Head->next = newElement;
 }
 
-void textField(int size = 37)
-{
-	cout << char(201);
-	for (int i = 0; i < size; i++)
-	{
-		cout << char(205);
-	}
-}
-
 void addEventToNotebook()
 {
 	string eventInformation, outputInfo[4] = { "Enter Event's name: ", "Enter Event's year: ",
@@ -261,11 +264,11 @@ void addEventToNotebook()
 	int position = 9;
 	for (int i = 0; i < 4; i++)
 	{
-		gotoxy(61, position); cout<< outputInfo[i];
+		gotoxy(65, position); cout<< outputInfo[i];
 		cout << endl;
-		gotoxy(60, position + 1); textField(33);
+		gotoxy(65, position + 1); textField(33);
 		cout << endl;
-		gotoxy(60, position + 2); cout  << char(186) << " "; getline(cin, eventInformation);
+		gotoxy(65, position + 2); cout  << char(186) << " "; getline(cin, eventInformation);
 		event.push_back(eventInformation);
 		cout << endl;
 		position += 4;
