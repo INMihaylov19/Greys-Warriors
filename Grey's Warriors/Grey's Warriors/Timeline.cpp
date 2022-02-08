@@ -142,14 +142,14 @@ void drawTimelines()
 		cout << sizeCount << endl;
 	}
 
-	gotoxy(80, 2); cout << char(201);
+	gotoxy(85, 0); cout << char(201);
 	for (int i = 0; i < 32; i++)
 	{
 		cout << char(205);
 	}
 	cout << char(187);
-	gotoxy(80, 3); cout << char(186) << "      Press ESC to go back      " << char(186) << endl;
-	gotoxy(80, 4); cout << char(200);
+	gotoxy(85, 1); cout << char(186) << "      Press ESC to go back      " << char(186) << endl;
+	gotoxy(85, 2); cout << char(200);
 	for (int i = 0; i < 32; i++)
 	{
 		cout << char(205);
