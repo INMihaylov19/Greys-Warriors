@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <conio.h>
 #include <string>
+#include <fstream>
 #include <vector>
 #include "Menu.h"
 using namespace std;
@@ -33,7 +34,7 @@ void searchBoxTimeline(int whichYear) {
 		EventYear* tempY = *(HeadY + i);
 		while (tempY != NULL) {
 			if (tempY->date == whichYear) {
-				cout << "Timeline:	" << TimeLineTitle[i] << "-> " << temp->title << endl;
+				cout << "Timeline:	" << TimeLineTitle[i] << "->" << temp->title << endl;
 				isFound = false;
 			}
 			tempY = tempY->next;
@@ -45,6 +46,7 @@ void searchBoxTimeline(int whichYear) {
 	}
 	
 }
+
 void drawTimelines()
 {
 	system("cls");
@@ -57,20 +59,20 @@ void drawTimelines()
 			cout << ".";
 		}
 		EventName* temp = *(HeadN + i);
-		/*EventYear* tempY = *(HeadY + i);*/
+		EventYear* tempY = *(HeadY + i);
 
-		/*cout << i << "-->\t";*/
+		cout << i << "-->\t";
 		while (temp != NULL) {
-			/*cout << temp->title << " ";*/
+			cout << temp->title << " ";
 			temp = temp->next;
 			sizeCount++;
 		}
 
-		/*cout << '\n' << i << "-->\t";
+		cout << '\n' << i << "-->\t";
 		while (tempY != NULL) {
 			cout << tempY->date << " ";
 			tempY = tempY->next;
-		}*/
+		}
 
 		cout << sizeCount << endl;
 	}
@@ -100,11 +102,28 @@ void newElementYear(EventYear* Head, int value)
 	Head->next = newElement;
 }
 
+void setDateToFile(EventName*& tempN, EventYear*& tempY,  bool newLine, string tTitle = " " )
+{
+	ofstream outData;
+	outData.open("EventData.txt", ios::out | ios::app);
+	if (tTitle != " ") {
+		outData << tTitle << " ";
+	}
+	
+	outData << tempN->title << " " << tempY->date << " ";
+	if (newLine == true) 
+	{
+		outData << "\n";
+	}
+	outData.close();
+} 
+
 void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY)
 {
 	string currentN, outputInfo[3] = { " Enter Event's name: ", " Enter Event's year: " };
 	vector <string> info;
 	int ind = 0, currentY;
+	bool newLine = false;
 
 	for (int i = 0; i < repeatment - 1; i++)
 	{
@@ -117,22 +136,27 @@ void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY)
 
 		newElementYear(usedY, currentY);
 		newElementName(usedN, currentN);
-
+		if (i + 2 == repeatment)
+		{
+			newLine = true;
+		}
+		setDateToFile(usedN->next, usedY->next, newLine);
 	}
 	*(HeadY + coler) = usedY;
 	*(HeadN + coler) = usedN;
-
+	
 	drawTimelines();
 }
-
 
 void startNewNote(int repeat)
 {
 	system("cls");
 	string currentN, timelineT, outputInfo[3] = { " Enter Event's name: ", " Enter Event's year: " };
-
+	
 	cout << "ADD TIMELINE'S NAME: ";
+	
 	std::getline(std::cin, timelineT);
+	
 	TimeLineTitle[coler] = timelineT;
 	cout << endl;
 	int currentY;
@@ -141,9 +165,12 @@ void startNewNote(int repeat)
 	cout << " " << char(179) << outputInfo[1];
 	cin >> currentY;
 	cout << endl;
+
 	EventName* usedN = new EventName{ currentN, NULL };
 	EventYear* usedY = new EventYear{ currentY, NULL };
+	setDateToFile(usedN, usedY, false, timelineT);
 	addEventToNote(repeat, usedN, usedY);
+	
 	drawTimelines();
 }
 
@@ -241,9 +268,9 @@ void numberOfEvents()
 		if (key == '\r') // enter key
 		{
 			coler += 1;
-			if (coler == 1) {
-				cin.ignore(256, '\n');
-			}
+			
+			cin.ignore(256, '\n');
+			
 			if (counter == 1)
 			{
 				startNewNote(4);
