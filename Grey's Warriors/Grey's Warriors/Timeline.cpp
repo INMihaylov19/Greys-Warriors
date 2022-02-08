@@ -26,6 +26,52 @@ EventYear** HeadY = new EventYear * [10];
 string TimeLineTitle[10];
 int coler = -1;
 
+void newElementName(EventName* Head, string value)
+{
+	EventName* newElement = new EventName;
+	newElement->title = value;
+	newElement->next = Head->next;
+	Head->next = newElement;
+}
+
+
+void newElementYear(EventYear* Head, int value)
+{
+	EventYear* newElement = new EventYear;
+	newElement->date = value;
+	newElement->next = Head->next;
+	Head->next = newElement;
+}
+
+std::string extractInfo(int& i, std::string info, std::string line)
+{
+	info = "";
+
+	for (; i < line.size(); i++)
+	{
+		if (line[i] == '^')
+		{
+			break;
+		}
+		info += line[i];
+	}
+	i++;
+	return info;
+}
+
+void inputFromFile() {
+	ifstream inputFile;
+	inputFile.open("EventData.txt", ios::in | ios::app);
+
+	string title, data, currentN;
+	string currentY;
+	int i = 2;
+	while (getline(inputFile, data)) 
+	{
+		
+	inputFile.close();
+}
+
 void searchBoxTimeline(int whichYear) {
 	bool isFound = true;
 	for (int i = 0; i <= coler; ++i)
@@ -85,32 +131,15 @@ void drawTimelines()
 	}
 }
 
-void newElementName(EventName* Head, string value)
-{
-	EventName* newElement = new EventName;
-	newElement->title = value;
-	newElement->next = Head->next;
-	Head->next = newElement;
-}
-
-
-void newElementYear(EventYear* Head, int value)
-{
-	EventYear* newElement = new EventYear;
-	newElement->date = value;
-	newElement->next = Head->next;
-	Head->next = newElement;
-}
-
-void setDateToFile(EventName*& tempN, EventYear*& tempY,  bool newLine, string tTitle = " " )
+void setDateToFile(EventName*& tempN, EventYear*& tempY,  bool newLine, string tTitle = " ", int size = 0)
 {
 	ofstream outData;
 	outData.open("EventData.txt", ios::out | ios::app);
 	if (tTitle != " ") {
-		outData << tTitle << " ";
+		outData << size << "|" << tTitle << "^";
 	}
 	
-	outData << tempN->title << " " << tempY->date << " ";
+	outData << tempN->title << "^" << tempY->date << "^";
 	if (newLine == true) 
 	{
 		outData << "\n";
@@ -168,7 +197,7 @@ void startNewNote(int repeat)
 
 	EventName* usedN = new EventName{ currentN, NULL };
 	EventYear* usedY = new EventYear{ currentY, NULL };
-	setDateToFile(usedN, usedY, false, timelineT);
+	setDateToFile(usedN, usedY, false, timelineT, repeat);
 	addEventToNote(repeat, usedN, usedY);
 	
 	drawTimelines();
@@ -307,6 +336,10 @@ void numberOfEvents()
 
 void timelineSection()
 {
+	if (coler == -1) {
+		inputFromFile();
+	}
+	
 	system("cls");
 
 	gotoxy(26, 1); cout << "  _____   _____   __  __   _____   _       _____   _   _   _____ " << endl;
