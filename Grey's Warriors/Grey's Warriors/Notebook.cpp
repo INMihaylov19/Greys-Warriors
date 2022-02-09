@@ -3,6 +3,7 @@
 #include <conio.h>
 #include <string>
 #include <vector>
+#include <fstream>
 #include "Menu.h"
 using namespace std;
 
@@ -41,9 +42,20 @@ struct Title
 	vector<string> event;
 	Title* next = NULL;
 };
-
 Title* Head = new Title;
 int createdBook = true;
+
+void setDateToFileNotebook(vector<string> temp)
+{
+	ofstream outData;
+	outData.open("EventDataNotebook.txt", ios::out | ios::app);
+
+	outData << temp[0] << "^" << temp[1] << "^" << temp[2]<< "^" << temp[3]<<endl;
+	
+
+	outData.close();
+}
+
 
 void addEventToNotebook();
 
@@ -273,7 +285,7 @@ void addEventToNotebook()
 		cout << endl;
 		position += 4;
 	}
-
+	setDateToFileNotebook(event);
 	newElement(Head, event);
 	drawNotebookContent(true, false);
 }
@@ -312,8 +324,8 @@ void startNewNotebook()
 		event.push_back(eventInformation);
 		cout << endl;
 	}
-
 	Head = new Title{ event, NULL };
+	setDateToFileNotebook(event);
 	drawNotebookContent(true, false);
 }
 

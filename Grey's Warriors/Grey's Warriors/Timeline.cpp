@@ -59,9 +59,10 @@ std::string extractInfo(int& i, std::string info, std::string line)
 	return info;
 }
 
-void inputFromFile() {
+void inputFromFile() 
+{
 	ifstream inputFile;
-	inputFile.open("EventData.txt", ios::in | ios::app);
+	inputFile.open("EventDataTimeline.txt", ios::in | ios::app);
 
 	string title, data, currentN;
 	string currentY;
@@ -116,40 +117,41 @@ void drawTimelines()
 {
 	system("cls");
 	int sizeCount;
+	cout << endl;
 	for (int i = 0; i <= coler; ++i)
 	{
 		sizeCount = 0;
-		cout << TimeLineTitle[i];
+		cout << "   " << TimeLineTitle[i];
 		for (size_t j = 0; j < (50 - TimeLineTitle[i].size()); j++) {
 			cout << ".";
 		}
 		EventName* temp = *(HeadN + i);
-		EventYear* tempY = *(HeadY + i);
+		/*EventYear* tempY = *(HeadY + i);*/
 
-		cout << i << "-->\t";
+		/*cout << i << "-->\t";*/
 		while (temp != NULL) {
-			cout << temp->title << " ";
+			/*cout << temp->title << " ";*/
 			temp = temp->next;
 			sizeCount++;
 		}
 
-		cout << '\n' << i << "-->\t";
-		while (tempY != NULL) {
-			cout << tempY->date << " ";
-			tempY = tempY->next;
-		}
+		//cout << '\n' << i << "-->\t";
+		//while (tempY != NULL) {
+		//	cout << tempY->date << " ";
+		//	tempY = tempY->next;
+		//}
 
 		cout << sizeCount << endl;
 	}
 
-	gotoxy(85, 0); cout << char(201);
+	gotoxy(65, 1); cout << char(201);
 	for (int i = 0; i < 32; i++)
 	{
 		cout << char(205);
 	}
 	cout << char(187);
-	gotoxy(85, 1); cout << char(186) << "      Press ESC to go back      " << char(186) << endl;
-	gotoxy(85, 2); cout << char(200);
+	gotoxy(65, 2); cout << char(186) << "      Press ESC to go back      " << char(186) << endl;
+	gotoxy(65, 3); cout << char(200);
 	for (int i = 0; i < 32; i++)
 	{
 		cout << char(205);
@@ -162,10 +164,10 @@ void drawTimelines()
 	}
 }
 
-void setDateToFile(EventName*& tempN, EventYear*& tempY,  bool newLine, string tTitle = " ", int size = 0)
+void setDateToFileTimeline(EventName*& tempN, EventYear*& tempY,  bool newLine, string tTitle = " ", int size = 0)
 {
 	ofstream outData;
-	outData.open("EventData.txt", ios::out | ios::app);
+	outData.open("EventDataTimeline.txt", ios::out | ios::app);
 	if (tTitle != " ") {
 		outData << size << "|" << tTitle << "^";
 	}
@@ -200,7 +202,7 @@ void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY)
 		{
 			newLine = true;
 		}
-		setDateToFile(usedN->next, usedY->next, newLine);
+		setDateToFileTimeline(usedN->next, usedY->next, newLine);
 	}
 	*(HeadY + coler) = usedY;
 	*(HeadN + coler) = usedN;
@@ -228,7 +230,7 @@ void startNewNote(int repeat)
 
 	EventName* usedN = new EventName{ currentN, NULL };
 	EventYear* usedY = new EventYear{ currentY, NULL };
-	setDateToFile(usedN, usedY, false, timelineT, repeat);
+	setDateToFileTimeline(usedN, usedY, false, timelineT, repeat);
 	addEventToNote(repeat, usedN, usedY);
 	
 	drawTimelines();
