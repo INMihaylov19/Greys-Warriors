@@ -114,10 +114,20 @@ void searchBoxTimeline(int whichYear)
 	
 }
 
+void Field(int size)
+{
+	cout << char(201);
+	for (int i = 0; i < size; i++)
+	{
+		cout << char(205);
+	}
+}
+
 void drawTimelines()
 {
 	system("cls");
 	int sizeCount;
+	int num; //Placement in collection
 	cout << endl;
 	for (int i = 0; i <= coler; ++i)
 	{
@@ -158,6 +168,10 @@ void drawTimelines()
 		cout << char(205);
 	}
 	cout << char(188);
+	gotoxy(65, 4); cout << "Enter num:";
+	gotoxy(65, 5); Field(32);
+	cout << endl;
+	cin >> num;
 	char key;
 	key = _getch();
 	if (key == char(27)) {
@@ -211,15 +225,6 @@ void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY)
 	drawTimelines();
 }
 
-void textField()
-{
-	cout << char(201);
-	for (int i = 0; i < 45; i++)
-	{
-		cout << char(205);
-	}
-}
-
 void startNewNote(int repeat)
 {
 	system("cls");
@@ -241,7 +246,7 @@ void startNewNote(int repeat)
 	
 	gotoxy(2, 5); cout << "ADD TIMELINE'S NAME: ";
 	cout << endl;
-	gotoxy(1, 6); textField();
+	gotoxy(1, 6); Field(45);
 	cout << endl;
 	gotoxy(1, 7); cout << char(186) << " "; getline(std::cin, timelineT);
 	

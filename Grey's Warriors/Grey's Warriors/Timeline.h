@@ -20,6 +20,8 @@ struct EventYear
 
 void searchBoxTimeline(int whichYear);
 
+void Field(int size);
+
 void drawTimelines();
 
 void newElementName(EventName* Head, string value);
