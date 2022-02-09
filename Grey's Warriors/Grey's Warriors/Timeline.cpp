@@ -205,9 +205,9 @@ void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY)
 	for (int i = 0; i < repeatment - 1; i++)
 	{
 		cin.ignore(256, '\n');
-		cout << " " << char(179) << outputInfo[0];
+		cout << " " << char(186) << outputInfo[0];
 		getline(cin, currentN);
-		cout << " " << char(179) << outputInfo[1];
+		cout << " " << char(186) << outputInfo[1];
 		cin >> currentY;
 		cout << endl;
 
@@ -223,6 +223,7 @@ void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY)
 	*(HeadN + coler) = usedN;
 	
 	drawTimelines();
+
 }
 
 void startNewNote(int repeat)
@@ -253,9 +254,9 @@ void startNewNote(int repeat)
 	TimeLineTitle[coler] = timelineT;
 	cout << endl;
 	int currentY;
-	cout << " " << char(179) << outputInfo[0];
+	cout << " " << char(186) << outputInfo[0];
 	getline(cin, currentN);
-	cout << " " << char(179) << outputInfo[1];
+	cout << " " << char(186) << outputInfo[1];
 	cin >> currentY;
 	cout << endl;
 
