@@ -211,14 +211,39 @@ void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY)
 	drawTimelines();
 }
 
+void textField()
+{
+	cout << char(201);
+	for (int i = 0; i < 45; i++)
+	{
+		cout << char(205);
+	}
+}
+
 void startNewNote(int repeat)
 {
 	system("cls");
 	string currentN, timelineT, outputInfo[3] = { " Enter Event's name: ", " Enter Event's year: " };
+
+	gotoxy(1, 1); cout << char(201); //Fill message start
+	for (int i = 0; i < 45; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187);
+	gotoxy(1, 2); cout << char(186) << "     Adding new timeline. Fill all gaps!     " << char(186) << endl;
+	gotoxy(1, 3); cout << char(200);
+	for (int i = 0; i < 45; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188); //Fill message end
 	
-	cout << "ADD TIMELINE'S NAME: ";
-	
-	std::getline(std::cin, timelineT);
+	gotoxy(2, 5); cout << "ADD TIMELINE'S NAME: ";
+	cout << endl;
+	gotoxy(1, 6); textField();
+	cout << endl;
+	gotoxy(1, 7); cout << char(186) << " "; getline(std::cin, timelineT);
 	
 	TimeLineTitle[coler] = timelineT;
 	cout << endl;
