@@ -92,7 +92,8 @@ void inputFromFile()
 	inputFile.close();
 }
 
-void searchBoxTimeline(int whichYear) {
+void searchBoxTimeline(int whichYear) 
+{
 	bool isFound = true;
 	for (int i = 0; i <= coler; ++i)
 	{
@@ -100,7 +101,7 @@ void searchBoxTimeline(int whichYear) {
 		EventYear* tempY = *(HeadY + i);
 		while (tempY != NULL) {
 			if (tempY->date == whichYear) {
-				cout << "Timeline:	" << TimeLineTitle[i] << "->" << temp->title << endl;
+				cout << " Timeline:	" << TimeLineTitle[i] << "->" << temp->title << endl;
 				isFound = false;
 			}
 			tempY = tempY->next;
@@ -108,7 +109,7 @@ void searchBoxTimeline(int whichYear) {
 		}
 	}
 	if (isFound) {
-		cout<<"There is no result in Timeline";
+		cout<<" There is no result in Timeline\n";
 	}
 	
 }
@@ -330,9 +331,10 @@ void numberOfEvents()
 		if (key == '\r') // enter key
 		{
 			coler += 1;
-			
-			cin.ignore(256, '\n');
-			
+			if (coler != 0) 
+			{
+				cin.ignore(256, '\n');
+			}
 			if (counter == 1)
 			{
 				startNewNote(4);
@@ -369,10 +371,6 @@ void numberOfEvents()
 
 void timelineSection()
 {
-	if (coler == -1) {
-		inputFromFile();
-	}
-	
 	system("cls");
 
 	gotoxy(26, 1); cout << "  _____   _____   __  __   _____   _       _____   _   _   _____ " << endl;

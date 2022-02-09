@@ -5,6 +5,8 @@
 #include "Timeline.h"
 using namespace std;
 
+bool consoleOpened = false;
+
 void color(int color)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
@@ -134,6 +136,11 @@ void searchEngine() {
 
 int Menu()
 {
+	if (consoleOpened == false) {
+		inputFromFile();
+		inputFromFileNotebook();
+		consoleOpened = true;
+	}
 	char key;
 	int SetColor[3] = { 14, 7, 7 };
 	int counter = 1;

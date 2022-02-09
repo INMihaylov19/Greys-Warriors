@@ -121,13 +121,13 @@ void searchBoxNotebook(int whichYear)
 	while (outputHead != NULL)
 	{
 		if (outputHead->event[1] == to_string(whichYear)) {
-			cout << "Notebook:	" << outputHead->event[0] << endl;
+			cout << " Notebook:	" << outputHead->event[0] << endl;
 			isFound = false;
 		}
 		outputHead = outputHead->next;
 	}
 	if (isFound) {
-		cout << "There is no result in Notebook\n\n";
+		cout << " There is no result in Notebook\n\n";
 	}
 
 	cout << endl << "If you want to go back press ESC";
@@ -142,26 +142,33 @@ void searchBoxNotebook(int whichYear)
 }
 
 void del_pos(struct Title** Head1, int position) {
-	struct Title* current = *Head1;
-	struct Title* previous = *Head1;
+	
 	if (*Head1 == NULL) {
 		cout << "Listi is alrr";
 	}
-	if (position == 1) {
-		*Head1 = current->next;
-		free(current);
-		current = NULL;
-	}
-	else {
-		while (position != 1) {
-			previous = current;
-			current = current->next;
-			position--;
+	else 
+	{
+		struct Title* current = *Head1;
+		struct Title* previous = *Head1;
+		if (position == 1) 
+		{
+			*Head1 = current->next;
+			free(current);
+			current = NULL;
 		}
-		previous->next = current->next;
-		free(current);
-		current = NULL;
+		else 
+		{
+			while (position != 1) {
+				previous = current;
+				current = current->next;
+				position--;
+			}
+			previous->next = current->next;
+			free(current);
+			current = NULL;
+		}
 	}
+
 
 }
 
@@ -545,7 +552,6 @@ void mainGrid()
 {
 	
 	system("cls");
-	inputFromFileNotebook();
 	art();
 	notebookCover();
 	bookMenu();
