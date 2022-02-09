@@ -168,14 +168,17 @@ void drawTimelines()
 		cout << char(205);
 	}
 	cout << char(188);
-	gotoxy(65, 4); cout << "Enter num:";
-	gotoxy(65, 5); Field(32);
-	cout << endl;
-	gotoxy(65, 6); cout << char(186) << " "; cin >> num;
 	char key;
 	key = _getch();
 	if (key == char(27)) {
 		timelineSection();
+	}
+	else if (key == '\r') //Enter key
+	{
+		gotoxy(65, 4); cout << "Enter num:";
+		gotoxy(65, 5); Field(32);
+		cout << endl;
+		gotoxy(65, 6); cout << char(186) << " "; cin >> num;
 	}
 }
 
