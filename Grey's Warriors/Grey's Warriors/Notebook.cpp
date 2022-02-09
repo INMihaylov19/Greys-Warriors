@@ -45,6 +45,59 @@ struct Title
 Title* Head = new Title;
 int createdBook = true;
 
+void newElement(Title* Head, vector<string> value)
+{
+	Title* newElement = new Title;
+	newElement->event = value;
+	newElement->next = Head->next;
+	Head->next = newElement;
+}
+
+string extractInfoN(int& i, std::string info, std::string line)
+{
+	info = "";
+
+	for (; i < line.size(); i++)
+	{
+		if (line[i] == '^')
+		{
+			break;
+		}
+		info += line[i];
+	}
+	i++;
+	return info;
+}
+
+void inputFromFileNotebook()
+{
+	ifstream inputFile;
+	inputFile.open("EventDataNotebook.txt", ios::in | ios::app);
+	
+	vector<string> inputInfo;
+	string data, info;
+	int i = 0;
+	while (getline(inputFile, data))
+	{
+		inputInfo.push_back(extractInfoN(i, info, data));
+		inputInfo.push_back(extractInfoN(i, info, data));
+		inputInfo.push_back(extractInfoN(i, info, data));
+		inputInfo.push_back(extractInfoN(i, info, data));
+		if (createdBook) {
+			Head = new Title{ inputInfo, NULL };
+			createdBook = false;
+		}
+		else {
+			newElement(Head, inputInfo);
+		}
+		inputInfo.clear();
+		i = 0;
+
+	}
+	
+	inputFile.close();
+}
+
 void setDateToFileNotebook(vector<string> temp)
 {
 	ofstream outData;
@@ -260,13 +313,7 @@ void drawNotebookContent(bool isAdd, bool isDel)
 	cout << endl;
 }
 
-void newElement(Title* Head, vector<string> value)
-{
-	Title* newElement = new Title;
-	newElement->event = value;
-	newElement->next = Head->next;
-	Head->next = newElement;
-}
+
 
 void addEventToNotebook()
 {
@@ -496,9 +543,12 @@ int bookMenu()
 
 void mainGrid()
 {
+	
 	system("cls");
+	inputFromFileNotebook();
 	art();
 	notebookCover();
 	bookMenu();
+
 }
 
