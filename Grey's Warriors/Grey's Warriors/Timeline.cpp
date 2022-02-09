@@ -161,7 +161,7 @@ void drawTimelines()
 		cout << char(205);
 	}
 	cout << char(187);
-	gotoxy(65, 2); cout << char(186) << "      Press Enter to open an event      " << char(186) << endl;
+	gotoxy(65, 2); cout << char(186) << "  Press Enter to open an event  " << char(186) << endl;
 	gotoxy(65, 3); cout << char(200);
 	for (int i = 0; i < 32; i++)
 	{
