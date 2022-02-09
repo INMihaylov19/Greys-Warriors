@@ -171,7 +171,7 @@ void drawTimelines()
 	gotoxy(65, 4); cout << "Enter num:";
 	gotoxy(65, 5); Field(32);
 	cout << endl;
-	cin >> num;
+	gotoxy(65, 6); cout << char(186) << " "; cin >> num;
 	char key;
 	key = _getch();
 	if (key == char(27)) {
