@@ -161,8 +161,22 @@ void drawTimelines()
 		cout << char(205);
 	}
 	cout << char(187);
-	gotoxy(65, 2); cout << char(186) << "      Press ESC to go back      " << char(186) << endl;
+	gotoxy(65, 2); cout << char(186) << "      Press Enter to open an event      " << char(186) << endl;
 	gotoxy(65, 3); cout << char(200);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188);
+
+	gotoxy(65, 4); cout << char(201);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187);
+	gotoxy(65, 5); cout << char(186) << "      Press ESC to go back      " << char(186) << endl;
+	gotoxy(65, 6); cout << char(200);
 	for (int i = 0; i < 32; i++)
 	{
 		cout << char(205);
@@ -175,10 +189,10 @@ void drawTimelines()
 	}
 	else if (key == '\r') //Enter key
 	{
-		gotoxy(65, 4); cout << "Enter num:";
-		gotoxy(65, 5); Field(32);
+		gotoxy(65, 7); cout << "Enter num:";
+		gotoxy(65, 8); Field(32);
 		cout << endl;
-		gotoxy(65, 6); cout << char(186) << " "; cin >> num;
+		gotoxy(65, 9); cout << char(186) << " "; cin >> num;
 	}
 }
 
