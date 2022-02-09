@@ -130,7 +130,20 @@ void searchBoxNotebook(int whichYear)
 		cout << " There is no result in Notebook\n\n";
 	}
 
-	cout << endl << "If you want to go back press ESC";
+	//Get back button
+	gotoxy(0, 10); cout << char(201);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187);
+	gotoxy(0, 11); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
+	gotoxy(0, 12); cout << char(200);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188);
 	do {
 		key = _getch();
 		if (key == char(27)) {
