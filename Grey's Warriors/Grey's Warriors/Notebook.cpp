@@ -191,7 +191,21 @@ void drawNotebookContent(bool isAdd, bool isDel)
 	Title* outputHead = Head;
 	char key;
 	int pageNumber = 1, delnum = 0;
-	std::cout << endl;
+	//Get back button
+	gotoxy(65, 1); cout << char(201);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187);
+	gotoxy(65, 2); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
+	gotoxy(65, 3); cout << char(200);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188);
+	cout << endl;
 	if (isDel) {
 		for (;;)
 		{
@@ -204,7 +218,6 @@ void drawNotebookContent(bool isAdd, bool isDel)
 					outputHead = outputHead->next;
 					del_pos(&Head, delnum);
 				}
-
 				cout << "  " << outputHead->event[0];
 
 				for (size_t i = 0; i <= (50 - outputHead->event[0].size()); i++)
@@ -214,37 +227,22 @@ void drawNotebookContent(bool isAdd, bool isDel)
 				cout << pageNumber << endl;
 				pageNumber++;
 				outputHead = outputHead->next;
+
 			}
 
-			gotoxy(65, 1); cout << char(201);
-			for (int i = 0; i < 32; i++)
-			{
-				cout << char(205);
-			}
-			cout << char(187);
-			gotoxy(65, 2); cout << char(186) << " Press Enter to delete an event " << char(186) << endl;
-			gotoxy(65, 3); cout << char(200);
-			for (int i = 0; i < 32; i++)
-			{
-				cout << char(205);
-			}
-			cout << char(188);
-
-			//Get back button
 			gotoxy(65, 5); cout << char(201);
 			for (int i = 0; i < 32; i++)
 			{
 				cout << char(205);
 			}
 			cout << char(187);
-			gotoxy(65, 6); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
+			gotoxy(65, 6); cout << char(186) << " Press Enter to delete an event " << char(186) << endl;
 			gotoxy(65, 7); cout << char(200);
 			for (int i = 0; i < 32; i++)
 			{
 				cout << char(205);
 			}
 			cout << char(188);
-			cout << endl;
 
 			key = _getch();
 			if (key == '\r') {
