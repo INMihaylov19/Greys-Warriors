@@ -131,14 +131,14 @@ void searchBoxNotebook(int whichYear)
 	}
 
 	//Get back button
-	gotoxy(0, 10); cout << char(201);
+	cout << "\n\n" << char(201);
 	for (int i = 0; i < 32; i++)
 	{
 		cout << char(205);
 	}
-	cout << char(187);
-	gotoxy(0, 11); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
-	gotoxy(0, 12); cout << char(200);
+	cout << char(187) << endl;
+	cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
+	cout << char(200);
 	for (int i = 0; i < 32; i++)
 	{
 		cout << char(205);

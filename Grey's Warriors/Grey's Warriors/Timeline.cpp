@@ -123,36 +123,48 @@ void Field(int size)
 	}
 }
 
+void drawTimelineInfo(int numTimel) {
+	
+	system("cls");
+
+	cout << endl;
+	for (int i = 0; i <= coler; ++i)
+	{
+		EventName* temp = *(HeadN + i);
+		EventYear* tempY = *(HeadY + i);
+		if (i + 1 == numTimel) 
+		{
+			cout << "   " << TimeLineTitle[i] << endl;
+		}
+		cout << char(195);
+		while (temp != NULL) {
+
+			if (i + 1 == numTimel) {
+				
+				/*cout << temp->title << " ";*/
+				for (int i = 0; i < 10; i++) {
+					cout << char(196);
+				}
+				cout << " " << tempY->date << " ";
+			}
+			temp = temp->next;
+			tempY = tempY->next;
+		}
+	}
+}
 void drawTimelines()
 {
 	system("cls");
-	int sizeCount;
 	int num; //Placement in collection
 	cout << endl;
 	for (int i = 0; i <= coler; ++i)
 	{
-		sizeCount = 0;
 		cout << "   " << TimeLineTitle[i];
-		for (size_t j = 0; j < (50 - TimeLineTitle[i].size()); j++) {
+		for (size_t j = 0; j < (50 - TimeLineTitle[i].size()); j++) 
+		{
 			cout << ".";
 		}
-		EventName* temp = *(HeadN + i);
-		/*EventYear* tempY = *(HeadY + i);*/
-
-		/*cout << i << "-->\t";*/
-		while (temp != NULL) {
-			/*cout << temp->title << " ";*/
-			temp = temp->next;
-			sizeCount++;
-		}
-
-		//cout << '\n' << i << "-->\t";
-		//while (tempY != NULL) {
-		//	cout << tempY->date << " ";
-		//	tempY = tempY->next;
-		//}
-
-		cout << sizeCount << endl;
+		cout << i+1 << endl;
 	}
 
 	gotoxy(65, 1); cout << char(201);
@@ -193,6 +205,7 @@ void drawTimelines()
 		gotoxy(65, 8); Field(32);
 		cout << endl;
 		gotoxy(65, 9); cout << char(186) << " "; cin >> num;
+		drawTimelineInfo(num);
 	}
 }
 
