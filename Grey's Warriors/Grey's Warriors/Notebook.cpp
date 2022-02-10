@@ -185,32 +185,21 @@ void del_pos(struct Title** Head1, int position) {
 
 }
 
-void drawNotebookContent(bool isAdd, bool isDel)
+void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false)
 {
 	system("cls");
 	Title* outputHead = Head;
 	char key;
-	int pageNumber = 1, delnum = 0;
+	int pageNumber = 1, delnum = 0, openNum = 0;
 	//Get back button
-	gotoxy(65, 1); cout << char(201);
-	for (int i = 0; i < 32; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoxy(65, 2); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
-	gotoxy(65, 3); cout << char(200);
-	for (int i = 0; i < 32; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
+	
 	cout << endl;
 	if (isDel) {
 		for (;;)
 		{
 			system("cls");
 			outputHead = Head;
+			cout << endl;
 			pageNumber = 1;
 			while (outputHead != NULL)
 			{
@@ -229,15 +218,27 @@ void drawNotebookContent(bool isAdd, bool isDel)
 				outputHead = outputHead->next;
 
 			}
-
-			gotoxy(65, 5); cout << char(201);
+			gotoxy(65, 1); cout << char(201);
 			for (int i = 0; i < 32; i++)
 			{
 				cout << char(205);
 			}
 			cout << char(187);
-			gotoxy(65, 6); cout << char(186) << " Press Enter to delete an event " << char(186) << endl;
-			gotoxy(65, 7); cout << char(200);
+			gotoxy(65, 2); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
+			gotoxy(65, 3); cout << char(200);
+			for (int i = 0; i < 32; i++)
+			{
+				cout << char(205);
+			}
+			cout << char(188);
+			gotoxy(65, 4); cout << char(201);
+			for (int i = 0; i < 32; i++)
+			{
+				cout << char(205);
+			}
+			cout << char(187);
+			gotoxy(65, 5); cout << char(186) << " Press Enter to delete an event " << char(186) << endl;
+			gotoxy(65, 6); cout << char(200);
 			for (int i = 0; i < 32; i++)
 			{
 				cout << char(205);
@@ -246,11 +247,11 @@ void drawNotebookContent(bool isAdd, bool isDel)
 
 			key = _getch();
 			if (key == '\r') {
-				gotoxy(72, 9); cout << "Enter which event: ";
+				gotoxy(66, 8); cout << "Enter which event: ";
 				cout << endl;
-				gotoxy(71, 10); cout << " "; textField(18);
+				gotoxy(64, 9); cout << " "; textField(32);
 				cout << endl;
-				gotoxy(72, 11); cout << char(186) << " ";  cin >> delnum;
+				gotoxy(65, 10); cout << char(186) << " ";  cin >> openNum;
 			}
 			if (key == char(27)) {
 				mainGrid();
@@ -274,40 +275,59 @@ void drawNotebookContent(bool isAdd, bool isDel)
 		}
 	}
 
+	gotoxy(65, 1); cout << char(201);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187);
+	gotoxy(65, 2); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
+	gotoxy(65, 3); cout << char(200);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188);
 
 	cout << endl;
+	if(isOpen) {
+		gotoxy(65, 4); cout << char(201);
+		for (int i = 0; i < 32; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(187);
+		gotoxy(65, 5); cout << char(186) << "  Press Enter to open an event  " << char(186) << endl;
+		gotoxy(65, 6); cout << char(200);
+		for (int i = 0; i < 32; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(188);
+		key = _getch();
+		if (key == '\r') {
+			gotoxy(66, 8); cout << "Enter which event: ";
+			cout << endl;
+			gotoxy(64, 9); cout << " "; textField(32);
+			cout << endl;
+			gotoxy(65, 10); cout << char(186) << " ";  cin >> delnum;
+		}
+	}
 	if (isAdd) {
 		//Enter new event button
-		gotoxy(65, 1); cout << char(201);
+		gotoxy(65, 4); cout << char(201);
 		for (int i = 0; i < 32; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(65, 2); cout << char(186) << "  Press Enter to add new event  " << char(186) << endl;
-		gotoxy(65, 3); cout << char(200);
+		gotoxy(65, 5); cout << char(186) << "  Press Enter to add new event  " << char(186) << endl;
+		gotoxy(65, 6); cout << char(200);
 		for (int i = 0; i < 32; i++)
 		{
 			cout << char(205);
 		}
 		cout << char(188);
-
-		//Get back button
-		gotoxy(65, 5); cout << char(201);
-		for (int i = 0; i < 32; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		gotoxy(65, 6); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
-		gotoxy(65, 7); cout << char(200);
-		for (int i = 0; i < 32; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188);
-		cout << endl;
-
 
 		key = _getch();
 		if (key == '\r')
@@ -328,10 +348,9 @@ void drawNotebookContent(bool isAdd, bool isDel)
 			mainGrid();
 		}
 	}
+	
 	cout << endl;
 }
-
-
 
 void addEventToNotebook()
 {
@@ -512,7 +531,7 @@ int bookMenu()
 		{
 			if (counter == 1 && createdBook == false)
 			{
-				drawNotebookContent(false, false);
+				drawNotebookContent(false, false, true);
 				system("CLS");
 				//Open option
 				break;
