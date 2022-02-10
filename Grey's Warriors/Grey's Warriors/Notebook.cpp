@@ -98,10 +98,15 @@ void inputFromFileNotebook()
 	inputFile.close();
 }
 
-void setDateToFileNotebook(vector<string> temp)
+void setDateToFileNotebook(vector<string> temp, bool del = false)
 {
 	ofstream outData;
-	outData.open("EventDataNotebook.txt", ios::out | ios::app);
+	if (del) {
+		outData.open("EventDataNotebook.txt", ios::out | ios::trunc);
+	}
+	else {
+		outData.open("EventDataNotebook.txt", ios::out | ios::app);
+	}
 
 	outData << temp[0] << "^" << temp[1] << "^" << temp[2]<< "^" << temp[3]<<endl;
 	
@@ -154,15 +159,17 @@ void searchBoxNotebook(int whichYear)
 
 }
 
-void del_pos(struct Title** Head1, int position) {
-	
-	if (*Head1 == NULL) {
+void del_pos(struct Title** Head1, int position) 
+{
+	vector<string> deletedList;
+	if (*Head1 == NULL) 
+	{
 		cout << "Listi is alrr";
 	}
 	else 
 	{
-		struct Title* current = *Head1;
-		struct Title* previous = *Head1;
+		Title* current = *Head1;
+		Title* previous = *Head1;
 		if (position == 1) 
 		{
 			*Head1 = current->next;
@@ -181,8 +188,19 @@ void del_pos(struct Title** Head1, int position) {
 			current = NULL;
 		}
 	}
-
-
+	Title* outputHead = Head;
+	bool newFile = true;
+	while (outputHead != NULL)
+	{
+		deletedList.push_back(outputHead->event[0]);
+		deletedList.push_back(outputHead->event[1]);
+		deletedList.push_back(outputHead->event[2]);
+		deletedList.push_back(outputHead->event[3]);
+		outputHead = outputHead->next;
+		setDateToFileNotebook(deletedList, newFile);
+		newFile = false;
+	}
+	
 }
 
 void drawPageContent(int pageNumber) {
@@ -269,7 +287,7 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false)
 				cout << endl;
 				gotoxy(64, 9); cout << " "; textField(32);
 				cout << endl;
-				gotoxy(65, 10); cout << char(186) << " ";  cin >> openNum;
+				gotoxy(65, 10); cout << char(186) << " ";  cin >> delnum;
 
 			}
 			if (key == char(27)) {
