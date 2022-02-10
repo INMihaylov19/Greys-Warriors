@@ -200,7 +200,6 @@ void del_pos(struct Title** Head1, int position)
 		setDateToFileNotebook(deletedList, newFile);
 		newFile = false;
 	}
-	
 }
 
 void drawPageContent(int pageNumber) {
@@ -398,11 +397,15 @@ void addEventToNotebook()
 	int position = 9;
 	for (int i = 0; i < 4; i++)
 	{
-		gotoxy(65, position); cout<< outputInfo[i];
-		cout << endl;
-		gotoxy(65, position + 1); textField(33);
-		cout << endl;
-		gotoxy(65, position + 2); cout  << char(186) << " "; getline(cin, eventInformation);
+		do {
+			gotoxy(65, position); cout << outputInfo[i];
+			cout << endl;
+			gotoxy(65, position + 1); textField(33);
+			cout << endl;
+			gotoxy(65, position + 2); cout << char(186) << " ";
+			getline(cin, eventInformation);
+		} while (eventInformation.size() < 1 || eventInformation == " ");
+		
 		event.push_back(eventInformation);
 		cout << endl;
 		position += 4;
