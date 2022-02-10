@@ -134,21 +134,57 @@ void drawTimelineInfo(int numTimel) {
 		EventYear* tempY = *(HeadY + i);
 		if (i + 1 == numTimel) 
 		{
-			cout << "   " << TimeLineTitle[i] << endl;
+			cout << " " << TimeLineTitle[i] << "\n\n\n\n";
+			cout << char(195);
 		}
-		cout << char(195);
-		while (temp != NULL) {
-
-			if (i + 1 == numTimel) {
-				
-				/*cout << temp->title << " ";*/
-				for (int i = 0; i < 10; i++) {
+		
+		while (tempY != NULL) 
+		{
+			if (i + 1 == numTimel) 
+			{
+				for (int i = 0; i < 10; i++) 
+				{
 					cout << char(196);
 				}
-				cout << " " << tempY->date << " ";
+				color(14);  cout << " " << tempY->date; color(7);
+				for (int i = 5; i > to_string(tempY->date).size(); i--) {
+					cout << " ";
+				}
+			}
+			tempY = tempY->next;
+		}
+
+		if (i + 1 == numTimel)
+		{
+			for (int i = 0; i < 10; i++) {
+				cout << char(196);
+			}
+			cout << char(180) << endl;
+		}
+		int numTitles = 0, posx;
+		while (temp != NULL) {
+
+			if (i + 1 == numTimel) 
+			{
+				switch (numTitles) 
+				{
+					case 0: posx = 12; break;
+					case 1: posx = 28; break;
+					case 2: posx = 44; break;
+					case 3: posx = 60; break;
+					case 4: posx = 76; break;
+					case 5: posx = 92; break;
+					case 6: posx = 108; break;
+				}
+				if (numTitles % 2 == 0) {
+					color(10);  gotoxy(posx, 4);  cout << temp->title << " "; color(7);
+				}
+				else {
+					color(11);  gotoxy(posx, 6);  cout << temp->title << " ";
+				}
+				numTitles++;
 			}
 			temp = temp->next;
-			tempY = tempY->next;
 		}
 	}
 }
