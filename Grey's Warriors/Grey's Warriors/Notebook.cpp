@@ -185,6 +185,24 @@ void del_pos(struct Title** Head1, int position) {
 
 }
 
+void drawPageContent(int pageNumber) {
+	system("cls");
+	Title* outputHead = Head;
+	int counter = 1;
+	while (outputHead != NULL)
+	{
+		if (counter == pageNumber) {
+			break;
+		}
+		outputHead = outputHead->next;
+		counter++;
+	}
+
+	if (outputHead != NULL) {
+		cout << outputHead->event[0] << " " << outputHead->event[1] << " " << outputHead->event[2] << " " << outputHead->event[3];
+	}
+}
+
 void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false)
 {
 	system("cls");
@@ -252,6 +270,7 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false)
 				gotoxy(64, 9); cout << " "; textField(32);
 				cout << endl;
 				gotoxy(65, 10); cout << char(186) << " ";  cin >> openNum;
+
 			}
 			if (key == char(27)) {
 				mainGrid();
@@ -310,7 +329,8 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false)
 			cout << endl;
 			gotoxy(64, 9); cout << " "; textField(32);
 			cout << endl;
-			gotoxy(65, 10); cout << char(186) << " ";  cin >> delnum;
+			gotoxy(65, 10); cout << char(186) << " ";  cin >> openNum;
+			drawPageContent(openNum);
 		}
 	}
 	if (isAdd) {
