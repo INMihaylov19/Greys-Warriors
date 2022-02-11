@@ -42,6 +42,7 @@ struct Title
 	vector<string> event;
 	Title* next = NULL;
 };
+
 Title* Head = new Title;
 int createdBook = true;
 
@@ -224,15 +225,16 @@ void drawPageContent(int pageNumber)
 		cout << " " << char(179) << " Details:\n" << " " << char(179) << " " << outputHead->event[3];
 	}
 	
-	
 	gotoxy(65, 1); cout << char(201);
 	for (int i = 0; i < 32; i++)
 	{
 		cout << char(205);
 	}
+
 	cout << char(187);
 	gotoxy(65, 2); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
 	gotoxy(65, 3); cout << char(200);
+
 	for (int i = 0; i < 32; i++)
 	{
 		cout << char(205);
@@ -346,7 +348,9 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false)
 	cout << char(188);
 
 	cout << endl;
-	if(isOpen) {
+
+	if(isOpen) 
+	{
 		gotoxy(65, 4); cout << char(201);
 		for (int i = 0; i < 32; i++)
 		{

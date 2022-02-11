@@ -167,16 +167,14 @@ void drawTimelineInfo(int numTimel)
 			break;
 		}
 	}
-	
-
 	cout << "\n " << TimeLineTitle[i] << "\n\n\n\n" << char(195);
-	 
-
+	i = 0;
 	while (tempY != NULL) 
 	{
 		yearArray[j] = tempY->date;
 		tempY = tempY->next;
 		j++;
+		i++;
 	}
 
 	j = 0;
@@ -187,9 +185,11 @@ void drawTimelineInfo(int numTimel)
 		temp = temp->next;
 		j++;
 	}
+
 	j = 0;
 	bubbleSort(yearArray, nameArray, i);
-	for(int k = 0; k <= i; k++) 
+
+	for(int k = 1; k <= i; k++) 
 	{
 
 		for (int i = 0; i < 9; i++)
@@ -222,22 +222,20 @@ void drawTimelineInfo(int numTimel)
 		cout << char(196);
 	}
 
-	j = 0;
-
-	for (int k = 0; k <= i; k++)
+	for (int k = 1; k <= i; k++)
 	{
-		switch (j)
+		switch (k)
 		{
-		case 0: posx = 12; break;
-		case 1: posx = 28; break;
-		case 2: posx = 44; break;
-		case 3: posx = 60; break;
-		case 4: posx = 76; break;
-		case 5: posx = 92; break;
-		case 6: posx = 108; break;
+		case 1: posx = 12; break;
+		case 2: posx = 28; break;
+		case 3: posx = 44; break;
+		case 4: posx = 60; break;
+		case 5: posx = 76; break;
+		case 6: posx = 92; break;
+		case 7: posx = 108; break;
 		}
 
-		if (j % 2 == 0)
+		if (k % 2 != 0)
 		{
 			color(11);  gotoxy(posx - 2, 4);  cout << char(179) << " "; gotoxy(posx, 4); cout << nameArray[k] << " "; color(7);
 		}
@@ -246,8 +244,6 @@ void drawTimelineInfo(int numTimel)
 		{
 			color(11);  gotoxy(posx - 2, 6); cout << char(179) << " "; gotoxy(posx, 6); cout << nameArray[k] << " "; color(7);
 		}
-
-		j++;
 	}
 
 
