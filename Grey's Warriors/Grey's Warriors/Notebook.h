@@ -8,7 +8,7 @@ void art();
 
 void searchBoxNotebook(int whichYear);
 
-std::string extractInfoN(int& i, std::string info, std::string line);
+std::string extractInfoNotebook(int& i, std::string info, std::string line);
 
 void inputFromFileNotebook();
 

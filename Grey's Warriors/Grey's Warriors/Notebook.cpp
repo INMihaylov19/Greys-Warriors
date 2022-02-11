@@ -9,15 +9,6 @@ using namespace std;
 
 void mainGrid();
 
-void textField(int size = 37)
-{
-	cout << char(201);
-	for (int i = 0; i < size; i++)
-	{
-		cout << char(205);
-	}
-}
-
 void art()
 {
 	gotoxy(2, 5); cout << char(186); gotoxy(5, 5);  cout << "  _   _   _____   _____   _____   _____   _____  __   __  "; cout << char(186) << endl;
@@ -36,6 +27,15 @@ void art()
 	gotoxy(2, 16); cout << char(186); gotoxy(15, 16);  cout << " \\____/   \\___/   \\___/  \\_| \\_/                "; cout << char(186) << endl;
 }
 
+void textField(int size = 37) // Creates a textfield for input boxes
+{
+	cout << char(201);
+	for (int i = 0; i < size; i++)
+	{
+		cout << char(205);
+	}
+}
+
 struct Title
 {
 	//[0] is for title, [1] is for year, [2] is for participants and [3] is for details
@@ -46,7 +46,7 @@ struct Title
 Title* Head = new Title;
 int createdBook = true;
 
-void newElement(Title* Head, vector<string> value)
+void newElement(Title* Head, vector<string> value) // Adds new element to the linked list
 {
 	Title* newElement = new Title;
 	newElement->event = value;
@@ -54,13 +54,13 @@ void newElement(Title* Head, vector<string> value)
 	Head->next = newElement;
 }
 
-string extractInfoN(int& i, std::string info, std::string line)
+string extractInfoNotebook(int& i, std::string info, std::string line) // Separates the data from each other
 {
 	info = "";
 
 	for (; i < line.size(); i++)
 	{
-		if (line[i] == '^')
+		if (line[i] == '^') // Searches the ^ sign which separates the data
 		{
 			break;
 		}
@@ -70,7 +70,7 @@ string extractInfoN(int& i, std::string info, std::string line)
 	return info;
 }
 
-void inputFromFileNotebook()
+void inputFromFileNotebook() // Uploads the input data in eventDataNotebook file
 {
 	ifstream inputFile;
 	inputFile.open("EventDataNotebook.txt", ios::in | ios::app);
@@ -80,10 +80,10 @@ void inputFromFileNotebook()
 	int i = 0;
 	while (getline(inputFile, data))
 	{
-		inputInfo.push_back(extractInfoN(i, info, data));
-		inputInfo.push_back(extractInfoN(i, info, data));
-		inputInfo.push_back(extractInfoN(i, info, data));
-		inputInfo.push_back(extractInfoN(i, info, data));
+		inputInfo.push_back(extractInfoNotebook(i, info, data));
+		inputInfo.push_back(extractInfoNotebook(i, info, data));
+		inputInfo.push_back(extractInfoNotebook(i, info, data));
+		inputInfo.push_back(extractInfoNotebook(i, info, data));
 		if (createdBook) {
 			Head = new Title{ inputInfo, NULL };
 			createdBook = false;
@@ -99,11 +99,11 @@ void inputFromFileNotebook()
 	inputFile.close();
 }
 
-void setDateToFileNotebook(vector<string> temp, bool del = false)
+void setDateToFileNotebook(vector<string> temp, bool del = false) // Gets the data from eventDataNotebook file
 {
 	ofstream outData;
 	if (del) {
-		outData.open("EventDataNotebook.txt", ios::out | ios::trunc);
+		outData.open("EventDataNotebook.txt", ios::out | ios::trunc); // Checks if command is deleted and clears the file
 	}
 	else {
 		outData.open("EventDataNotebook.txt", ios::out | ios::app);
@@ -118,7 +118,7 @@ void setDateToFileNotebook(vector<string> temp, bool del = false)
 
 void addEventToNotebook();
 
-void searchBoxNotebook(int whichYear)
+void searchBoxNotebook(int whichYear) // Inputs data and searches for it in the Notebook file
 {
 	Title* outputHead = Head;
 	char key;
@@ -160,7 +160,7 @@ void searchBoxNotebook(int whichYear)
 
 }
 
-void del_pos(struct Title** Head1, int position) 
+void del_pos(struct Title** Head1, int position) // Deletes node
 {
 	vector<string> deletedList;
 	if (*Head1 == NULL) 
@@ -191,7 +191,7 @@ void del_pos(struct Title** Head1, int position)
 	}
 	Title* outputHead = Head;
 	bool newFile = true;
-	while (outputHead != NULL)
+	while (outputHead != NULL) 
 	{
 		deletedList.push_back(outputHead->event[0]);
 		deletedList.push_back(outputHead->event[1]);
@@ -203,7 +203,7 @@ void del_pos(struct Title** Head1, int position)
 	}
 }
 
-void drawPageContent(int pageNumber) 
+void drawPageContent(int pageNumber) // Outputs details
 {
 	system("cls");
 	Title* outputHead = Head;
@@ -242,7 +242,7 @@ void drawPageContent(int pageNumber)
 	cout << char(188);
 }
 
-void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false)
+void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false) //Outputs the content in notebook
 {
 	system("cls");
 	Title* outputHead = Head;
@@ -320,7 +320,8 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false)
 	}
 
 	else {
-		while (outputHead != NULL)
+		
+		while (outputHead != NULL) // Prints content in Content page
 		{
 			cout << "  " << outputHead->event[0];
 			for (size_t i = 0; i <= (50 - outputHead->event[0].size()); i++)
@@ -349,7 +350,7 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false)
 
 	cout << endl;
 
-	if(isOpen) 
+	if(isOpen) // Add section
 	{
 		gotoxy(65, 4); cout << char(201);
 		for (int i = 0; i < 32; i++)
@@ -419,7 +420,7 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false)
 	cout << endl;
 }
 
-void addEventToNotebook()
+void addEventToNotebook() // Text field to input information
 {
 	string eventInformation, outputInfo[4] = { "Enter Event's name: ", "Enter Event's year: ",
 	"Enter Event's participants: ", "Enter Event Details: " };
@@ -445,7 +446,7 @@ void addEventToNotebook()
 	drawNotebookContent(true, false);
 }
 
-void startNewNotebook()
+void startNewNotebook() 
 {
 	system("CLS");
 	string eventInformation, outputInfo[4] = { " Enter Event's name: ", " Enter Event's year: ",
@@ -486,7 +487,7 @@ void startNewNotebook()
 
 
 
-void notebookCover()
+void notebookCover() // ASCII art in notebook page
 {
 	gotoxy(63, 2); cout << char(186);
 	gotoxy(63, 3); cout << char(186);
@@ -532,7 +533,7 @@ void notebookCover()
 	cout << char(187);
 }
 
-int bookMenu()
+int bookMenu() // Menu in notebook section
 {
 	int counter = 1;
 	char key;
@@ -543,7 +544,8 @@ int bookMenu()
 	SetColor[2] = 7;
 
 	while (true)
-	{
+	{	
+		// Open button
 		gotoxy(70, 8); color(SetColor[0]); cout << char(201);
 		for (int i = 0; i < 20; i++)
 		{
@@ -565,6 +567,7 @@ int bookMenu()
 			cout << char(205);
 		}
 		cout << char(187);
+		// Add button
 		gotoxy(70, 12); cout << char(186) << "    2. Add/Edit     " << char(186);
 		gotoxy(70, 13); cout << char(200);
 		for (int i = 0; i < 20; i++)
@@ -580,6 +583,7 @@ int bookMenu()
 			cout << char(205);
 		}
 		cout << char(187);
+		// Delete button
 		gotoxy(70, 15); cout << char(186) << "     3. Delete      " << char(186) << endl; color(SetColor[2]);
 		gotoxy(70, 16); cout << char(200);
 		for (int i = 0; i < 20; i++)
