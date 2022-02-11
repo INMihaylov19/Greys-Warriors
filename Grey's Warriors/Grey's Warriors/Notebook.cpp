@@ -202,7 +202,8 @@ void del_pos(struct Title** Head1, int position)
 	}
 }
 
-void drawPageContent(int pageNumber) {
+void drawPageContent(int pageNumber) 
+{
 	system("cls");
 	Title* outputHead = Head;
 	int counter = 1;
@@ -215,9 +216,28 @@ void drawPageContent(int pageNumber) {
 		counter++;
 	}
 
-	if (outputHead != NULL) {
-		cout << outputHead->event[0] << " " << outputHead->event[1] << " " << outputHead->event[2] << " " << outputHead->event[3];
+	if (outputHead != NULL) 
+	{
+		cout << "\n " << char(179) << " The event:\n" << " " << char(179) << " " << outputHead->event[0] << "\n\n";
+		cout << " " << char(179) << " Year/Date:\n" << " " << char(179) << " " << outputHead->event[1] << "\n\n";
+		cout << " " << char(179) << " Participants:\n" << " " << char(179) << " " << outputHead->event[2] << "\n\n";
+		cout << " " << char(179) << " Details:\n" << " " << char(179) << " " << outputHead->event[3];
 	}
+	
+	
+	gotoxy(65, 1); cout << char(201);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187);
+	gotoxy(65, 2); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
+	gotoxy(65, 3); cout << char(200);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188);
 }
 
 void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false)
@@ -306,7 +326,7 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false)
 				cout << ".";
 			}
 			cout << pageNumber << endl;
-			pageNumber += 2;
+			pageNumber++;
 			outputHead = outputHead->next;
 		}
 	}
@@ -346,8 +366,14 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false)
 			cout << endl;
 			gotoxy(64, 9); cout << " "; textField(32);
 			cout << endl;
-			gotoxy(65, 10); cout << char(186) << " ";  cin >> openNum;
+			gotoxy(65, 10); cout << char(186) << " ";  
+			cin >> openNum;
 			drawPageContent(openNum);
+		}
+
+		if (key == char(27)) 
+		{
+			mainGrid();
 		}
 	}
 	if (isAdd) {
