@@ -30,7 +30,7 @@ void newElementYear(EventYear* Head, int value);
 
 std::string extractInfo(int& i, std::string info, std::string line);
 
-void inputFromFile();
+void inputFromFileTimeline();
 
 void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY);
 

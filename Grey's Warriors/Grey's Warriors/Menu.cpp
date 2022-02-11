@@ -5,22 +5,22 @@
 #include "Timeline.h"
 using namespace std;
 
-bool consoleOpened = false;
+bool consoleOpened = false; //Checks if console is opened and extracts data from files
 
-void color(int color)
+void color(int color) //Sets color of the text
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
-void gotoxy(int x, int y)  //get the coordinates inside the console
+void gotoxy(int x, int y)  //Get the coordinates inside the console
 {
 	COORD coord;
-	coord.X = x;
-	coord.Y = y;
+	coord.X = x; // x-axis
+	coord.Y = y; // y-axis
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-void menuArt(int SetColor[])
+void menuArt(int SetColor[]) // ASCII art in main menu
 {
 	system("cls");
 	gotoxy(4, 3); color(SetColor[0]); cout << " ";
@@ -42,7 +42,8 @@ void menuArt(int SetColor[])
 	}
 }
 
-void searchEngine() {
+void searchEngine() // Inputs a year and searches it in the timeline and the notebook sections
+{
 	system("cls");
 	color(7);
 	int whichYear;
@@ -74,7 +75,6 @@ void searchEngine() {
 	}
 
 	cout << char(217) << endl;
-	//new one don ot
 	color(14);
 	cout << char(218);
 	for (int i = 0; i < 12; i++) {
@@ -134,14 +134,15 @@ void searchEngine() {
 	searchBoxNotebook(whichYear);
 }
 
-int Menu()
+int Menu() //Main menu
 {
-	if (consoleOpened == false) {
-		inputFromFile();
-		inputFromFileNotebook();
+	if (consoleOpened == false) // Opens the console
+	{
+		inputFromFileTimeline(); // Extracts the data from EventDataTimeline file
+		inputFromFileNotebook(); // Extracts the data from EventDataNotebook file
 		consoleOpened = true;
 	}
-	char key;
+	char key; // Key to be entered
 	int SetColor[3] = { 14, 7, 7 };
 	int counter = 1;
 	SetColor[0] = 14;
@@ -150,9 +151,10 @@ int Menu()
 
 	menuArt(SetColor);
 
-	while (true)
+	while (true) 
 	{
-		gotoxy(42, 13); color(SetColor[0]); cout << char(201);
+		// Button for history notebook section
+		gotoxy(42, 13); color(SetColor[0]); cout << char(201); 
 		for (int i = 0; i < 32; i++)
 		{
 			cout << char(205);
@@ -166,7 +168,7 @@ int Menu()
 		}
 		cout << char(188); color(SetColor[2]);
 
-
+		// Button for timeline section
 		gotoxy(42, 16); color(SetColor[1]); cout << char(201);
 		for (int i = 0; i < 32; i++)
 		{
@@ -181,7 +183,7 @@ int Menu()
 		}
 		cout << char(188); color(SetColor[2]);
 
-
+		// Button for search engine
 		gotoxy(42, 19); color(SetColor[2]); cout << char(201);
 		for (int i = 0; i < 32; i++)
 		{

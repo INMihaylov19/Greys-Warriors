@@ -58,7 +58,7 @@ std::string extractInfo(int& i, std::string info, std::string line)
 	return info;
 }
 
-void inputFromFile()
+void inputFromFileTimeline()
 {
 	ifstream inputFile; inputFile.open("EventDataTimeline.txt", ios::in | ios::app);
 
