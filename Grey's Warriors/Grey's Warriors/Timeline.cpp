@@ -127,26 +127,7 @@ void Field(int size)
 	}
 }
 
-void bubbleSort(int array[], string arrayS[], int size) 
-{
-	int temp;
-	string tempS;
-	for (int step = 0; step < size; ++step) {
 
-		for (int i = 0; i < size - step; ++i) {
-
-			if (array[i] >= array[i + 1])
-			{
-				temp = array[i];
-				tempS = arrayS[i];
-				array[i] = array[i + 1];
-				arrayS[i] = arrayS[i + 1];
-				array[i + 1] = temp;
-				arrayS[i + 1] = tempS;
-			}
-		}
-	}
-}
 
 void drawTimelineInfo(int numTimel)
 {
