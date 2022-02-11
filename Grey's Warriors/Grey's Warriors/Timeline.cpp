@@ -58,7 +58,7 @@ std::string extractInfo(int& i, std::string info, std::string line)
 	return info;
 }
 
-void inputFromFileTimeline()
+void inputFromFileTimeline() // Extracts info from Timeline and puts it in EventDataTimeline.txt file
 {
 	ifstream inputFile; inputFile.open("EventDataTimeline.txt", ios::in | ios::app);
 
@@ -92,7 +92,7 @@ void inputFromFileTimeline()
 	inputFile.close();
 }
 
-void searchBoxTimeline(int whichYear)
+void searchBoxTimeline(int whichYear) // Inputs a year and searches for it in timeline
 {
 	bool isFound = true;
 	for (int i = 0; i <= coler; ++i)
@@ -117,7 +117,7 @@ void searchBoxTimeline(int whichYear)
 
 }
 
-void Field(int size)
+void Field(int size) 
 {
 	cout << char(201);
 
@@ -127,7 +127,7 @@ void Field(int size)
 	}
 }
 
-void bubbleSort(int array[], string arrayS[], int size) 
+void bubbleSort(int array[], string arrayS[], int size) // Sorts dates using the bubble sort method
 {
 	int temp;
 	string tempS;
@@ -148,7 +148,7 @@ void bubbleSort(int array[], string arrayS[], int size)
 	}
 }
 
-void drawTimelineInfo(int numTimel)
+void drawTimelineInfo(int numTimel) // Prints timeline info
 {
 	system("cls");
 	EventName* temp = *(HeadN + 0);
@@ -249,7 +249,7 @@ void drawTimelineInfo(int numTimel)
 
 }
 
-void drawTimelines()
+void drawTimelines() // Prints timelines
 {
 	system("cls");
 	int num; //Placement in collection
@@ -325,7 +325,7 @@ void setDateToFileTimeline(EventName*& tempN, EventYear*& tempY, bool newLine, s
 	outData.close();
 }
 
-void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY)
+void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY) 
 {
 	string currentN;
 	vector <string> info;
@@ -361,7 +361,7 @@ void startNewNote(int repeat)
 	system("cls");
 	string currentN, timelineT, outputInfo[3] = { " Enter Event's name: ", " Enter Event's year: " };
 	int currentY;
-	gotoxy(1, 1); cout << char(201); //Fill message start
+	gotoxy(1, 1); cout << char(201); // Fill message start
 
 	for (int i = 0; i < 45; i++)
 	{
@@ -376,7 +376,7 @@ void startNewNote(int repeat)
 	{
 		cout << char(205);
 	}
-	cout << char(188); //Fill message end
+	cout << char(188); // Fill message end
 
 	gotoxy(2, 5); cout << "ADD TIMELINE'S NAME: " << endl;
 	gotoxy(1, 6); Field(45);
@@ -401,7 +401,7 @@ void startNewNote(int repeat)
 	drawTimelines();
 }
 
-void numberOfEvents()
+void numberOfEvents() // Asks the user how many dates he wants to put in the timeline
 {
 	int SetColor[4] = { 14, 7, 7, 7 };
 
@@ -501,7 +501,7 @@ void numberOfEvents()
 			{
 				cin.ignore(256, '\n');
 			}
-			if (counter == 1)
+			if (counter == 1) // If counter is equal to 1 the number of events is 4
 			{
 				startNewNote(4);
 				break;
@@ -535,7 +535,7 @@ void numberOfEvents()
 	}
 }
 
-void timelineSection()
+void timelineSection() 
 {
 	system("cls");
 
