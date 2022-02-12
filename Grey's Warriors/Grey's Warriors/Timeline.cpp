@@ -5,6 +5,7 @@
 #include <fstream>
 #include <vector>
 #include "Menu.h"
+#include "SearchEngine.h"
 using namespace std;
 
 void timelineSection();
@@ -18,8 +19,30 @@ struct Timeline
 
 Timeline** timelinEvents = new Timeline * [20];
 string timeLineTitle[20];
-
 int currentSize = -1;
+
+void searchBoxTimeline(int whichYear) // Inputs a year and searches for it in timeline
+{
+	bool isFound = true;
+	for (int i = 0; i <= currentSize; ++i)
+	{
+		Timeline* temp = *(timelinEvents + i);
+		while (temp != NULL)
+		{
+			if (firstConvert(temp->date) == whichYear)
+			{
+				cout << " Timeline:	" << timeLineTitle[i] << "->" << temp->title << endl;
+				isFound = false;
+			}
+			temp = temp->next;
+		}
+	}
+	if (isFound)
+	{
+		cout << " There is no result in Timeline\n";
+	}
+	cout << endl;
+}
 
 void newElementName(Timeline* Head, string value1, int value2)
 {
@@ -76,29 +99,6 @@ void inputFromFileTimeline() // Extracts info from Timeline and puts it in Event
 	}
 
 	inputFile.close();
-}
-
-void searchBoxTimeline(int whichYear) // Inputs a year and searches for it in timeline
-{
-	bool isFound = true;
-	for (int i = 0; i <= currentSize; ++i)
-	{
-		Timeline* temp = *(timelinEvents + i);
-		while (temp != NULL)
-		{
-			if (temp->date == whichYear)
-			{
-				cout << " Timeline:	" << timeLineTitle[i] << "->" << temp->title << endl;
-				isFound = false;
-			}
-			temp = temp->next;
-		}
-	}
-	if (isFound)
-	{
-		cout << " There is no result in Timeline\n";
-	}
-
 }
 
 void Field(int size) 

@@ -10,12 +10,12 @@ void timelineSection();
 
 struct Timeline
 {
-	string title;
-	int date;
+	std::string title;
+	int date = 0;
 	Timeline* next = NULL;
 };
 
-void newElementName(Timeline* Head, string value1, int value2);
+void newElementName(Timeline* Head, std::string value1, int value2);
 
 std::string extractInfo(int& i, std::string info, std::string line);
 
@@ -25,13 +25,13 @@ void searchBoxTimeline(int whichYear);
 
 void Field(int size);
 
-void bubbleSort(int array[], string arrayS[], int size);
+void bubbleSort(int array[], std::string arrayS[], int size);
 
 void drawTimelineInfo(int numTimel);
 
 void drawTimelines();
 
-void setDateToFileTimeline(Timeline*& tempN, bool newLine, string tTitle = " ", int size = 0);
+void setDateToFileTimeline(Timeline*& tempN, bool newLine, std::string tTitle = " ", int size = 0);
 
 void addEventToNote(int repeatment, Timeline* usedN);
 

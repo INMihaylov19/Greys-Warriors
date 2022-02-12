@@ -19,6 +19,8 @@ struct Notebook
 	Notebook* next = NULL;
 };
 
+unsigned int grayToBinary(unsigned int num);
+
 void newElement(Notebook* Head, vector<string> value);
 
 string extractInfoNotebook(int& i, std::string info, std::string line);

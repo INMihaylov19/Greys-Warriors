@@ -160,12 +160,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Grey%27s Warriors\Grey%27s Warriors\Notebook.cpp" />
+    <ClCompile Include="..\..\Grey%27s Warriors\Grey%27s Warriors\SearchEngine.cpp" />
     <ClCompile Include="..\..\Grey%27s Warriors\Grey%27s Warriors\Timeline.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Grey%27s Warriors\Grey%27s Warriors\Notebook.h" />
+    <ClInclude Include="..\..\Grey%27s Warriors\Grey%27s Warriors\SearchEngine.h" />
     <ClInclude Include="..\..\Grey%27s Warriors\Grey%27s Warriors\Timeline.h" />
     <ClInclude Include="Menu.h" />
   </ItemGroup>

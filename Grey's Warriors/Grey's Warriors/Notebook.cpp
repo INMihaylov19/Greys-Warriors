@@ -5,6 +5,7 @@
 #include <vector>
 #include <fstream>
 #include "Menu.h"
+#include "SearchEngine.h"
 using namespace std;
 
 struct Notebook
@@ -15,6 +16,48 @@ struct Notebook
 
 Notebook* Head = new Notebook;
 int createdBook = true;
+
+void searchBoxNotebook(int whichYear) // Inputs data and searches for it in the Notebook file
+{
+	Notebook* outputHead = Head;
+	char key;
+	bool isFound = true;
+
+	while (outputHead != NULL)
+	{
+		if (firstConvert(stoi(outputHead->event[1])) == whichYear) {
+			cout << " Notebook:	" << outputHead->event[0] << endl;
+			isFound = false;
+		}
+		outputHead = outputHead->next;
+	}
+	if (isFound) 
+	{
+		cout << " There is no result in Notebook\n\n";
+	}
+
+	//Get back button
+	cout << "\n\n" << char(201);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187) << endl;
+	cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
+	cout << char(200);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188);
+	do {
+		key = _getch();
+		if (key == char(27)) {
+			Menu();
+		}
+	} while (key != char(27));
+
+}
 
 void mainGrid();
 
@@ -117,47 +160,6 @@ void setDateToFileNotebook(vector<string> temp, bool del = false) // Gets the da
 
 void addEventToNotebook();
 
-void searchBoxNotebook(int whichYear) // Inputs data and searches for it in the Notebook file
-{
-	Notebook* outputHead = Head;
-	char key;
-	bool isFound = true;
-	cout << endl;
-	while (outputHead != NULL)
-	{
-		if (outputHead->event[1] == to_string(whichYear)) {
-			cout << " Notebook:	" << outputHead->event[0] << endl;
-			isFound = false;
-		}
-		outputHead = outputHead->next;
-	}
-	if (isFound) {
-		cout << " There is no result in Notebook\n\n";
-	}
-
-	//Get back button
-	cout << "\n\n" << char(201);
-	for (int i = 0; i < 32; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187) << endl;
-	cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
-	cout << char(200);
-	for (int i = 0; i < 32; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
-	do {
-		key = _getch();
-		if (key == char(27)) {
-			Menu();
-		}
-	} while (key != char(27));
-	
-
-}
 
 void del_pos(struct Notebook** Head1, int position) // Deletes node
 {

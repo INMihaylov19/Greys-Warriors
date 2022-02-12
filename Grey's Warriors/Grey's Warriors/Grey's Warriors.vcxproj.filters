@@ -24,6 +24,9 @@
     <ClInclude Include="..\..\Grey%27s Warriors\Grey%27s Warriors\Timeline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Grey%27s Warriors\Grey%27s Warriors\SearchEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Menu.cpp">
@@ -36,6 +39,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Grey%27s Warriors\Grey%27s Warriors\Timeline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Grey%27s Warriors\Grey%27s Warriors\SearchEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
