@@ -6,37 +6,6 @@
 #include "Notebook.h"
 using namespace std;
 
-int convertThird(int n) 
-{
-	int dec = 0, i = 0, rem;
-
-	while (n != 0) 
-	{
-		rem = n % 10;
-		n /= 10;
-		dec += rem * pow(2, i);
-		++i;
-	}
-
-	return dec;
-}
-
-int convertSecond(int binary)
-{
-	int a, b, gray = 0, i = 0;
-	while (binary != 0)
-	{
-		a = binary % 10;
-		binary = binary / 10;
-		b = binary % 10;
-
-		if ((a && !b) || (!a && b))
-			gray = gray + pow(10, i);
-		i++;
-	}
-	return convertThird(gray);
-}
-
 int firstConvert(int n)
 {
 	int bin = 0;
