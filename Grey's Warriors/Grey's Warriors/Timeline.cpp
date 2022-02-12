@@ -9,40 +9,28 @@ using namespace std;
 
 void timelineSection();
 
-struct EventName
+struct Timeline
 {
 	string title;
-	EventName* next = NULL;
-};
-
-struct EventYear
-{
 	int date = 0;
-	EventYear* next = NULL;
+	Timeline* next = NULL;
 };
 
-EventName** HeadN = new EventName * [20];
-EventYear** HeadY = new EventYear * [20];
-string TimeLineTitle[20];
-int coler = -1;
+Timeline** timelinEvents = new Timeline * [20];
+string timeLineTitle[20];
 
-void newElementName(EventName* Head, string value)
+int currentSize = -1;
+
+void newElementName(Timeline* Head, string value1, int value2)
 {
-	EventName* newElement = new EventName;
-	newElement->title = value;
+	Timeline* newElement = new Timeline;
+	newElement->title = value1;
+	newElement->date = value2;
 	newElement->next = Head->next;
 	Head->next = newElement;
 }
 
-void newElementYear(EventYear* Head, int value)
-{
-	EventYear* newElement = new EventYear;
-	newElement->date = value;
-	newElement->next = Head->next;
-	Head->next = newElement;
-}
-
-std::string extractInfo(int& i, std::string info, std::string line)
+string extractInfo(int& i, string info, string line)
 {
 	info = "";
 
@@ -67,25 +55,23 @@ void inputFromFileTimeline() // Extracts info from Timeline and puts it in Event
 
 	while (getline(inputFile, data))
 	{
-		coler++;
-		TimeLineTitle[coler] = extractInfo(i, title, data);
+		currentSize++;
+		timeLineTitle[currentSize] = extractInfo(i, title, data);
 
 		currentN = extractInfo(i, currentN, data);
 		currentY = extractInfo(i, currentY, data);
 
-		EventName* usedN = new EventName{ currentN, NULL };
-		EventYear* usedY = new EventYear{ stoi(currentY), NULL };
+		Timeline* usedN = new Timeline{ currentN, stoi(currentY), NULL };
 
 		for (int j = 0; j < stoi(data.substr(0, 1)) - 1; j++)
 		{
 			currentN = extractInfo(i, currentN, data);
 			currentY = extractInfo(i, currentY, data);
 
-			newElementYear(usedY, stoi(currentY));
-			newElementName(usedN, currentN);
+			newElementName(usedN, currentN, stoi(currentY));
 		}
-		*(HeadY + coler) = usedY;
-		*(HeadN + coler) = usedN;
+
+		*(timelinEvents + currentSize) = usedN;
 		i = 2;
 	}
 
@@ -95,18 +81,16 @@ void inputFromFileTimeline() // Extracts info from Timeline and puts it in Event
 void searchBoxTimeline(int whichYear) // Inputs a year and searches for it in timeline
 {
 	bool isFound = true;
-	for (int i = 0; i <= coler; ++i)
+	for (int i = 0; i <= currentSize; ++i)
 	{
-		EventName* temp = *(HeadN + i);
-		EventYear* tempY = *(HeadY + i);
-		while (tempY != NULL)
+		Timeline* temp = *(timelinEvents + i);
+		while (temp != NULL)
 		{
-			if (tempY->date == whichYear)
+			if (temp->date == whichYear)
 			{
-				cout << " Timeline:	" << TimeLineTitle[i] << "->" << temp->title << endl;
+				cout << " Timeline:	" << timeLineTitle[i] << "->" << temp->title << endl;
 				isFound = false;
 			}
-			tempY = tempY->next;
 			temp = temp->next;
 		}
 	}
@@ -148,42 +132,34 @@ void bubbleSort(int array[], string arrayS[], int size) // Sorts dates using the
 	}
 }
 
+void drawTimelines();
+
 void drawTimelineInfo(int numTimel) // Prints timeline info
 {
 	system("cls");
-	EventName* temp = *(HeadN + 0);
-	EventYear* tempY = *(HeadY + 0);
-	string nameArray[7];
-	int yearArray[7];
+	Timeline* temp = *(timelinEvents + 0);
+	string nameArray[8];
+	int yearArray[8];
 	int i = 0, j = 0, posx;
 
-	for (i = 0; i <= coler; ++i)
+	for (i = 0; i <= currentSize; ++i)
 	{
-		temp = *(HeadN + i);
-		tempY = *(HeadY + i);
+		temp = *(timelinEvents + i);
 
 		if (i + 1 == numTimel)
 		{
 			break;
 		}
 	}
-	cout << "\n " << TimeLineTitle[i] << "\n\n\n\n" << char(195);
+	cout << "\n " << timeLineTitle[i] << "\n\n\n\n" << char(195);
 	i = 0;
-	while (tempY != NULL) 
+	while (temp != NULL) 
 	{
-		yearArray[j] = tempY->date;
-		tempY = tempY->next;
-		j++;
-		i++;
-	}
-
-	j = 0;
-
-	while (temp != NULL)
-	{
+		yearArray[j] = temp->date;
 		nameArray[j] = temp->title;
 		temp = temp->next;
 		j++;
+		i++;
 	}
 
 	j = 0;
@@ -191,7 +167,6 @@ void drawTimelineInfo(int numTimel) // Prints timeline info
 
 	for(int k = 1; k <= i; k++) 
 	{
-
 		for (int i = 0; i < 9; i++)
 		{
 			cout << char(196);
@@ -216,7 +191,6 @@ void drawTimelineInfo(int numTimel) // Prints timeline info
 		}
 	}
 
-
 	for (int i = 0; i < 10; i++)
 	{
 		cout << char(196);
@@ -239,25 +213,59 @@ void drawTimelineInfo(int numTimel) // Prints timeline info
 		{
 			color(11);  gotoxy(posx - 2, 4);  cout << char(179) << " "; gotoxy(posx, 4); cout << nameArray[k] << " "; color(7);
 		}
-
 		else
 		{
 			color(11);  gotoxy(posx - 2, 6); cout << char(179) << " "; gotoxy(posx, 6); cout << nameArray[k] << " "; color(7);
 		}
 	}
 
+	gotoxy(15, 10); cout << char(201);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187);
+	gotoxy(15, 11); cout << char(186) << "      Press ESC to go back      " << char(186) << endl;
+	gotoxy(15, 12); cout << char(200);
+	for (int i = 0; i < 32; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188);
 
+	char key;
+	key = _getch();
+	drawTimelines();
 }
 
 void drawTimelines() // Prints timelines
 {
 	system("cls");
-	int num; //Placement in collection
+	int num, size;
+	string tmt; //Placement in collection
 	cout << endl;
-	for (int i = 0; i <= coler; ++i)
+
+	for (int i = 0; i <= currentSize; ++i)
 	{
-		cout << "   " << TimeLineTitle[i];
-		for (size_t j = 0; j < (50 - TimeLineTitle[i].size()); j++)
+		Timeline* temp = *(timelinEvents + i);
+		size = 0;
+		while (temp != NULL) 
+		{
+			temp = temp->next;
+			size++;
+		}
+		cout << "   "; color(11);  cout << "(" << size << ") "; color(14);
+		if (timeLineTitle[i].size() > 40) 
+		{
+			tmt = timeLineTitle[i].substr(0,40);
+		}
+		else 
+		{
+			tmt = timeLineTitle[i];
+		}
+		cout << tmt; color(7);
+		
+		for (size_t j = 0; j < (50 - tmt.size()); j++)
 		{
 			cout << ".";
 		}
@@ -265,14 +273,11 @@ void drawTimelines() // Prints timelines
 	}
 
 	gotoxy(65, 1); cout << char(201);
-
 	for (int i = 0; i < 32; i++)
 	{
 		cout << char(205);
 	}
-
 	cout << char(187);
-
 	gotoxy(65, 2); cout << char(186) << "  Press Enter to open an event  " << char(186) << endl;
 	gotoxy(65, 3); cout << char(200);
 	for (int i = 0; i < 32; i++)
@@ -309,7 +314,7 @@ void drawTimelines() // Prints timelines
 	}
 }
 
-void setDateToFileTimeline(EventName*& tempN, EventYear*& tempY, bool newLine, string tTitle = " ", int size = 0)
+void setDateToFileTimeline(Timeline*& temp, bool newLine, string tTitle = " ", int size = 0)
 {
 	ofstream outData;
 	outData.open("EventDataTimeline.txt", ios::out | ios::app);
@@ -317,7 +322,7 @@ void setDateToFileTimeline(EventName*& tempN, EventYear*& tempY, bool newLine, s
 		outData << size << "|" << tTitle << "^";
 	}
 
-	outData << tempN->title << "^" << tempY->date << "^";
+	outData << temp->title << "^" << temp->date << "^";
 	if (newLine == true)
 	{
 		outData << "\n";
@@ -325,7 +330,7 @@ void setDateToFileTimeline(EventName*& tempN, EventYear*& tempY, bool newLine, s
 	outData.close();
 }
 
-void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY) 
+void addEventToNote(int repeatment, Timeline* used) 
 {
 	string currentN;
 	vector <string> info;
@@ -341,16 +346,15 @@ void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY)
 		cin >> currentY;
 		cout << endl;
 
-		newElementYear(usedY, currentY);
-		newElementName(usedN, currentN);
+		newElementName(used, currentN, currentY);
 		if (i + 2 == repeatment)
 		{
 			newLine = true;
 		}
-		setDateToFileTimeline(usedN->next, usedY->next, newLine);
+		setDateToFileTimeline(used->next, newLine);
 	}
-	*(HeadY + coler) = usedY;
-	*(HeadN + coler) = usedN;
+
+	*(timelinEvents + currentSize) = used;
 
 	drawTimelines();
 
@@ -383,7 +387,7 @@ void startNewNote(int repeat)
 	cout << endl;
 	gotoxy(1, 7); cout << char(186) << " "; getline(std::cin, timelineT);
 
-	TimeLineTitle[coler] = timelineT;
+	timeLineTitle[currentSize] = timelineT;
 	cout << endl;
 
 	cout << " " << char(186) << outputInfo[0];
@@ -392,11 +396,10 @@ void startNewNote(int repeat)
 	cin >> currentY;
 	cout << endl;
 
-	EventName* usedN = new EventName{ currentN, NULL };
-	EventYear* usedY = new EventYear{ currentY, NULL };
+	Timeline* usedN = new Timeline{ currentN, currentY, NULL };
 
-	setDateToFileTimeline(usedN, usedY, false, timelineT, repeat);
-	addEventToNote(repeat, usedN, usedY);
+	setDateToFileTimeline(usedN, false, timelineT, repeat);
+	addEventToNote(repeat, usedN);
 
 	drawTimelines();
 }
@@ -496,8 +499,8 @@ void numberOfEvents() // Asks the user how many dates he wants to put in the tim
 
 		if (key == '\r') // enter key
 		{
-			coler += 1;
-			if (coler != 0)
+			currentSize += 1;
+			if (currentSize != 0)
 			{
 				cin.ignore(256, '\n');
 			}
@@ -521,7 +524,7 @@ void numberOfEvents() // Asks the user how many dates he wants to put in the tim
 				color(7);
 				startNewNote(7);
 			}
-			coler += 1;
+			currentSize += 1;
 		}
 		SetColor[0] = 7;
 		SetColor[1] = 7;
@@ -548,8 +551,7 @@ void timelineSection()
 
 	int time = 0;
 
-	//Collection button
-	int SetColor[3] = { 14, 7, 7 };
+	int SetColor[3] = { 14, 7, 7 }; //Collection button 7 is for white, 14 for golden
 
 	SetColor[0] = 14;
 	SetColor[1] = 7;
@@ -617,7 +619,7 @@ void timelineSection()
 		{
 			if (counter == 1)
 			{
-				if (coler >= 0)
+				if (currentSize >= 0)
 				{
 					drawTimelines();
 				}
@@ -645,6 +647,5 @@ void timelineSection()
 		if (counter == 2) { SetColor[1] = 14; }
 		if (counter == 3) { SetColor[2] = 14; }
 	}
-
 
 }

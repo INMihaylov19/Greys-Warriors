@@ -8,21 +8,14 @@
 
 void timelineSection();
 
-struct EventName
+struct Timeline
 {
 	string title;
-	EventName* next = NULL;
+	int date;
+	Timeline* next = NULL;
 };
 
-struct EventYear
-{
-	int date = 0;
-	EventYear* next = NULL;
-};
-
-void newElementName(EventName* Head, string value);
-
-void newElementYear(EventYear* Head, int value);
+void newElementName(Timeline* Head, string value1, int value2);
 
 std::string extractInfo(int& i, std::string info, std::string line);
 
@@ -38,9 +31,9 @@ void drawTimelineInfo(int numTimel);
 
 void drawTimelines();
 
-void setDateToFileTimeline(EventName*& tempN, EventYear*& tempY, bool newLine, string tTitle = " ", int size = 0);
+void setDateToFileTimeline(Timeline*& tempN, bool newLine, string tTitle = " ", int size = 0);
 
-void addEventToNote(int repeatment, EventName* usedN, EventYear* usedY);
+void addEventToNote(int repeatment, Timeline* usedN);
 
 void startNewNote(int repeat);
 

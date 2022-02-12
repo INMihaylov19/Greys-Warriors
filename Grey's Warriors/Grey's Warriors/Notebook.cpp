@@ -7,6 +7,15 @@
 #include "Menu.h"
 using namespace std;
 
+struct Notebook
+{
+	vector<string> event; //[0] is for title, [1] is for year, [2] is for participants and [3] is for details
+	Notebook* next = NULL;
+};
+
+Notebook* Head = new Notebook;
+int createdBook = true;
+
 void mainGrid();
 
 void art()
@@ -17,7 +26,6 @@ void art()
 	gotoxy(2, 8); cout << char(186); gotoxy(5, 8);  cout << " |  _  |   | |    `--. \\   | |   | | | | |    /    \\ /    "; cout << char(186) << endl;
 	gotoxy(2, 9); cout << char(186); gotoxy(5, 9);  cout << " | | | |  _| |_  /\\__/ /   | |   \\ \\_/ / | |\\ \\    | |    "; cout << char(186) << endl;
 	gotoxy(2, 10); cout << char(186); gotoxy(5, 10);  cout << " \\_| |_/  \\___/  \\____/    \\_/    \\___/  \\_| \\_|   \\_/    "; cout << char(186) << endl;
-
 
 	gotoxy(2, 11); cout << char(186); gotoxy(15, 11); cout << "  _____   _____   _____   _   __                "; cout << char(186) << endl;
 	gotoxy(2, 12); cout << char(186); gotoxy(15, 12);  cout << " | ___ \\ |  _  | |  _  | | | / /                "; cout << char(186) << endl;
@@ -36,19 +44,9 @@ void textField(int size = 37) // Creates a textfield for input boxes
 	}
 }
 
-struct Title
+void newElement(Notebook* Head, vector<string> value) // Adds new element to the linked list
 {
-	//[0] is for title, [1] is for year, [2] is for participants and [3] is for details
-	vector<string> event;
-	Title* next = NULL;
-};
-
-Title* Head = new Title;
-int createdBook = true;
-
-void newElement(Title* Head, vector<string> value) // Adds new element to the linked list
-{
-	Title* newElement = new Title;
+	Notebook* newElement = new Notebook;
 	newElement->event = value;
 	newElement->next = Head->next;
 	Head->next = newElement;
@@ -85,7 +83,7 @@ void inputFromFileNotebook() // Uploads the input data in eventDataNotebook file
 		inputInfo.push_back(extractInfoNotebook(i, info, data));
 		inputInfo.push_back(extractInfoNotebook(i, info, data));
 		if (createdBook) {
-			Head = new Title{ inputInfo, NULL };
+			Head = new Notebook{ inputInfo, NULL };
 			createdBook = false;
 		}
 		else {
@@ -102,15 +100,16 @@ void inputFromFileNotebook() // Uploads the input data in eventDataNotebook file
 void setDateToFileNotebook(vector<string> temp, bool del = false) // Gets the data from eventDataNotebook file
 {
 	ofstream outData;
-	if (del) {
+	if (del) 
+	{
 		outData.open("EventDataNotebook.txt", ios::out | ios::trunc); // Checks if command is deleted and clears the file
 	}
-	else {
+	else 
+	{
 		outData.open("EventDataNotebook.txt", ios::out | ios::app);
 	}
 
 	outData << temp[0] << "^" << temp[1] << "^" << temp[2]<< "^" << temp[3]<<endl;
-	
 
 	outData.close();
 }
@@ -120,7 +119,7 @@ void addEventToNotebook();
 
 void searchBoxNotebook(int whichYear) // Inputs data and searches for it in the Notebook file
 {
-	Title* outputHead = Head;
+	Notebook* outputHead = Head;
 	char key;
 	bool isFound = true;
 	cout << endl;
@@ -160,7 +159,7 @@ void searchBoxNotebook(int whichYear) // Inputs data and searches for it in the 
 
 }
 
-void del_pos(struct Title** Head1, int position) // Deletes node
+void del_pos(struct Notebook** Head1, int position) // Deletes node
 {
 	vector<string> deletedList;
 	if (*Head1 == NULL) 
@@ -169,12 +168,12 @@ void del_pos(struct Title** Head1, int position) // Deletes node
 	}
 	else 
 	{
-		Title* current = *Head1;
-		Title* previous = *Head1;
+		Notebook* current = *Head1;
+		Notebook* previous = *Head1;
 		if (position == 1) 
 		{
 			*Head1 = current->next;
-			free(current);
+			delete current;
 			current = NULL;
 		}
 		else 
@@ -185,11 +184,11 @@ void del_pos(struct Title** Head1, int position) // Deletes node
 				position--;
 			}
 			previous->next = current->next;
-			free(current);
+			delete current;
 			current = NULL;
 		}
 	}
-	Title* outputHead = Head;
+	Notebook* outputHead = Head;
 	bool newFile = true;
 	while (outputHead != NULL) 
 	{
@@ -206,7 +205,7 @@ void del_pos(struct Title** Head1, int position) // Deletes node
 void drawPageContent(int pageNumber) // Outputs details
 {
 	system("cls");
-	Title* outputHead = Head;
+	Notebook* outputHead = Head;
 	int counter = 1;
 	while (outputHead != NULL)
 	{
@@ -245,7 +244,7 @@ void drawPageContent(int pageNumber) // Outputs details
 void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false) //Outputs the content in notebook
 {
 	system("cls");
-	Title* outputHead = Head;
+	Notebook* outputHead = Head;
 	char key;
 	int pageNumber = 1, delnum = 0, openNum = 0;
 	//Get back button
@@ -480,7 +479,7 @@ void startNewNotebook()
 		event.push_back(eventInformation);
 		cout << endl;
 	}
-	Head = new Title{ event, NULL };
+	Head = new Notebook{ event, NULL };
 	setDateToFileNotebook(event);
 	drawNotebookContent(true, false);
 }

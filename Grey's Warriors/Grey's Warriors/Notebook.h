@@ -13,14 +13,13 @@ void art();
 
 void textField(int size = 37);
 
-struct Title
+struct Notebook
 {
-
 	vector<string> event;
-	Title* next = NULL;
+	Notebook* next = NULL;
 };
 
-void newElement(Title* Head, vector<string> value);
+void newElement(Notebook* Head, vector<string> value);
 
 string extractInfoNotebook(int& i, std::string info, std::string line);
 
@@ -33,7 +32,7 @@ void addEventToNotebook();
 
 void searchBoxNotebook(int whichYear);
 
-void del_pos(struct Title** Head1, int position);
+void del_pos(struct Notebook** Head1, int position);
 
 void drawPageContent(int pageNumber);
 
