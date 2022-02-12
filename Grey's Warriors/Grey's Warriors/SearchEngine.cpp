@@ -6,6 +6,16 @@
 #include "Notebook.h"
 using namespace std;
 
+int poww(int x, int y)
+{
+	if (y == 0)
+	{
+		return 1;
+	}
+
+	return x * poww(x, y - 1);
+}
+
 int convertThird(int n) 
 {
 	int dec = 0, i = 0, rem;
@@ -14,10 +24,9 @@ int convertThird(int n)
 	{
 		rem = n % 10;
 		n /= 10;
-		dec += rem * pow(2, i);
+		dec += rem * poww(2, i);
 		++i;
 	}
-
 	return dec;
 }
 
@@ -30,8 +39,11 @@ int convertSecond(int binary)
 		binary = binary / 10;
 		b = binary % 10;
 
-		if ((a && !b) || (!a && b))
-			gray = gray + pow(10, i);
+		if ((a && !b) || (!a && b)) 
+		{
+			gray = gray + poww(10, i);
+		}
+
 		i++;
 	}
 	return convertThird(gray);
@@ -42,7 +54,8 @@ int firstConvert(int n)
 	int bin = 0;
 	int rem, i = 1;
 
-	while (n != 0) {
+	while (n != 0) 
+	{
 		rem = n % 2;
 		n /= 2;
 		bin += rem * i;
@@ -62,12 +75,14 @@ void searchEngine() // Inputs a year and searches it in the timeline and the not
 
 	system("cls");
 	cout << char(218);
-	for (int i = 0; i < 12; i++) {
+	for (int i = 0; i < 12; i++) 
+	{
 		cout << char(196);
 	}
 
 	cout << char(210);
-	for (int i = 0; i < 51; i++) {
+	for (int i = 0; i < 51; i++) 
+	{
 		cout << char(196);
 	}
 
@@ -76,63 +91,77 @@ void searchEngine() // Inputs a year and searches it in the timeline and the not
 	gotoxy(65, 1);  cout << char(179);
 	cout << endl;
 	whichYear = firstConvert(whichYear);
+
 	cout << char(192);
-	for (int i = 0; i < 12; i++) {
+	for (int i = 0; i < 12; i++) 
+	{
 		cout << char(196);
 	}
 
 	cout << char(208);
-	for (int i = 0; i < 51; i++) {
+	for (int i = 0; i < 51; i++) 
+	{
 		cout << char(196);
 	}
 
 	cout << char(217) << endl;
-	color(14);
-	cout << char(218);
-	for (int i = 0; i < 12; i++) {
+	color(14); cout << char(218);
+	for (int i = 0; i < 12; i++) 
+	{
 		cout << char(196);
 	}
 
 	cout << char(194);
 	color(7);
-	for (int i = 0; i < 12; i++) {
+	for (int i = 0; i < 12; i++) 
+	{
+		cout << char(196);
+	}
+	cout << char(194);
+
+	for (int i = 0; i < 12; i++) 
+	{
+		cout << char(196);
+	}
+	cout << char(194);
+
+	for (int i = 0; i < 12; i++) 
+	{
+		cout << char(196);
+	}
+	cout << char(194);
+
+	for (int i = 0; i < 12; i++) 
+	{
 		cout << char(196);
 	}
 
-	cout << char(194);
-	for (int i = 0; i < 12; i++) {
-		cout << char(196);
-	}
-	cout << char(194);
-	for (int i = 0; i < 12; i++) {
-		cout << char(196);
-	}
-	cout << char(194);
-	for (int i = 0; i < 12; i++) {
-		cout << char(196);
-	}
-	color(14);
-	cout << char(191) << endl;
-	cout << char(179) << "     ALL    " << char(179);
-	color(7);
-	cout << "    NEWS    ";
-	cout << char(179) << "   IMAGES   " << char(179) << "   VIDEOS   " << char(179) << "    MAPS    " << char(179);
-	color(14);
-	cout << endl << char(192);
+	color(14); cout << char(191) << endl;
+	cout << char(179) << "     ALL    "; color(7);
+	cout << char(179) << "    NEWS    ";
+	cout << char(179) << "   IMAGES   ";
+	cout << char(179) << "   VIDEOS   ";
+	cout << char(179) << "    MAPS    ";
+	cout << char(179); color(14); cout << endl << char(192);
+
 	for (int k = 0; k < 4; k++) 
 	{
 		for (int i = 0; i < 12; i++) 
 		{
 			cout << char(196);
 		}
-		cout << char(193);
-		color(7);
+
+		cout << char(193); color(7);
 	}
+
 	for (int i = 0; i < 12; i++) 
 	{
 		cout << char(196);
 	}
+
 	cout << char(217) << endl;
+
 	searchBoxTimeline(whichYear);
+
 	searchBoxNotebook(whichYear);
 }

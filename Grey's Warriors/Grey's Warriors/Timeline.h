@@ -1,12 +1,5 @@
 #pragma once
 #include <iostream>
-#include <windows.h>
-#include <conio.h>
-#include <string>
-#include <fstream>
-#include <vector>
-
-void timelineSection();
 
 struct Timeline
 {
@@ -25,7 +18,7 @@ void searchBoxTimeline(int whichYear);
 
 void Field(int size);
 
-void bubbleSort(int array[], std::string arrayS[], int size);
+void linkedListSort(int array[], std::string arrayS[], int size);
 
 void drawTimelineInfo(int numTimel);
 

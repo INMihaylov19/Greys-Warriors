@@ -6,7 +6,7 @@
 #include "SearchEngine.h"
 using namespace std;
 
-bool consoleOpened = false; //Checks if console is opened and extracts data from files
+bool consoleOpened = false; //Checks if console is opened now and extracts data from files
 
 void color(int color) //Sets color of the text
 {
@@ -25,26 +25,27 @@ void menuArt(int SetColor[]) // ASCII art in main menu
 {
 	system("cls");
 	gotoxy(4, 3); color(SetColor[0]); cout << " ";
+
 	for (int i = 0; i < 110; i++)
 	{
 		cout << char(205);
 	}
+
 	gotoxy(4, 4); color(SetColor[0]); cout << "  _____   _____   _____  __   __  _   _____     _    _    ___    _____   _____   _____   _____   _____   _____ " << endl;
 	gotoxy(4, 5); color(SetColor[0]); cout << " |  __ \\ | ___ \\ |  ___| \\ \\ / / ( ) /  ___|   | |  | |  / _ \\  | ___ \\ | ___ \\ |_   _| |  _  | | ___ \\ /  ___| " << endl;
 	gotoxy(4, 6); color(SetColor[0]); cout << " | |  \\/ | |_/ / | |__    \\ V /  |/  \\ `--.    | |  | | / /_\\ \\ | |_/ / | |_/ /   | |   | | | | | |_/ / \\ `--. " << endl;
 	gotoxy(4, 7); color(SetColor[0]); cout << " | | __  |    /  |  __|    \\ /        `--. \\   | |/\\| | |  _  | |    /  |    /    | |   | | | | |    /   `--. \\ " << endl;
 	gotoxy(4, 8); color(SetColor[0]); cout << " | |_\\ \\ | |\\ \\  | |___    | |       /\\__/ /   \\  /\\  / | | | | | |\\ \\  | |\\ \\   _| |_  \\ \\_/ / | |\\ \\  /\\__/ / " << endl;
 	gotoxy(4, 9); color(SetColor[0]); cout << "  \\____/ \\_| \\_| \\____/    \\_/       \\____/     \\/  \\/  \\_| |_/ \\_| \\_| \\_| \\_|  \\___/   \\___/  \\_| \\_| \\____/ ";
-	gotoxy(4, 11); color(SetColor[0]);
-	cout << " ";
+	gotoxy(4, 11); color(SetColor[0]); cout << " ";
+
 	for (int i = 0; i < 110; i++)
 	{
 		cout << char(205);
 	}
 }
 
-
-int Menu() //Main menu
+int Menu() //Main menu with three options
 {
 	if (consoleOpened == false) // Opens the console
 	{
@@ -52,9 +53,11 @@ int Menu() //Main menu
 		inputFromFileNotebook(); // Extracts the data from EventDataNotebook file
 		consoleOpened = true;
 	}
+
 	char key; // Key to be entered
 	int SetColor[3] = { 14, 7, 7 };
 	int counter = 1;
+
 	SetColor[0] = 14;
 	SetColor[1] = 7;
 	SetColor[2] = 7;
@@ -93,7 +96,7 @@ int Menu() //Main menu
 		}
 		cout << char(188); color(SetColor[2]);
 
-		// Button for search engine
+		// Button for Search Engine
 		gotoxy(42, 19); color(SetColor[2]); cout << char(201);
 		for (int i = 0; i < 32; i++)
 		{
@@ -124,7 +127,7 @@ int Menu() //Main menu
 		{
 			if (counter == 1)
 			{
-				mainGrid();
+				notebookSection();
 				break;
 			}
 
@@ -149,7 +152,6 @@ int Menu() //Main menu
 		if (counter == 1) { SetColor[0] = 14; }
 		if (counter == 2) { SetColor[1] = 14; }
 		if (counter == 3) { SetColor[2] = 14; }
-
 	}
 
 	return 0;
