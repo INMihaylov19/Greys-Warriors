@@ -1,0 +1,6 @@
+7|First 7 Presidents of United States of America^George Washington^1789^John Adams^1797^Thomas Jefferson^1801^James Madison^1809^James Monroe^1817^John Quincy Adams^1825^Andrew Jackson^1829^
+5|Bulgarian capitals^Pliska^681^Veliki Preslav^893^Ohrid^996^Sofiya^1879^Turnovgrad^1187^
+7|Key Battles in the Napoleonic Wars^Battle of the Pyramids^1798^Battle of Austerlitz^1805^Battle of Rolica^1808^Battle of Borodino^1812^Battle of Leipzig^1813^Battle of Waterloo^1815^Battle of Ligny^1815^
+5|Balkan countries in EU^Bulgaria^2007^Romania^2007^Slovenia^2004^Croatia^2013^Greece^1981^6|Great Bulgarian Khans^Khan Asparukh^681^Khan Tervel^701^Khan Telerig^768^Khan Krum^803^Khan Kardam^777^Khan Omurtag^814^
+4|Largest cities through years^Beijin, China^1500^London, United Kingdom^1825^New York, USA^1925^Tokyo, Japan^1968^
+6|Great Bulgarian Khans^Khan Asparukh^681^Khan Tervel^701^Khan Telerig^768^Khan Kardam^777^Khan Krum^803^Khan Omurtag^814^6|sfgh^4^4^^4^4^4^4^4^4^4^4^4^
