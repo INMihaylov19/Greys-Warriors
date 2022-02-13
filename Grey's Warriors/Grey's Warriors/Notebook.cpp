@@ -208,11 +208,14 @@ void deleteElement(Notebook** Head1, int position) // Deletes node
 	}
 }
 
+void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false);
+
 void drawPageContent(int pageNumber) // Outputs details
 {
 	system("cls");
 	Notebook* outputHead = Head;
 	int counter = 1;
+	char key;
 	while (outputHead != NULL)
 	{
 		if (counter == pageNumber) {
@@ -224,13 +227,13 @@ void drawPageContent(int pageNumber) // Outputs details
 
 	if (outputHead != NULL) 
 	{
-		color(7);  cout << "\n " << char(179); color(11); cout << " The event:\n" << " ";
+		color(7);  cout << "\n " << char(179); color(11); cout << " THE EVENT:\n" << " ";
 		color(7); cout << char(179) << " "; color(14); cout << outputHead->event[0] << "\n\n";
-		color(7); cout << " " << char(179); color(11); cout << " Year/Date:\n" << " ";
+		color(7); cout << " " << char(179); color(11); cout << " YEAR/DATE:\n" << " ";
 		color(7); cout << char(179) << " "; color(14); cout << outputHead->event[1] << "\n\n";
-		color(7); cout << " " << char(179); color(11); cout << " Participants:\n" << " ";
+		color(7); cout << " " << char(179); color(11); cout << " PARTICIPANTS:\n" << " ";
 		color(7); cout << char(179) << " "; color(14); cout << outputHead->event[2] << "\n\n";
-		color(7); cout << " " << char(179); color(11); cout << " Details:\n" << " ";
+		color(7); cout << " " << char(179); color(11); cout << " DETAILS:\n" << " ";
 		color(7); cout << char(179) << " "; color(14); cout << outputHead->event[3]; color(7);
 	}
 
@@ -239,6 +242,7 @@ void drawPageContent(int pageNumber) // Outputs details
 	{
 		cout << char(205);
 	}
+
 	cout << char(187);
 	gotoxy(65, 2); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
 	gotoxy(65, 3); cout << char(200);
@@ -247,13 +251,20 @@ void drawPageContent(int pageNumber) // Outputs details
 		cout << char(205);
 	}
 	cout << char(188);
+
+	key = _getch();
+
+	if (key == char(27))
+	{
+		drawNotebookContent(false,false,true);
+	}
 }
 
-void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false) //Outputs the content in notebook and checks is it from Add, Delete or Open section
+void drawNotebookContent(bool isAdd, bool isDel, bool isOpen) //Outputs the content in notebook and checks is it from Add, Delete or Open section
 {
 	system("cls");
 	Notebook* outputHead = Head;
-	char key;
+	char key, notebookSize;
 	int pageNumber = 1, delNum = 0, openNum = 0;  //Number of each event and variables for deleting or opening an event
 	string noteTitle;
 
@@ -270,8 +281,14 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false) //Outputs 
 			{
 				if (pageNumber == delNum) 
 				{
-					outputHead = outputHead->next;
-					deleteElement(&Head, delNum);
+					if (delNum == notebookSize) 
+					{
+						Head = NULL;
+					}
+					else {
+						outputHead = outputHead->next;
+						deleteElement(&Head, delNum);
+					}
 				}
 				if (outputHead == NULL) 
 				{
@@ -283,22 +300,23 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false) //Outputs 
 					noteTitle = outputHead->event[0].substr(0, 40); //substracts it to 40 characters
 				}
 
-				else {
+				else 
+				{
 					noteTitle = outputHead->event[0];
 				}
 
-				cout << "  " << noteTitle;
+				color(14); cout << "  " << noteTitle; color(7);
 
 				for (size_t i = 0; i <= (50 - noteTitle.size()); i++)
 				{
 					cout << ".";
 				}
+
 				cout << pageNumber << endl;
 				pageNumber++;
 				outputHead = outputHead->next;
-
 			}
-
+			notebookSize = pageNumber;
 			gotoxy(65, 1); cout << char(201); // Button for going back
 			for (int i = 0; i < 32; i++)
 			{
@@ -328,14 +346,21 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false) //Outputs 
 			cout << char(188);
 
 			key = _getch();
+			int pos = 8;
+			string inputMessage = " Enter event's number: ";
 			if (key == '\r') 
 			{
-				gotoxy(66, 8); cout << "Enter which event: ";
-				cout << endl;
-				gotoxy(64, 9); cout << " "; textField(32);
-				cout << endl;
-				gotoxy(65, 10); cout << char(186) << " ";  cin >> delNum;
-
+				do {
+					gotoxy(65, pos); cout << inputMessage << endl;
+					if (pos != 8) 
+					{
+						color(12);
+					}
+					gotoxy(64, pos + 1); cout << " "; textField(32); cout << endl;
+					gotoxy(65, pos + 2); cout << char(186) << " "; color(7); cin >> delNum;
+					pos += 4;
+					inputMessage = " Please enter valid number ";
+				} while (delNum <= 0 || delNum >= notebookSize);
 			}
 
 			if (key == char(27)) 
@@ -359,7 +384,7 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false) //Outputs 
 				noteTitle = outputHead->event[0];
 			}
 
-			cout << "  " << noteTitle;
+			color(14); cout << "  " << noteTitle; color(7);
 			for (size_t i = 0; i <= (50 - noteTitle.size()); i++)
 			{
 				cout << ".";
@@ -368,6 +393,7 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false) //Outputs 
 			pageNumber++;
 			outputHead = outputHead->next;
 		}
+		notebookSize = pageNumber;
 	}
 
 	gotoxy(65, 1); cout << char(201);
@@ -403,14 +429,21 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen = false) //Outputs 
 		cout << char(188);
 
 		key = _getch();
-
+		int pos = 8;
+		string inputMessage = " Enter event's number: ";
 		if (key == '\r') {
-			gotoxy(66, 8); cout << "Enter which event: ";
-			cout << endl;
-			gotoxy(64, 9); cout << " "; textField(32);
-			cout << endl;
-			gotoxy(65, 10); cout << char(186) << " ";  
-			cin >> openNum;
+			do {
+				gotoxy(66, pos); cout << inputMessage << endl;
+				if (pos != 8)
+				{
+					color(12);
+				}
+				gotoxy(64, pos + 1); cout << " "; textField(32);  cout << endl;
+				gotoxy(65, pos + 2); cout << char(186) << " "; color(7);
+				cin >> openNum;
+				pos += 4;
+				inputMessage = " Please enter valid number ";
+			} while (openNum <= 0 || openNum >= notebookSize);
 			drawPageContent(openNum);
 		}
 
@@ -580,7 +613,7 @@ int bookMenu() // Menu in notebook section
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(70, 9); cout << char(186) << "      1. Open       " << char(186) << endl;
+		gotoxy(70, 9); cout << char(186) << "        Open        " << char(186) << endl;
 		gotoxy(70, 10); cout << char(200);
 		for (int i = 0; i < 20; i++)
 		{
@@ -596,7 +629,7 @@ int bookMenu() // Menu in notebook section
 		}
 		cout << char(187);
 		// Add button
-		gotoxy(70, 12); cout << char(186) << "    2. Add/Edit     " << char(186);
+		gotoxy(70, 12); cout << char(186) << "    Add an event    " << char(186);
 		gotoxy(70, 13); cout << char(200);
 		for (int i = 0; i < 20; i++)
 		{
@@ -612,7 +645,7 @@ int bookMenu() // Menu in notebook section
 		}
 		cout << char(187);
 		// Delete button
-		gotoxy(70, 15); cout << char(186) << "     3. Delete      " << char(186) << endl; color(SetColor[2]);
+		gotoxy(70, 15); cout << char(186) << "       Delete       " << char(186) << endl; color(SetColor[2]);
 		gotoxy(70, 16); cout << char(200);
 		for (int i = 0; i < 20; i++)
 		{

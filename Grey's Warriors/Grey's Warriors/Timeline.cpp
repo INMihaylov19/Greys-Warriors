@@ -216,11 +216,13 @@ void drawTimelineInfo(int chosenTimeline) // Prints timeline info
 
 		if (k % 2 != 0)
 		{
-			color(11);  gotoxy(posx - 2, 4);  cout << char(179) << " "; gotoxy(posx, 4); cout << nameArray[k] << " "; color(7);
+			gotoxy(posx - 2, 4);  cout << char(179); color(11); 
+			cout << " "; gotoxy(posx, 4); cout << nameArray[k] << " "; color(7);
 		}
 		else
 		{
-			color(11);  gotoxy(posx - 2, 6); cout << char(179) << " "; gotoxy(posx, 6); cout << nameArray[k] << " "; color(7);
+			gotoxy(posx - 2, 6); cout << char(179); color(11);
+			cout << " "; gotoxy(posx, 6); cout << nameArray[k] << " "; color(7);
 		}
 	}
 
@@ -231,7 +233,7 @@ void drawTimelineInfo(int chosenTimeline) // Prints timeline info
 		cout << char(205);
 	}
 	cout << char(187);
-	gotoxy(15, 11); cout << char(186) << "      Press ESC to go back      " << char(186) << endl;
+	gotoxy(15, 11); cout << char(186) << "      Press key to go back      " << char(186) << endl;
 	gotoxy(15, 12); cout << char(200);
 	for (int i = 0; i < 32; i++)
 	{
@@ -246,7 +248,7 @@ void drawTimelineInfo(int chosenTimeline) // Prints timeline info
 void drawTimelines() // Prints timelines
 {
 	system("cls");
-	int num, size;
+	int num, size = 0;
 	char key;
 	string currentTitle; //Placement in collection
 
@@ -283,7 +285,7 @@ void drawTimelines() // Prints timelines
 		}
 
 		color(11);  cout << "(" << size << ") \n"; color(7);
-		
+	
 	}
 
 	gotoxy(65, 1); cout << char(201); //Enter button to open an event
@@ -314,19 +316,36 @@ void drawTimelines() // Prints timelines
 	}
 	cout << char(188);
 
-	
+
+	int pos = 8;
+	string inputMessage = " Enter Timeline's number: ";
+
 	key = _getch();
-	if (key == char(27)) {
-		timelineSection();
+	
+	if (key == '\r') //Enter key
+	{
+		do {
+			gotoxy(65, pos); cout << inputMessage;
+
+			if (pos != 8)
+			{
+				color(12);
+			}
+
+			gotoxy(65, pos + 1); Field(32); cout << endl;
+			gotoxy(65, pos + 2); cout << char(186) << " "; 
+			color(7); cin >> num;
+
+			pos += 4;
+			inputMessage = " Please enter valid number ";
+		} while (num <= 0 || num >= size);
+
+		drawTimelineInfo(num);
 	}
 
-	else if (key == '\r') //Enter key
+	if (key == char(27)) 
 	{
-		gotoxy(65, 7); cout << "Enter num:";
-		gotoxy(65, 8); Field(32);
-		cout << endl;
-		gotoxy(65, 9); cout << char(186) << " "; cin >> num;
-		drawTimelineInfo(num);
+		timelineSection();
 	}
 }
 
@@ -603,7 +622,7 @@ void timelineSection()
 			cout << char(205);
 		}
 		cout << char(187);
-		gotoxy(48, 11); cout << char(186) << "      Add/Edit      " << char(186) << endl;
+		gotoxy(48, 11); cout << char(186) << "    Add an event    " << char(186) << endl;
 		gotoxy(48, 12); cout << char(200);
 		for (int i = 0; i < 20; i++)
 		{
@@ -659,6 +678,11 @@ void timelineSection()
 				Menu();
 				break;
 			}
+		}
+		if (key == char(27)) 
+		{
+			system("CLS");
+			Menu();
 		}
 
 		SetColor[0] = 7;

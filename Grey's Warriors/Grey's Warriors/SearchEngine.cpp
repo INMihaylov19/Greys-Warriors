@@ -16,7 +16,7 @@ int poww(int x, int y)
 	return x * poww(x, y - 1);
 }
 
-int convertThird(int n) 
+int convertThird(long long int n) 
 {
 	int dec = 0, i = 0, rem;
 
@@ -30,9 +30,10 @@ int convertThird(int n)
 	return dec;
 }
 
-int convertSecond(int binary)
+int convertSecond(long long int binary)
 {
-	int a, b, gray = 0, i = 0;
+	int a, b, i = 0;
+	long long int gray = 0;
 	while (binary != 0)
 	{
 		a = binary % 10;
@@ -51,8 +52,8 @@ int convertSecond(int binary)
 
 int firstConvert(int n)
 {
-	int bin = 0;
-	int rem, i = 1;
+	long long int bin = 0;
+	long long int rem, i = 1;
 
 	while (n != 0) 
 	{
