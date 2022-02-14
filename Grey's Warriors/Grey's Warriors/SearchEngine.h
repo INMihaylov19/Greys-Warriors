@@ -2,9 +2,9 @@
 
 int poww(int x, int y);
 
-int convertThird(int n);
+int convertThird(long long int n);
 
-int convertSecond(int binary);
+int convertSecond(long long int binary);
 
 int firstConvert(int n);
 

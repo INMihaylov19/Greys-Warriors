@@ -165,7 +165,6 @@ void addEventToNotebook();
 void deleteElement(Notebook** Head1, int position) // Deletes node
 {
 	vector<string> deletedList;
-
 	if (*Head1 == NULL) 
 	{
 		cout << "List is empty";
@@ -204,6 +203,7 @@ void deleteElement(Notebook** Head1, int position) // Deletes node
 		deletedList.push_back(outputHead->event[3]);
 		outputHead = outputHead->next;
 		setDateToFileNotebook(deletedList, newFile);
+		deletedList.clear();
 		newFile = false; // removes the chosen node from the .txt file
 	}
 }
@@ -258,8 +258,7 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen) //Outputs the cont
 	cout << endl;
 	if (isDel) 
 	{
-		for (;;)
-		{
+		do {
 			system("cls");
 			outputHead = Head;
 			cout << endl;
@@ -277,6 +276,7 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen) //Outputs the cont
 						deleteElement(&Head, delNum);
 					}
 				}
+
 				if (outputHead == NULL) 
 				{
 					break;
@@ -319,6 +319,7 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen) //Outputs the cont
 					{
 						color(12);
 					}
+	
 					gotoxy(64, pos + 1); cout << " "; textField(32); cout << endl;
 					gotoxy(65, pos + 2); cout << char(186) << " "; color(7); cin >> delNum;
 					pos += 4;
@@ -331,7 +332,7 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen) //Outputs the cont
 				notebookSection();
 				break;
 			}
-		}
+		} while (key != char(27));
 
 	}
 
@@ -522,51 +523,21 @@ int bookMenu() // Menu in notebook section
 	while (true)
 	{	
 		// Open button
-		gotoxy(70, 8); color(SetColor[0]); cout << char(201);
-		for (int i = 0; i < 20; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		gotoxy(70, 9); cout << char(186) << "        Open        " << char(186) << endl;
-		gotoxy(70, 10); cout << char(200);
-		for (int i = 0; i < 20; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188); color(SetColor[2]);
+		color(SetColor[0]); 
+		drawButton(8, "        Open        ", 20, 70); 
+		color(SetColor[2]);
 
 
-		gotoxy(70, 11); color(SetColor[1]); cout << char(201);
-		for (int i = 0; i < 20; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		// Add button
-		gotoxy(70, 12); cout << char(186) << "    Add an event    " << char(186);
-		gotoxy(70, 13); cout << char(200);
-		for (int i = 0; i < 20; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188); color(SetColor[2]);
+		gotoxy(70, 11); color(SetColor[1]);  
+		drawButton(11, "    Add an event    ", 20, 70); 
+		color(SetColor[2]);
+		
 
+		color(SetColor[2]); 
+        drawButton(14, "       Delete       ", 20, 70);
+		color(SetColor[2]);
+		
 
-		gotoxy(70, 14); color(SetColor[2]); cout << char(201);
-		for (int i = 0; i < 20; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		// Delete button
-		gotoxy(70, 15); cout << char(186) << "       Delete       " << char(186) << endl; color(SetColor[2]);
-		gotoxy(70, 16); cout << char(200);
-		for (int i = 0; i < 20; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188); color(SetColor[2]);
 
 		key = _getch();
 
