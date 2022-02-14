@@ -9,6 +9,7 @@
 + [Participants](#participants)
 + [Resume of the project](#resume)
 + [Documents](#documents)
++ [Pictures of final product](#pictures)
 
 # Participants 👨‍💻 <a name = "participants"></a>
 
@@ -28,8 +29,28 @@
 
 **[Presentation](Documents/Presentation.pptx)**
 <br><br>
-**[Documentation](Documents/Documentation.docx)** 
+**[Documentation](Documentation/Documentation.docx)** 
 <br><br>
-**[QA Documentation](Documents/QADocumentation.xlsx)**
+**[QA Documentation](Documentation/QADocumentation.xlsx)**
 
 # Pictures of final product 📷 <a name = "pictures"></a>
+
+## Main Menu
+
+<img src = "/Pictures for Readme/Menu.png">
+
+## Notebook section
+
+<img src = "/Pictures for Readme/Notebook.png">
+
+### Open subsection
+
+<img src = "/Pictures for Readme/Open.png">
+
+## Timeline section
+
+<img src = "/Pictures for Readme/Timeline.png">
+
+## Search section 
+
+<img src = "/Pictures for Readme/Search.png">
