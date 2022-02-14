@@ -45,6 +45,27 @@ void menuArt(int SetColor[]) // ASCII art in main menu
 	}
 }
 
+void drawButton(int posy, string text, int size, int posx)
+{
+	gotoxy(posx, posy); cout << char(201);
+
+	for (int i = 0; i < size; i++)
+	{
+		cout << char(205);
+	}
+
+	cout << char(187);
+	gotoxy(posx, posy + 1); cout << char(186) << text << char(186) << endl;
+	gotoxy(posx, posy + 2); cout << char(200);
+
+	for (int i = 0; i < size; i++)
+	{
+		cout << char(205);
+	}
+
+	cout << char(188);
+}
+
 int Menu() //Main menu with three options
 {
 	if (consoleOpened == false) // Opens the console
@@ -58,59 +79,27 @@ int Menu() //Main menu with three options
 	int SetColor[3] = { 14, 7, 7 };
 	int counter = 1;
 
-	SetColor[0] = 14;
-	SetColor[1] = 7;
-	SetColor[2] = 7;
-
 	menuArt(SetColor);
 
 	while (true) 
 	{
 		// Button for history notebook section
-		gotoxy(42, 13); color(SetColor[0]); cout << char(201); 
-		for (int i = 0; i < 32; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		gotoxy(42, 14); cout << char(186) << "       1. History Notebook      " << char(186) << endl;
-		gotoxy(42, 15); cout << char(200);
-		for (int i = 0; i < 32; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188); color(SetColor[2]);
+		color(SetColor[0]);
+		drawButton(13, "       1. History Notebook      ", 32, 42); 
+		color(SetColor[2]);
+
 
 		// Button for timeline section
-		gotoxy(42, 16); color(SetColor[1]); cout << char(201);
-		for (int i = 0; i < 32; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		gotoxy(42, 17); cout << char(186) << "          2. Timeline           " << char(186);
-		gotoxy(42, 18); cout << char(200);
-		for (int i = 0; i < 32; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188); color(SetColor[2]);
+		color(SetColor[1]); 
+		drawButton(16, "          2. Timeline           ", 32, 42); 
+		color(SetColor[2]);
+		
 
 		// Button for Search Engine
-		gotoxy(42, 19); color(SetColor[2]); cout << char(201);
-		for (int i = 0; i < 32; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		gotoxy(42, 20); cout << char(186) << "       3. Search Engine         " << char(186) << endl;
-		gotoxy(42, 21); cout << char(200);
-		for (int i = 0; i < 32; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188); color(SetColor[2]);
-
+		color(SetColor[2]);  
+		drawButton(19, "       3. Search Engine         ", 32, 42);
+		color(SetColor[2]);
+	
 		key = _getch();
 
 		if (key == 72 && (counter >= 2 && counter <= 3)) // 72 is the ASCII code for the up arrow

@@ -9,6 +9,8 @@ void gotoxy(int x, int y);
 
 void menuArt(int SetColor[]);
 
+void drawButton(int posy, std::string text, int size, int posx);
+
 void searchEngine();
 
 int Menu();

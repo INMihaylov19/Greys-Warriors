@@ -237,20 +237,7 @@ void drawPageContent(int pageNumber) // Outputs details
 		color(7); cout << char(179) << " "; color(14); cout << outputHead->event[3]; color(7);
 	}
 
-	gotoxy(65, 1); cout << char(201); 
-	for (int i = 0; i < 32; i++)
-	{
-		cout << char(205);
-	}
-
-	cout << char(187);
-	gotoxy(65, 2); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
-	gotoxy(65, 3); cout << char(200);
-	for (int i = 0; i < 32; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
+	drawButton(1, "      Press Esc to get back     ", 32, 65);
 
 	key = _getch();
 
@@ -317,33 +304,9 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen) //Outputs the cont
 				outputHead = outputHead->next;
 			}
 			notebookSize = pageNumber;
-			gotoxy(65, 1); cout << char(201); // Button for going back
-			for (int i = 0; i < 32; i++)
-			{
-				cout << char(205);
-			}
-			cout << char(187);
-			gotoxy(65, 2); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
-			gotoxy(65, 3); cout << char(200);
-			for (int i = 0; i < 32; i++)
-			{
-				cout << char(205);
-			}
-			cout << char(188);
 
-			gotoxy(65, 4); cout << char(201); //Button for deleting an event
-			for (int i = 0; i < 32; i++)
-			{
-				cout << char(205);
-			}
-			cout << char(187);
-			gotoxy(65, 5); cout << char(186) << " Press Enter to delete an event " << char(186) << endl;
-			gotoxy(65, 6); cout << char(200);
-			for (int i = 0; i < 32; i++)
-			{
-				cout << char(205);
-			}
-			cout << char(188);
+			drawButton(1, "      Press Esc to get back     ", 32, 65);
+			drawButton(4, " Press Enter to delete an event ", 32, 65);
 
 			key = _getch();
 			int pos = 8;
@@ -396,42 +359,21 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen) //Outputs the cont
 		notebookSize = pageNumber;
 	}
 
-	gotoxy(65, 1); cout << char(201);
-	for (int i = 0; i < 32; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoxy(65, 2); cout << char(186) << "      Press Esc to get back     " << char(186) << endl;
-	gotoxy(65, 3); cout << char(200);
-	for (int i = 0; i < 32; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
+	drawButton(1, "      Press Esc to get back     ", 32, 65);
 
 	cout << endl;
 
 	if(isOpen) // Add section
 	{
-		gotoxy(65, 4); cout << char(201);
-		for (int i = 0; i < 32; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		gotoxy(65, 5); cout << char(186) << "  Press Enter to open an event  " << char(186) << endl;
-		gotoxy(65, 6); cout << char(200);
-		for (int i = 0; i < 32; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188);
-
-		key = _getch();
 		int pos = 8;
 		string inputMessage = " Enter event's number: ";
-		if (key == '\r') {
+
+		drawButton(4, "  Press Enter to open an event  ", 32, 65);
+
+		key = _getch();
+		
+		if (key == '\r') 
+		{
 			do {
 				gotoxy(66, pos); cout << inputMessage << endl;
 				if (pos != 8)
@@ -456,25 +398,15 @@ void drawNotebookContent(bool isAdd, bool isDel, bool isOpen) //Outputs the cont
 	if (isAdd) 
 	{
 		//Enter to add new event button
-		gotoxy(65, 4); cout << char(201);
-		for (int i = 0; i < 32; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		gotoxy(65, 5); cout << char(186) << "  Press Enter to add new event  " << char(186) << endl;
-		gotoxy(65, 6); cout << char(200);
-		for (int i = 0; i < 32; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188);
+		drawButton(4, "  Press Enter to add new event  ", 32, 65);
 
 		key = _getch();
+
 		if (key == '\r')
 		{
 			addEventToNotebook();
 		}
+
 		if (key == char(27))
 		{
 			createdBook = false;
@@ -502,8 +434,7 @@ void addEventToNotebook() // Text field to input information
 	for (int i = 0; i < 4; i++)
 	{
 		do {
-			gotoxy(65, position); cout << outputInfo[i];
-			cout << endl;
+			gotoxy(65, position); cout << outputInfo[i] << endl;
 			gotoxy(65, position + 1); textField(33);
 			cout << endl;
 			gotoxy(65, position + 2); cout << char(186) << " ";
@@ -527,19 +458,7 @@ void startNewNotebook()
 	" Enter Event's participants: ", "Enter Event Details: " };
 	vector <string> event;
 
-	gotoxy(1, 1); cout << char(201); //Fill message start
-	for (int i = 0; i < 36; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoxy(1, 2); cout << char(186) << "  Adding new event. Fill all gaps!  " << char(186) << endl;
-	gotoxy(1, 3); cout << char(200);
-	for (int i = 0; i < 36; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188); //Fill message end
+	drawButton(1, "  Adding new event. Fill all gaps!  ", 36, 1);
 	cout << endl << endl;
 
 	for (int i = 0; i < 4; i++)
@@ -599,10 +518,6 @@ int bookMenu() // Menu in notebook section
 	int counter = 1;
 	char key;
 	int SetColor[3] = { 14, 7, 7 };
-
-	SetColor[0] = 14;
-	SetColor[1] = 7;
-	SetColor[2] = 7;
 
 	while (true)
 	{	

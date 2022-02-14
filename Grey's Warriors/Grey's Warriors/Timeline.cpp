@@ -190,6 +190,7 @@ void drawTimelineInfo(int chosenTimeline) // Prints timeline info
 		j++;
 
 		color(14);  cout << " " << yearArray[k]; color(7);
+
 		for (int i = 5; i > to_string(yearArray[k]).size(); i--)
 		{
 			cout << " ";
@@ -205,7 +206,7 @@ void drawTimelineInfo(int chosenTimeline) // Prints timeline info
 	{
 		switch (k)
 		{
-		case 1: posx = 12; break;
+		case 1: posx = 12; break; // Sets position with, every position is with 16 bigger than the previous
 		case 2: posx = 28; break;
 		case 3: posx = 44; break;
 		case 4: posx = 60; break;
@@ -219,6 +220,7 @@ void drawTimelineInfo(int chosenTimeline) // Prints timeline info
 			gotoxy(posx - 2, 4);  cout << char(179); color(11); 
 			cout << " "; gotoxy(posx, 4); cout << nameArray[k] << " "; color(7);
 		}
+
 		else
 		{
 			gotoxy(posx - 2, 6); cout << char(179); color(11);
@@ -226,20 +228,7 @@ void drawTimelineInfo(int chosenTimeline) // Prints timeline info
 		}
 	}
 
-	gotoxy(15, 10); cout << char(201);
-
-	for (int i = 0; i < 32; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoxy(15, 11); cout << char(186) << "      Press key to go back      " << char(186) << endl;
-	gotoxy(15, 12); cout << char(200);
-	for (int i = 0; i < 32; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
+	drawButton(10, "      Press key to go back      ", 32, 15);
 
 	key = _getch();
 	drawTimelines();
@@ -288,34 +277,8 @@ void drawTimelines() // Prints timelines
 	
 	}
 
-	gotoxy(65, 1); cout << char(201); //Enter button to open an event
-	for (int i = 0; i < 32; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoxy(65, 2); cout << char(186) << "  Press Enter to open an event  " << char(186) << endl;
-	gotoxy(65, 3); cout << char(200);
-	for (int i = 0; i < 32; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
-
-	gotoxy(65, 4); cout << char(201); //Enter button to go back with ESC Button
-	for (int i = 0; i < 32; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoxy(65, 5); cout << char(186) << "      Press ESC to go back      " << char(186) << endl;
-	gotoxy(65, 6); cout << char(200);
-	for (int i = 0; i < 32; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
-
+	drawButton(1, "  Press Enter to open an event  ", 32, 65);
+	drawButton(4, "      Press ESC to go back      ", 32, 65);
 
 	int pos = 8;
 	string inputMessage = " Enter Timeline's number: ";
@@ -444,86 +407,53 @@ void startNewNote(int repeat)
 	drawTimelines();
 }
 
+void drawSizeButton(int posx, int size) 
+{
+	gotoxy(posx, 15);  cout << char(201);
+	for (int i = 0; i < 9; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187);
+	gotoxy(posx, 16); cout << char(186) << "         " << char(186) << endl;
+	gotoxy(posx, 17); cout << char(186) << "    " << size << "    " << char(186) << endl;
+	gotoxy(posx, 18); cout << char(186) << "         " << char(186) << endl;
+	gotoxy(posx, 19); cout << char(200);
+
+	for (int i = 0; i < 9; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188);
+}
+
+
 void numberOfEvents() // Asks the user how many dates he wants to put in the timeline
 {
 	int SetColor[4] = { 14, 7, 7, 7 };
-
-	SetColor[0] = 14;
-	SetColor[1] = 7;
-	SetColor[2] = 7;
-	SetColor[3] = 7;
-
 	int counter = 1, key;
 
 	while (true)
 	{
 		//Button 4
-		gotoxy(30, 15); color(SetColor[0]);  cout << char(201);
-		for (int i = 0; i < 9; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		gotoxy(30, 16); cout << char(186) << "         " << char(186) << endl;
-		gotoxy(30, 17); cout << char(186) << "    4    " << char(186) << endl;
-		gotoxy(30, 18); cout << char(186) << "         " << char(186) << endl;
-		gotoxy(30, 19); cout << char(200);
-		for (int i = 0; i < 9; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188); color(SetColor[0]);
+		color(SetColor[0]);
+		drawSizeButton(30, 4);
+		color(SetColor[0]);
 
 		//Button 5
-		gotoxy(45, 15); color(SetColor[1]);  cout << char(201);
-		for (int i = 0; i < 9; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		gotoxy(45, 16); cout << char(186) << "         " << char(186) << endl;
-		gotoxy(45, 17); cout << char(186) << "    5    " << char(186) << endl;
-		gotoxy(45, 18); cout << char(186) << "         " << char(186) << endl;
-		gotoxy(45, 19); cout << char(200);
-		for (int i = 0; i < 9; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188); color(SetColor[1]);
+		color(SetColor[1]);
+		drawSizeButton(45, 5);
+		color(SetColor[1]);
 
 		//Button 6
-		gotoxy(60, 15); color(SetColor[2]);  cout << char(201);
-		for (int i = 0; i < 9; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		gotoxy(60, 16); cout << char(186) << "         " << char(186) << endl;
-		gotoxy(60, 17); cout << char(186) << "    6    " << char(186) << endl;
-		gotoxy(60, 18); cout << char(186) << "         " << char(186) << endl;
-		gotoxy(60, 19); cout << char(200);
-		for (int i = 0; i < 9; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188); color(SetColor[2]);
+		color(SetColor[2]);
+		drawSizeButton(60, 6);
+		color(SetColor[2]);
 
 		//Button 7
-		gotoxy(75, 15); color(SetColor[3]);  cout << char(201);
-		for (int i = 0; i < 9; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		gotoxy(75, 16); cout << char(186) << "         " << char(186) << endl;
-		gotoxy(75, 17); cout << char(186) << "    7    " << char(186) << endl;
-		gotoxy(75, 18); cout << char(186) << "         " << char(186) << endl;
-		gotoxy(75, 19); cout << char(200);
-		for (int i = 0; i < 9; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188); color(SetColor[3]);
+		color(SetColor[3]);
+		drawSizeButton(75, 7);
+		color(SetColor[3]);
 
 		key = _getch();
 
@@ -589,61 +519,29 @@ void timelineSection()
 	gotoxy(26, 5); cout << "   | |    _| |_  | |  | | | |___  | |____  _| |_  | |\\  | | |___" << endl;
 	gotoxy(26, 6); cout << "   \\_/    \\___/  \\_|  |_/ \\____/  \\_____/  \\___/  \\_| \\_/ \\____/" << endl;
 
-	int time = 0;
-
-	int SetColor[3] = { 14, 7, 7 }; //Collection button 7 is for white, 14 for golden
-
-	SetColor[0] = 14;
-	SetColor[1] = 7;
-	SetColor[2] = 7;
-
-	int counter = 1;
+	int time = 0, counter = 1;;
+	int SetColor[3] = { 14, 7, 7 }; //Console coloring - 7 is for white, 14 for golden
 	int key;
+
 	while (true)
 	{
-		gotoxy(15, 10); color(SetColor[0]);  cout << char(201);
-		for (int i = 0; i < 20; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		gotoxy(15, 11); cout << char(186) << "     Collection     " << char(186) << endl;
-		gotoxy(15, 12); cout << char(200);
-		for (int i = 0; i < 20; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188); color(SetColor[2]);
+		//Open collection button
+		color(SetColor[0]); 
+		drawButton(10, "     Collection     ", 20, 15);  
+		color(SetColor[2]);
+		
 
 		//Add/Edit button
-		gotoxy(48, 10); color(SetColor[1]); cout << char(201);
-		for (int i = 0; i < 20; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		gotoxy(48, 11); cout << char(186) << "    Add an event    " << char(186) << endl;
-		gotoxy(48, 12); cout << char(200);
-		for (int i = 0; i < 20; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188); color(SetColor[2]);
+		color(SetColor[1]); 
+		drawButton(10, "    Add an event    ", 20, 48);
+		color(SetColor[2]);
+
 
 		//Back to Menu button
-		gotoxy(81, 10); color(SetColor[2]); cout << char(201);
-		for (int i = 0; i < 20; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		gotoxy(81, 11); cout << char(186) << "    Back to Menu    " << char(186) << endl;
-		gotoxy(81, 12); cout << char(200);
-		for (int i = 0; i < 20; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188); color(SetColor[2]);
+		color(SetColor[2]); 
+		drawButton(10, "    Back to Menu    ", 20, 81); 
+		color(SetColor[2]);
+		
 
 		key = _getch();
 
@@ -651,10 +549,12 @@ void timelineSection()
 		{
 			counter--;
 		}
+
 		if (key == 77 && (counter >= 1 && counter <= 2)) // 77 is the ASCII code for rightwards arrow
 		{
 			counter++;
 		}
+
 		if (key == '\r') // enter key
 		{
 			if (counter == 1)
@@ -663,15 +563,18 @@ void timelineSection()
 				{
 					drawTimelines();
 				}
-				else {
+				else 
+				{
 					timelineSection();
 				}
 			}
+
 			if (counter == 2)
 			{
 				numberOfEvents();
 				break;
 			}
+
 			if (counter == 3)
 			{
 				system("CLS");
@@ -679,6 +582,7 @@ void timelineSection()
 				break;
 			}
 		}
+
 		if (key == char(27)) 
 		{
 			system("CLS");
